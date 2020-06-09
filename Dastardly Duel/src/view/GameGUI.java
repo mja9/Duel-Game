@@ -45,5 +45,13 @@ public class GameGUI extends JFrame {
 	public void initGUI() {
 		contentPane.add(new DemoLevel());
 	}
+	
+	public void start() {
+		
+	}
+	
+	public void update() {
+		
+	}
 
 }
