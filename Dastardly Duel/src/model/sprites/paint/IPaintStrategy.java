@@ -1,10 +1,13 @@
 package model.sprites.paint;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 public interface IPaintStrategy {
 	
 	void init();
 	
-	void paint();
+	void paint(Graphics g, Point p);
 	
 	IPaintStrategy NULL_PAINT = new IPaintStrategy() {
 
@@ -13,7 +16,7 @@ public interface IPaintStrategy {
 		}
 
 		@Override
-		public void paint() {			
+		public void paint(Graphics g, Point p) {			
 		}
 		
 	};
