@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import view.levels.DemoLevel;
 
 public class GameGUI extends JFrame {
+	
+	
 
 	private JPanel contentPane;
 
@@ -36,7 +38,7 @@ public class GameGUI extends JFrame {
 	}
 	
 	public void update() {
-		
+		contentPane.repaint();
 	}
 
 }
