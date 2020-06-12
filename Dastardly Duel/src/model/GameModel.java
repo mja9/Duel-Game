@@ -44,7 +44,7 @@ public class GameModel {
 	private void loadPlayer() {
 		_player = new Sprite(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
 				IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, 
-				new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 110));
+				new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145));
 		_dispatcher.addObserver(_player);
 	}
 	

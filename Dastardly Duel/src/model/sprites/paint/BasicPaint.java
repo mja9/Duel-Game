@@ -13,7 +13,7 @@ public class BasicPaint implements IPaintStrategy{
 	@Override
 	public void paint(Graphics g, Point p) {
 		g.setColor(Color.ORANGE);
-		g.fillRect(p.x, p.y, 10, 10);
+		g.fillRect(p.x, p.y, 10, 45);
 	}
 
 }
