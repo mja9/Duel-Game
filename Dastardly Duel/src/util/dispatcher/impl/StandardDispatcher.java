@@ -6,8 +6,7 @@ public class StandardDispatcher<TMessage> extends ADispatcher<TMessage> {
 
 	@Override
 	public void sendMessage(IDispatcher<TMessage> disp, TMessage message) {
-		
+		this.getObserverSet().forEach((obs) -> obs.recieve(disp, message));
 	}
-
 
 }

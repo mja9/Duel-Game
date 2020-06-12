@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,9 +8,11 @@ import javax.swing.border.EmptyBorder;
 import view.levels.DemoLevel;
 
 public class GameGUI extends JFrame {
-	
-	
 
+	/**
+	 * Unique ID for this GUI component.
+	 */
+	private static final long serialVersionUID = 7853262261336396605L;
 	private JPanel contentPane;
 
 	/**
