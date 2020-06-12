@@ -18,31 +18,16 @@ public class GameGUI extends JFrame {
 	
 	private IView2ModelAdapter _view2Model = IView2ModelAdapter.NULL_ADAPTER; 
 	
-	private JPanel contentPane = new JPanel() {
-
-		/**
-		 * Unique ID.
-		 */
-		private static final long serialVersionUID = -9005467865694361582L;
-		
-		// TODO Look into better ways of layering the GUI.
-		
-		@Override
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			for (int i = 0; i < this.getComponents().length; i++) {
-				this.getComponents()[i].repaint();
-			}
-			_view2Model.update(g);
-		}
-		
-	};
+	private JPanel contentPane;
+	
+	private JPanel level;
 
 	/**
 	 * Create the frame.
 	 */
 	public GameGUI(IView2ModelAdapter view2Model) {
 		_view2Model = view2Model;
+		level = new DemoLevel(_view2Model);
 		initGUI();
 	}
 	
@@ -54,7 +39,7 @@ public class GameGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		contentPane.add(new DemoLevel());
+		contentPane.add(level);
 	}
 	
 	public void start() {
@@ -62,7 +47,7 @@ public class GameGUI extends JFrame {
 	}
 	
 	public void update() {
-		contentPane.repaint();
+		level.repaint();
 	}
 
 }
