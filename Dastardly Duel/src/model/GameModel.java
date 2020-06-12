@@ -1,6 +1,11 @@
 package model;
 
+import java.awt.Graphics;
+
 import javax.swing.Timer;
+
+import util.dispatcher.IDispatcher;
+import util.dispatcher.impl.StandardDispatcher;
 
 public class GameModel {
 	
@@ -9,6 +14,8 @@ public class GameModel {
 	private int _framesPerMS = 50;	// 50 milliseconds --> 20 FPS
 	
 	Timer _timer = new Timer(_framesPerMS, (e) -> _model2View.update());
+	
+	IDispatcher<Graphics> _dispatcher = new StandardDispatcher<Graphics>();
 		
 	public GameModel(IModel2ViewAdapter model2View) {
 		_model2View = model2View;
@@ -18,8 +25,8 @@ public class GameModel {
 		_timer.start();
 	}
 	
-	public void update() {
-		
+	public void update(Graphics g) {
+		_dispatcher.sendMessage(_dispatcher, g);
 	}
 	
 }

@@ -1,10 +1,12 @@
 package controller;
 
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import model.GameModel;
 import model.IModel2ViewAdapter;
 import view.GameGUI;
+import view.IView2ModelAdapter;
 
 public class GameController {
 	
@@ -22,7 +24,14 @@ public class GameController {
 			
 		});
 		
-		_GUI = new GameGUI();
+		_GUI = new GameGUI(new IView2ModelAdapter() {
+
+			@Override
+			public void update(Graphics g) {
+				_model.update(g);
+			}
+			
+		});
 	}
 	
 	public void start() {

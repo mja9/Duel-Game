@@ -7,8 +7,10 @@ import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMovementStrategy;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
+import util.dispatcher.IDispatcher;
+import util.dispatcher.IObserver;
 
-public class Sprite {
+public class Sprite implements IObserver<Graphics> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
@@ -38,6 +40,11 @@ public class Sprite {
 		_paintStrategy.paint(g, this._position);
 		_updateStrategy.updateState();
 		
+	}
+
+	@Override
+	public void recieve(IDispatcher<Graphics> dispatcher, Graphics message) {
+		this.update(message);
 	}
 	
 	
