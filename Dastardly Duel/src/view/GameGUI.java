@@ -25,6 +25,8 @@ public class GameGUI extends JFrame {
 		 */
 		private static final long serialVersionUID = -9005467865694361582L;
 		
+		// TODO Look into better ways of layering the GUI.
+		
 		@Override
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
