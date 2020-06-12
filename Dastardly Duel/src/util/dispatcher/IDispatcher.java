@@ -1,14 +1,16 @@
 package util.dispatcher;
 
+import java.util.Set;
+
 public interface IDispatcher<TMessage> {
 	
-	public Boolean addObserver();
+	public Boolean addObserver(IObserver<TMessage> observer);
 	
-	public Boolean addAllObservers();
+	public Boolean addAllObservers(Set<IObserver<TMessage>> observers);
 		
-	public Iterable getObservers();
+	public Set<IObserver<TMessage>> getObservers();
 
-	public IObserver<TMessage> removeObserver(IObserver<TMessage> observer);
+	public Boolean removeObserver(IObserver<TMessage> observer);
 	
 	public void removeAllObservers();
 	
