@@ -21,7 +21,7 @@ public class GameGUI extends JFrame {
 	
 	private JPanel contentPane;
 	
-	private JPanel level;
+	private DemoLevel level;
 
 	/**
 	 * Create the frame.
@@ -52,7 +52,7 @@ public class GameGUI extends JFrame {
 	}
 	
 	public void addKeyCommand(String key, Consumer<String> command) {
-		
+		level.addKeyCommand(key, command);
 	}
 
 }

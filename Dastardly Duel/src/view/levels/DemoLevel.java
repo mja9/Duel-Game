@@ -1,6 +1,8 @@
 package view.levels;
 
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 
 import view.IView2ModelAdapter;
 
@@ -8,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.util.function.Consumer;
 
 public class DemoLevel extends JPanel {
 	
@@ -43,6 +47,24 @@ public class DemoLevel extends JPanel {
 		
 		_view2Model.update(g);
 	
+	}
+	
+	public void addKeyCommand(String key, Consumer<String> command) {
+		this.requestFocus();
+		this.getInputMap().put(KeyStroke.getKeyStroke(key), key);
+		this.getActionMap().put(key, new AbstractAction() {
+
+			/**
+			 * Unique ID.
+			 */
+			private static final long serialVersionUID = 6158937318022105684L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				command.accept(key);
+			}
+			
+		});
 	}
 
 }
