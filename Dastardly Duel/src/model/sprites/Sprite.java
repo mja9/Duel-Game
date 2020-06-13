@@ -32,7 +32,24 @@ public class Sprite implements IObserver<Graphics> {
 		_actionStrategy = actionStrategy;
 		_updateStrategy = updateStrategy;
 		_position = pos;
+		setMovement();
 		
+	}
+	
+	private void setMovement() {
+		_movementStrategy = new IMovementStrategy() {
+
+			@Override
+			public void init() {				
+			}
+
+			@Override
+			public void move() {
+				Sprite.this.setPosition(new Point(Sprite.this.getPosition().x + Sprite.this.getSpeed().x, 
+						Sprite.this.getPosition().y + Sprite.this.getSpeed().y));
+			}
+			
+		};
 	}
 	
 	public void update(Graphics g) {
@@ -63,6 +80,8 @@ public class Sprite implements IObserver<Graphics> {
 	public void setSpeed(Point newSpeed) {
 		_speed = newSpeed;
 	}
+	
+	
 	
 
 }
