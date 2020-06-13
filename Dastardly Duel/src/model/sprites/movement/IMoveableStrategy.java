@@ -16,6 +16,8 @@ public interface IMoveableStrategy {
 	
 	void moveDown();
 	
+	void stop();
+	
 	public final IMoveableStrategy NULL_MOVEABLE = new IMoveableStrategy() {
 
 		@Override
@@ -41,6 +43,10 @@ public interface IMoveableStrategy {
 
 		@Override
 		public void moveDown() {			
+		}
+
+		@Override
+		public void stop() {			
 		}
 		
 	};

@@ -60,12 +60,12 @@ public class GameModel {
 
 			@Override
 			public void moveLeft() {	
-				_player.setSpeed(new Point(-20, 0));
+				_player.setSpeed(new Point(-10, 0));
 			}
 
 			@Override
 			public void moveRight() {	
-				_player.setSpeed(new Point(20, 0));
+				_player.setSpeed(new Point(10, 0));
 			}
 
 			@Override
@@ -74,6 +74,11 @@ public class GameModel {
 
 			@Override
 			public void moveDown() {		
+			}
+
+			@Override
+			public void stop() {
+				_player.setSpeed(new Point(0, _player.getSpeed().y));
 			}
 
 			
@@ -95,11 +100,29 @@ public class GameModel {
 			
 		});
 		
+		_model2View.addKeyCommand("released LEFT", new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				moveableStrategy.stop();
+			}
+			
+		});
+		
 		_model2View.addKeyCommand(keys.getRightKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
 				moveableStrategy.moveRight();
+			}
+			
+		});
+		
+		_model2View.addKeyCommand("released RIGHT", new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				moveableStrategy.stop();
 			}
 			
 		});
