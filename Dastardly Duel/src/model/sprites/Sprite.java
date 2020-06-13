@@ -22,6 +22,7 @@ public class Sprite implements IObserver<Graphics> {
 	
 	Point _position = new Point(0, 0);
 	
+	Point _speed = new Point(0, 0);
 	
 	public Sprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
 			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos) {
@@ -47,7 +48,21 @@ public class Sprite implements IObserver<Graphics> {
 		this.update(message);
 	}
 	
+	public Point getPosition() {
+		return _position;
+	}
 	
+	public void setPosition(Point newPosition) {
+		_position = newPosition;
+	}
+	
+	public Point getSpeed() {
+		return _speed;
+	}
+	
+	public void setSpeed(Point newSpeed) {
+		_speed = newSpeed;
+	}
 	
 
 }
