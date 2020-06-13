@@ -57,10 +57,9 @@ public class Sprite implements IObserver<Graphics> {
 	public void update(Graphics g) {
 		
 		_movementStrategy.move();
+		checkBoundary();
 		_paintStrategy.paint(g, this._position);
 		_updateStrategy.updateState();
-		checkBoundary();
-		
 	}
 
 	@Override

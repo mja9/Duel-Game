@@ -43,7 +43,7 @@ public class DemoLevel extends JPanel {
 		setBackground(Color.GRAY);	// Set the background.
 		
 		g.setColor(Color.CYAN);
-		g.fillRect(0, screenSize.height - 100, screenSize.width, 100);	// Add a floor
+		g.fillRect(0, screenSize.height - (screenSize.height / 4), screenSize.width, screenSize.height / 4);	// Add a floor
 		
 		_view2Model.update(g);
 	
