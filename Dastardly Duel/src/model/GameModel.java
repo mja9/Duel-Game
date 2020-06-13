@@ -8,12 +8,10 @@ import java.util.function.Consumer;
 import javax.swing.Timer;
 
 import model.sprites.Player;
-import model.sprites.Sprite;
 import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;
-import model.sprites.movement.impl.BasicMoveability;
 import model.sprites.paint.BasicPaint;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
@@ -49,7 +47,37 @@ public class GameModel {
 	
 	private void loadPlayer() {
 		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
-			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, new BasicMoveability(_player), 
+			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, new IMoveableStrategy() {
+
+			@Override
+			public void init() {		
+			}
+
+			@Override
+			public Point getPoint() {
+				return _player.getPosition();
+			}
+
+			@Override
+			public void moveLeft() {		
+				_player.setPosition(new Point(_player.getPosition().x - _player.getSpeed().x, _player.getPosition().y));
+			}
+
+			@Override
+			public void moveRight() {	
+				_player.setPosition(new Point(_player.getPosition().x + _player.getSpeed().x, _player.getPosition().y));
+			}
+
+			@Override
+			public void moveUp() {		
+			}
+
+			@Override
+			public void moveDown() {		
+			}
+
+			
+		}, 
 			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145));
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());

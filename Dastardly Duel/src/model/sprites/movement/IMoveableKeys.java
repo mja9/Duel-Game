@@ -14,22 +14,22 @@ public interface IMoveableKeys {
 
 		@Override
 		public String getLeftKey() {
-			return "A";
+			return "LEFT";
 		}
 
 		@Override
 		public String getRightKey() {
-			return "D";
+			return "RIGHT";
 		}
 
 		@Override
 		public String getUpKey() {
-			return "W";
+			return "UP";
 		}
 
 		@Override
 		public String getDownKey() {
-			return "S";
+			return "DOWN";
 		}
 		
 	};
