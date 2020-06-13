@@ -1,7 +1,9 @@
 package model.sprites;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMovementStrategy;
@@ -57,12 +59,40 @@ public class Sprite implements IObserver<Graphics> {
 		_movementStrategy.move();
 		_paintStrategy.paint(g, this._position);
 		_updateStrategy.updateState();
+		checkBoundary();
 		
 	}
 
 	@Override
 	public void recieve(IDispatcher<Graphics> dispatcher, Graphics message) {
 		this.update(message);
+	}
+	
+	private void checkBoundary() {
+		
+		// Screen size on the device running the game
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		// Check if hitting walls
+		
+		if (_position.x <= 0) {	// Left wall
+			_position.x = 0;
+		}
+		
+		if (_position.x >= screenSize.width) {	// Right wall
+			_position.x = screenSize.width;
+		}
+		
+		// Check if hitting ceiling
+		
+		if (_position.y <= 0) {
+			_position.y = 0;
+		}
+		
+		// Check if hitting floor
+		if (_position.y >= screenSize.height - (screenSize.height / 4)) {
+			_position.y = screenSize.height - (screenSize.height / 4);
+		}
 	}
 	
 	public Point getPosition() {

@@ -60,12 +60,12 @@ public class GameModel {
 
 			@Override
 			public void moveLeft() {	
-				_player.setSpeed(new Point(-10, 0));
+				_player.setSpeed(new Point(-5, 0));
 			}
 
 			@Override
 			public void moveRight() {	
-				_player.setSpeed(new Point(10, 0));
+				_player.setSpeed(new Point(5, 0));
 			}
 
 			@Override
@@ -86,6 +86,7 @@ public class GameModel {
 			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145));
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
+//		_player.setSpeed(new Point(0, -2));
 		_dispatcher.addObserver(_player);
 	}
 	
