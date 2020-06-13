@@ -22,7 +22,7 @@ public class GameModel {
 	
 	IModel2ViewAdapter _model2View = IModel2ViewAdapter.NULL_ADAPTER;
 	
-	private int _framesPerMS = 50;	// 50 milliseconds --> 20 FPS
+	private int _framesPerMS = 25;	// 25 milliseconds --> 40 FPS
 	
 	Timer _timer = new Timer(_framesPerMS, (e) -> _model2View.update());
 	
