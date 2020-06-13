@@ -15,6 +15,7 @@ import model.sprites.movement.IMovementStrategy;
 import model.sprites.paint.BasicPaint;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
+import model.sprites.update.impl.PseudoGravity;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.impl.StandardDispatcher;
 
@@ -47,7 +48,7 @@ public class GameModel {
 	
 	private void loadPlayer() {
 		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
-			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, new IMoveableStrategy() {
+			IActionStrategy.NULL_ACTION, new PseudoGravity(), new IMoveableStrategy() {
 
 			@Override
 			public void init() {		
@@ -60,16 +61,17 @@ public class GameModel {
 
 			@Override
 			public void moveLeft() {	
-				_player.setSpeed(new Point(-5, 0));
+				_player.setSpeed(new Point(-5, _player.getSpeed().y));
 			}
 
 			@Override
 			public void moveRight() {	
-				_player.setSpeed(new Point(5, 0));
+				_player.setSpeed(new Point(5, _player.getSpeed().y));
 			}
 
 			@Override
-			public void moveUp() {		
+			public void moveUp() {	
+				_player.setSpeed(new Point(_player.getSpeed().x, -20));
 			}
 
 			@Override
@@ -86,7 +88,7 @@ public class GameModel {
 			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145));
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
-//		_player.setSpeed(new Point(0, -2));
+		_player.setSpeed(new Point(0, 20));
 		_dispatcher.addObserver(_player);
 	}
 	
@@ -128,7 +130,7 @@ public class GameModel {
 			
 		});
 		
-		_model2View.addKeyCommand(keys.getUpKey(), new Consumer<String>() {
+		_model2View.addKeyCommand("released UP", new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {

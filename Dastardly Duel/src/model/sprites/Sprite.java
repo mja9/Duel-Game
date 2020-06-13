@@ -2,6 +2,8 @@ package model.sprites;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Toolkit;
 
@@ -58,8 +60,8 @@ public class Sprite implements IObserver<Graphics> {
 		
 		_movementStrategy.move();
 		checkBoundary();
+		_updateStrategy.updateState(this);
 		_paintStrategy.paint(g, this._position);
-		_updateStrategy.updateState();
 	}
 
 	@Override
@@ -70,7 +72,10 @@ public class Sprite implements IObserver<Graphics> {
 	private void checkBoundary() {
 		
 		// Screen size on the device running the game
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = ge.getDefaultScreenDevice();
+		int screenHeight = device.getDisplayMode().getHeight();
+		int screenWidth = device.getDisplayMode().getWidth();
 		
 		// Check if hitting walls
 		
@@ -78,8 +83,8 @@ public class Sprite implements IObserver<Graphics> {
 			_position.x = 0;
 		}
 		
-		if (_position.x >= screenSize.width) {	// Right wall
-			_position.x = screenSize.width;
+		if (_position.x >= screenWidth) {	// Right wall
+			_position.x = screenWidth;
 		}
 		
 		// Check if hitting ceiling
@@ -89,8 +94,8 @@ public class Sprite implements IObserver<Graphics> {
 		}
 		
 		// Check if hitting floor
-		if (_position.y >= screenSize.height - (screenSize.height / 4)) {
-			_position.y = screenSize.height - (screenSize.height / 4);
+		if (_position.y >= screenHeight - (screenHeight / 4)) {
+			_position.y = screenHeight - (screenHeight / 4);
 		}
 	}
 	

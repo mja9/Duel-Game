@@ -1,10 +1,12 @@
 package model.sprites.update;
 
+import model.sprites.Sprite;
+
 public interface IUpdateStrategy {
 	
 	void init();
 	
-	void updateState();
+	void updateState(Sprite context);
 	
 	IUpdateStrategy NULL_UPDATE = new IUpdateStrategy() {
 
@@ -13,7 +15,7 @@ public interface IUpdateStrategy {
 		}
 
 		@Override
-		public void updateState() {
+		public void updateState(Sprite context) {
 		}
 		
 	};
