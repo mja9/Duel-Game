@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.util.function.Consumer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -48,6 +49,10 @@ public class GameGUI extends JFrame {
 	
 	public void update() {
 		level.repaint();
+	}
+	
+	public void addKeyCommand(String key, Consumer<String> command) {
+		
 	}
 
 }

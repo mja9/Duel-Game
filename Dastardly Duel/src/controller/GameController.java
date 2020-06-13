@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.util.function.Consumer;
 
 import model.GameModel;
 import model.IModel2ViewAdapter;
@@ -20,6 +21,11 @@ public class GameController {
 			
 			public void update() {
 				_GUI.update();
+			}
+
+			@Override
+			public void addKeyCommand(String key, Consumer<String> command) {
+				_GUI.addKeyCommand(key, command);
 			}
 			
 		});
