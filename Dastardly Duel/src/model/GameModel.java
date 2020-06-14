@@ -86,7 +86,7 @@ public class GameModel {
 
 			
 		}, 
-			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145), 
+			new Point(100, getScreenSize().height - 145), 
 			getScreenSize());
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
@@ -146,6 +146,16 @@ public class GameModel {
 			@Override
 			public void accept(String t) {
 				moveableStrategy.moveDown();
+			}
+			
+		});
+		
+		_model2View.addKeyCommand("released SPACE", new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				System.out.println("Screen Size: " + getScreenSize() + "\n");
+				System.out.println("Player position: " + _player.getPosition() + "\n");
 			}
 			
 		});

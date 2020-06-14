@@ -76,11 +76,6 @@ public class Sprite implements IObserver<Graphics> {
 	private void checkBoundary() {
 		
 		// Screen size on the device running the game
-//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//		GraphicsDevice device = ge.getDefaultScreenDevice();
-//		int screenHeight = device.getDisplayMode().getHeight();
-//		int screenWidth = device.getDisplayMode().getWidth();
-		
 		int screenHeight = _screenSize.height;
 		int screenWidth = _screenSize.width;
 		
@@ -90,14 +85,14 @@ public class Sprite implements IObserver<Graphics> {
 			_position.x = 0;
 		}
 		
-		if (_position.x >= screenWidth) {	// Right wall
-			_position.x = screenWidth;
+		if (_position.x >= screenWidth - 10) {	// Right wall
+			_position.x = screenWidth - 10;
 		}
 		
 		// Check if hitting ceiling
 		
-		if (_position.y <= 0) {
-			_position.y = 0;
+		if (_position.y <= 45) {
+			_position.y = 45;
 		}
 		
 		// Check if hitting floor

@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.function.Consumer;
 
 import javax.swing.JFrame;
@@ -41,7 +42,7 @@ public class GameGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		contentPane.add(level);
+		contentPane.add(level);		
 	}
 	
 	public void start() {
@@ -57,7 +58,7 @@ public class GameGUI extends JFrame {
 	}
 	
 	public Dimension getScreenSize() {
-		return level.getSize();
+		return Toolkit.getDefaultToolkit().getScreenSize();
 	}
 
 }
