@@ -22,12 +22,12 @@ public class Player extends ASprite {
 	
 	private IMoveableKeys _moveableKeys = IMoveableKeys.STANDARD_KEYS;
 	
-	private String ID = "player";
+	private final String ID = "player";
 	
 	public Player(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy, IActionStrategy actionStrategy,
 			IUpdateStrategy updateStrategy, IMoveableStrategy moveableStrategy, 
-			Point pos, Dimension screenSize) {
-		super(paintStrategy, movementStrategy, actionStrategy, updateStrategy, pos, screenSize);
+			Point pos, Dimension screenSize, int width, int height) {
+		super(paintStrategy, movementStrategy, actionStrategy, updateStrategy, pos, screenSize, width, height);
 		_moveableStrategy = moveableStrategy;
 	}
 	

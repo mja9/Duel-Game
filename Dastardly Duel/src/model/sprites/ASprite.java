@@ -30,9 +30,13 @@ public abstract class ASprite implements IObserver<Graphics> {
 	
 	Dimension _screenSize = new Dimension(0, 0);
 	
+	int _width = 0;
+	
+	int _height = 0;
+	
 	public ASprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
 			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos, 
-			Dimension screenSize) {
+			Dimension screenSize, int width, int height) {
 		
 		_paintStrategy = paintStrategy;
 		_movementStrategy = movementStrategy;
@@ -40,6 +44,8 @@ public abstract class ASprite implements IObserver<Graphics> {
 		_updateStrategy = updateStrategy;
 		_position = pos;
 		_screenSize = screenSize;
+		_width = width;
+		_height = height;
 		setMovement();
 		
 	}
@@ -65,7 +71,7 @@ public abstract class ASprite implements IObserver<Graphics> {
 		_movementStrategy.move();
 		checkBoundary();
 		_updateStrategy.updateState(this);
-		_paintStrategy.paint(g, this._position);
+		_paintStrategy.paint(g, this._position, _width, _height);
 	}
 
 	@Override
@@ -115,6 +121,22 @@ public abstract class ASprite implements IObserver<Graphics> {
 	
 	public void setSpeed(Point newSpeed) {
 		_speed = newSpeed;
+	}
+	
+	public void setWidth(int newWidth) {
+		_width = newWidth;
+	}
+	
+	public int getWidth() {
+		return _width;
+	}
+	
+	public void setHeight(int newHeight) {
+		_height = newHeight;
+	}
+	
+	public int getHeight() {
+		return _height;
 	}
 	
 	public abstract String getID();

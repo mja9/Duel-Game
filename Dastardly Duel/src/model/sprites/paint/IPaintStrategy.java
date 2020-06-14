@@ -7,7 +7,7 @@ public interface IPaintStrategy {
 	
 	void init();
 	
-	void paint(Graphics g, Point p);
+	void paint(Graphics g, Point p, int width, int height);
 	
 	IPaintStrategy NULL_PAINT = new IPaintStrategy() {
 
@@ -16,7 +16,7 @@ public interface IPaintStrategy {
 		}
 
 		@Override
-		public void paint(Graphics g, Point p) {			
+		public void paint(Graphics g, Point p, int width, int height) {			
 		}
 		
 	};

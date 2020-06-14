@@ -11,9 +11,9 @@ public class BasicPaint implements IPaintStrategy{
 	}
 
 	@Override
-	public void paint(Graphics g, Point p) {
+	public void paint(Graphics g, Point p, int width, int height) {
 		g.setColor(Color.WHITE);
-		g.fillRect(p.x, p.y - 45, 10, 45);
+		g.fillRect(p.x, p.y - height, width, height);
 		g.setColor(Color.RED);
 		g.drawLine(p.x, p.y, p.x, p.y);
 	}
