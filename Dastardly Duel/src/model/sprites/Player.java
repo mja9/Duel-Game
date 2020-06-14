@@ -15,11 +15,13 @@ import model.sprites.update.IUpdateStrategy;
  * @author miguelarana
  *
  */
-public class Player extends Sprite {
+public class Player extends ASprite {
 	
 	private IMoveableStrategy _moveableStrategy = IMoveableStrategy.NULL_MOVEABLE;
 	
 	private IMoveableKeys _moveableKeys = IMoveableKeys.STANDARD_KEYS;
+	
+	private String ID = "player";
 	
 	public Player(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy, IActionStrategy actionStrategy,
 			IUpdateStrategy updateStrategy, IMoveableStrategy moveableStrategy, 
@@ -42,6 +44,11 @@ public class Player extends Sprite {
 	
 	public IMoveableKeys getMoveableKeys() {
 		return _moveableKeys;
+	}
+
+	@Override
+	public String getID() {
+		return ID;
 	}
 	
 }

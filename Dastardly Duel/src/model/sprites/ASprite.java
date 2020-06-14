@@ -14,7 +14,7 @@ import model.sprites.update.IUpdateStrategy;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.IObserver;
 
-public class Sprite implements IObserver<Graphics> {
+public abstract class ASprite implements IObserver<Graphics> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
@@ -30,7 +30,7 @@ public class Sprite implements IObserver<Graphics> {
 	
 	Dimension _screenSize = new Dimension(0, 0);
 	
-	public Sprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
+	public ASprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
 			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos, 
 			Dimension screenSize) {
 		
@@ -53,8 +53,8 @@ public class Sprite implements IObserver<Graphics> {
 
 			@Override
 			public void move() {
-				Sprite.this.setPosition(new Point(Sprite.this.getPosition().x + Sprite.this.getSpeed().x, 
-						Sprite.this.getPosition().y + Sprite.this.getSpeed().y));
+				ASprite.this.setPosition(new Point(ASprite.this.getPosition().x + ASprite.this.getSpeed().x, 
+						ASprite.this.getPosition().y + ASprite.this.getSpeed().y));
 			}
 			
 		};
@@ -117,7 +117,7 @@ public class Sprite implements IObserver<Graphics> {
 		_speed = newSpeed;
 	}
 	
-	
+	public abstract String getID();
 	
 
 }
