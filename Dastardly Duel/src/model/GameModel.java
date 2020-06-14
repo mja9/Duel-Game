@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 import javax.swing.Timer;
 
-import model.sprites.Player;
 import model.sprites.action.IActionStrategy;
+import model.sprites.impl.character.Player;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;

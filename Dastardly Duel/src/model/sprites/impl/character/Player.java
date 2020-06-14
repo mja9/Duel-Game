@@ -1,8 +1,9 @@
-package model.sprites;
+package model.sprites.impl.character;
 
 import java.awt.Dimension;
 import java.awt.Point;
 
+import model.sprites.ASprite;
 import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
