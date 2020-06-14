@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -31,7 +32,7 @@ public class GameModel {
 	
 	Player _player = new Player(IPaintStrategy.NULL_PAINT, IMovementStrategy.NULL_MOVEMENT, 
 			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, IMoveableStrategy.NULL_MOVEABLE, 
-			new Point(0, 0));
+			new Point(0, 0), new Dimension(0, 0));
 		
 	public GameModel(IModel2ViewAdapter model2View) {
 		_model2View = model2View;
@@ -85,7 +86,8 @@ public class GameModel {
 
 			
 		}, 
-			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145));
+			new Point(100, Toolkit.getDefaultToolkit().getScreenSize().height - 145), 
+			getScreenSize());
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));
@@ -147,6 +149,10 @@ public class GameModel {
 			}
 			
 		});
+	}
+	
+	public Dimension getScreenSize() {
+		return _model2View.getScreenSize();
 	}
 	
 }

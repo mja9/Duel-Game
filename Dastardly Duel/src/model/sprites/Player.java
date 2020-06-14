@@ -1,5 +1,6 @@
 package model.sprites;
 
+import java.awt.Dimension;
 import java.awt.Point;
 
 import model.sprites.action.IActionStrategy;
@@ -22,8 +23,8 @@ public class Player extends Sprite {
 	
 	public Player(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy, IActionStrategy actionStrategy,
 			IUpdateStrategy updateStrategy, IMoveableStrategy moveableStrategy, 
-			Point pos) {
-		super(paintStrategy, movementStrategy, actionStrategy, updateStrategy, pos);
+			Point pos, Dimension screenSize) {
+		super(paintStrategy, movementStrategy, actionStrategy, updateStrategy, pos, screenSize);
 		_moveableStrategy = moveableStrategy;
 	}
 	

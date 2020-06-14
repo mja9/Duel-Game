@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.function.Consumer;
 
@@ -53,6 +54,10 @@ public class GameGUI extends JFrame {
 	
 	public void addKeyCommand(String key, Consumer<String> command) {
 		level.addKeyCommand(key, command);
+	}
+	
+	public Dimension getScreenSize() {
+		return level.getSize();
 	}
 
 }

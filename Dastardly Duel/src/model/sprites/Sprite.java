@@ -28,14 +28,18 @@ public class Sprite implements IObserver<Graphics> {
 	
 	Point _speed = new Point(0, 0);
 	
+	Dimension _screenSize = new Dimension(0, 0);
+	
 	public Sprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
-			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos) {
+			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos, 
+			Dimension screenSize) {
 		
 		_paintStrategy = paintStrategy;
 		_movementStrategy = movementStrategy;
 		_actionStrategy = actionStrategy;
 		_updateStrategy = updateStrategy;
 		_position = pos;
+		_screenSize = screenSize;
 		setMovement();
 		
 	}
@@ -72,10 +76,13 @@ public class Sprite implements IObserver<Graphics> {
 	private void checkBoundary() {
 		
 		// Screen size on the device running the game
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice device = ge.getDefaultScreenDevice();
-		int screenHeight = device.getDisplayMode().getHeight();
-		int screenWidth = device.getDisplayMode().getWidth();
+//		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//		GraphicsDevice device = ge.getDefaultScreenDevice();
+//		int screenHeight = device.getDisplayMode().getHeight();
+//		int screenWidth = device.getDisplayMode().getWidth();
+		
+		int screenHeight = _screenSize.height;
+		int screenWidth = _screenSize.width;
 		
 		// Check if hitting walls
 		

@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.util.function.Consumer;
@@ -26,6 +27,11 @@ public class GameController {
 			@Override
 			public void addKeyCommand(String key, Consumer<String> command) {
 				_GUI.addKeyCommand(key, command);
+			}
+
+			@Override
+			public Dimension getScreenSize() {
+				return _GUI.getScreenSize();
 			}
 			
 		});
