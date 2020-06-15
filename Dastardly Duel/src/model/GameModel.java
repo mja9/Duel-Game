@@ -10,12 +10,14 @@ import javax.swing.Timer;
 import model.sprites.ASprite;
 import model.sprites.action.IActionStrategy;
 import model.sprites.impl.character.Player;
+import model.sprites.impl.environment.Platform;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;
 import model.sprites.paint.BasicPaint;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
+import model.sprites.update.impl.Collision;
 import model.sprites.update.impl.PseudoGravity;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -42,6 +44,7 @@ public class GameModel {
 	public void start() {
 		_timer.start();
 		loadPlayer();
+		loadEnvironment();
 	}
 	
 	public void update(Graphics g) {
@@ -53,6 +56,12 @@ public class GameModel {
 			}
 			
 		});
+	}
+	
+	private void loadEnvironment() {
+		Platform platform = new Platform(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
+				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 30);
+		_dispatcher.addObserver(platform);
 	}
 	
 	private void loadPlayer() {

@@ -40,6 +40,8 @@ public class Collision implements IUpdateStrategy {
 								| ((othersPos.y + otherContext.getHeight() <= thisPosition.y - thisContext.getHeight())
 								| (othersPos.y + otherContext.getHeight() <= thisPosition.y + thisContext.getHeight()))) {
 							
+							// PERFORM SOME ACTION HERE
+							System.out.println("Collision detected!\n");
 						}
 						
 					}
