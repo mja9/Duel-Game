@@ -33,12 +33,47 @@ public class Collision implements IUpdateStrategy {
 							&& (Math.abs(otherCenter.y - thisCenter.y) <=
 							thisContext.getHeight() / 2 + otherContext.getHeight() / 2)) {
 						System.out.println("Collision Detected!\n");
+						performAction(thisContext, otherContext);
 					}
 					
 				}
 			}
 			
 		});
+	}
+	
+	// For testing purposes only!
+	private void performAction(ASprite thisContext, ASprite otherContext) {
+		
+		// If the sprites are at the proper heights -- they will collide from the side
+		if (Math.abs(thisContext.getPosition().y - otherContext.getPosition().y) <= 
+				thisContext.getHeight() / 2 + otherContext.getHeight() / 2) {
+			
+			// Right side of OTHER context collides off left side of THIS context
+			
+			if (otherContext.getPosition().x + otherContext.getWidth() / 2 >= 
+					thisContext.getPosition().x - thisContext.getWidth() / 2) {
+				otherContext.setPosition(
+						new Point(thisContext.getPosition().x - thisContext.getWidth() / 2 -
+								otherContext.getWidth() / 2, otherContext.getPosition().y));
+				otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+			}
+			
+			// Left side of OTHER context collides off right side of THIS context
+			if (otherContext.getPosition().x - otherContext.getWidth() / 2 <= 
+					thisContext.getPosition().x + thisContext.getWidth() / 2) {
+				otherContext.setPosition(
+						new Point(thisContext.getPosition().x + thisContext.getWidth() / 2 +
+								otherContext.getWidth() / 2, otherContext.getPosition().y));
+				otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+			}
+			
+			
+		}
+		
+		// Collide off of top
+		
+		// Collide off of bottom
 	}
 
 }
