@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 
 import javax.swing.Timer;
 
+import model.sprites.ASprite;
 import model.sprites.action.IActionStrategy;
 import model.sprites.impl.character.Player;
 import model.sprites.movement.IMoveableKeys;
@@ -16,6 +17,7 @@ import model.sprites.paint.BasicPaint;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
 import model.sprites.update.impl.PseudoGravity;
+import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.impl.StandardDispatcher;
 
@@ -27,7 +29,7 @@ public class GameModel {
 	
 	Timer _timer = new Timer(_framesPerMS, (e) -> _model2View.update());
 	
-	IDispatcher<Graphics> _dispatcher = new StandardDispatcher<Graphics>();
+	IDispatcher<ICommand> _dispatcher = new StandardDispatcher<ICommand>();
 	
 	Player _player = new Player(IPaintStrategy.NULL_PAINT, IMovementStrategy.NULL_MOVEMENT, 
 			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, IMoveableStrategy.NULL_MOVEABLE, 
@@ -43,7 +45,14 @@ public class GameModel {
 	}
 	
 	public void update(Graphics g) {
-		_dispatcher.sendMessage(_dispatcher, g);
+		_dispatcher.sendMessage(new ICommand() {
+
+			@Override
+			public void apply(ASprite context, IDispatcher<ICommand> dispatcher) {
+				context.update(dispatcher, g);
+			}
+			
+		});
 	}
 	
 	private void loadPlayer() {

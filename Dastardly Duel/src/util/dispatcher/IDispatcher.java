@@ -14,5 +14,5 @@ public interface IDispatcher<TMessage> {
 	
 	public void removeAllObservers();
 	
-	public void sendMessage(IDispatcher<TMessage> disp, TMessage message);
+	public void sendMessage(TMessage message);
 }

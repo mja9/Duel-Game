@@ -1,12 +1,14 @@
 package model.sprites.update;
 
 import model.sprites.ASprite;
+import util.dispatcher.ICommand;
+import util.dispatcher.IDispatcher;
 
 public interface IUpdateStrategy {
 	
 	void init();
 	
-	void updateState(ASprite context);
+	void updateState(ASprite context, IDispatcher<ICommand> dispatcher);
 	
 	IUpdateStrategy NULL_UPDATE = new IUpdateStrategy() {
 
@@ -15,7 +17,7 @@ public interface IUpdateStrategy {
 		}
 
 		@Override
-		public void updateState(ASprite context) {
+		public void updateState(ASprite context, IDispatcher<ICommand> dispatcher) {
 		}
 		
 	};

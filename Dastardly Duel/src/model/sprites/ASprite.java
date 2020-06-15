@@ -11,10 +11,11 @@ import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMovementStrategy;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.update.IUpdateStrategy;
+import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.IObserver;
 
-public abstract class ASprite implements IObserver<Graphics> {
+public abstract class ASprite implements IObserver<ICommand> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
@@ -66,17 +67,17 @@ public abstract class ASprite implements IObserver<Graphics> {
 		};
 	}
 	
-	public void update(Graphics g) {
+	public void update(IDispatcher<ICommand> dispatcher, Graphics g) {
 		
 		_movementStrategy.move();
 		checkBoundary();
-		_updateStrategy.updateState(this);
+		_updateStrategy.updateState(this, dispatcher);
 		_paintStrategy.paint(g, this._position, _width, _height);
 	}
 
 	@Override
-	public void recieve(IDispatcher<Graphics> dispatcher, Graphics message) {
-		this.update(message);
+	public void recieve(IDispatcher<ICommand> dispatcher, ICommand message) {
+		message.apply(this, dispatcher);
 	}
 	
 	private void checkBoundary() {
