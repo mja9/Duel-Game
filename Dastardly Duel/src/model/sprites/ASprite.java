@@ -88,23 +88,23 @@ public abstract class ASprite implements IObserver<ICommand> {
 		
 		// Check if hitting walls
 		
-		if (_position.x <= 0) {	// Left wall
-			_position.x = 0;
+		if (_position.x - (_width / 2) <= 0) {	// Left wall
+			_position.x = _width / 2;
 		}
 		
-		if (_position.x >= screenWidth - 10) {	// Right wall
-			_position.x = screenWidth - 10;
+		if (_position.x + (_width / 2) >= screenWidth) {	// Right wall
+			_position.x = screenWidth - (_width / 2);
 		}
 		
 		// Check if hitting ceiling
 		
-		if (_position.y <= 45) {
-			_position.y = 45;
+		if (_position.y - (_height / 2) <= 0) {
+			_position.y = _height / 2;
 		}
 		
 		// Check if hitting floor
-		if (_position.y >= screenHeight - (screenHeight / 4)) {
-			_position.y = screenHeight - (screenHeight / 4);
+		if (_position.y + (_height / 2) >= screenHeight - (screenHeight / 4)) {
+			_position.y = screenHeight - (screenHeight / 4) - (_height / 2);
 		}
 	}
 	
