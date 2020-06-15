@@ -16,7 +16,7 @@ public class Collision implements IUpdateStrategy {
 	@Override
 	public void updateState(ASprite thisContext, IDispatcher<ICommand> dispatcher) {
 		
-		Point thisPosition = thisContext.getPosition();
+		Point thisCenter = thisContext.getPosition();
 		
 		dispatcher.sendMessage(new ICommand() {
 
@@ -24,27 +24,17 @@ public class Collision implements IUpdateStrategy {
 			public void apply(ASprite otherContext, IDispatcher<ICommand> dispatcher) {
 				if (otherContext != thisContext) {
 					
-					Point othersPos = otherContext.getPosition();
+					Point otherCenter = otherContext.getPosition();
 					
-					// Check x-position -- check left side
-					if (((othersPos.x - otherContext.getWidth() <= thisPosition.x - thisContext.getWidth())
-							| (othersPos.x - otherContext.getWidth() <= thisPosition.x + thisContext.getWidth()))
-							// Check right side
-							| ((othersPos.x + otherContext.getWidth() <= thisPosition.x - thisContext.getWidth())
-							| (othersPos.x + otherContext.getWidth() <= thisPosition.x + thisContext.getWidth()))) {
-						
-						// Check y-position -- check top side
-						if (((othersPos.y - otherContext.getHeight() <= thisPosition.y - thisContext.getHeight())
-								| (othersPos.y - otherContext.getHeight() <= thisPosition.y + thisContext.getHeight()))
-								// Check bottom side
-								| ((othersPos.y + otherContext.getHeight() <= thisPosition.y - thisContext.getHeight())
-								| (othersPos.y + otherContext.getHeight() <= thisPosition.y + thisContext.getHeight()))) {
-							
-							// PERFORM SOME ACTION HERE
-							System.out.println("Collision detected!\n");
-						}
-						
+					// Check x-positions
+					if ((Math.abs(otherCenter.x - thisCenter.x) <=
+							thisContext.getWidth() / 2 + otherContext.getWidth() / 2)
+							// Check y-positions
+							&& (Math.abs(otherCenter.y - thisCenter.y) <=
+							thisContext.getHeight() / 2 + otherContext.getHeight() / 2)) {
+						System.out.println("Collision Detected!\n");
 					}
+					
 				}
 			}
 			
