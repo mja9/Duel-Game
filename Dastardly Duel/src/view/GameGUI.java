@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 import java.util.function.Consumer;
 
 import javax.swing.JFrame;
@@ -59,6 +60,10 @@ public class GameGUI extends JFrame {
 	
 	public Dimension getScreenSize() {
 		return Toolkit.getDefaultToolkit().getScreenSize();
+	}
+	
+	public ImageObserver getCanvas() {
+		return level;
 	}
 
 }

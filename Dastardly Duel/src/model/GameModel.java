@@ -35,7 +35,7 @@ public class GameModel {
 	
 	Player _player = new Player(IPaintStrategy.NULL_PAINT, IMovementStrategy.NULL_MOVEMENT, 
 			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, IMoveableStrategy.NULL_MOVEABLE, 
-			new Point(0, 0), new Dimension(0, 0), 0, 0);
+			new Point(0, 0), new Dimension(0, 0), 0, 0, _model2View.getCanvas());
 		
 	public GameModel(IModel2ViewAdapter model2View) {
 		_model2View = model2View;
@@ -60,7 +60,7 @@ public class GameModel {
 	
 	private void loadEnvironment() {
 		Platform platform = new Platform(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
-				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 50);
+				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 50, _model2View.getCanvas());
 		_dispatcher.addObserver(platform);
 	}
 	
@@ -104,7 +104,7 @@ public class GameModel {
 			
 		}, 
 			new Point(100, getScreenSize().height - 168), 
-			getScreenSize(), 10, 46);
+			getScreenSize(), 10, 46, _model2View.getCanvas());
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));

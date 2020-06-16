@@ -3,6 +3,7 @@ package controller;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.image.ImageObserver;
 import java.util.function.Consumer;
 
 import model.GameModel;
@@ -32,6 +33,11 @@ public class GameController {
 			@Override
 			public Dimension getScreenSize() {
 				return _GUI.getScreenSize();
+			}
+
+			@Override
+			public ImageObserver getCanvas() {
+				return _GUI.getCanvas();
 			}
 			
 		});

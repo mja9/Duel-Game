@@ -6,6 +6,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 
 import model.sprites.action.IActionStrategy;
 import model.sprites.movement.IMovementStrategy;
@@ -35,9 +36,11 @@ public abstract class ASprite implements IObserver<ICommand> {
 	
 	int _height = 0;
 	
+	ImageObserver _canvas;
+	
 	public ASprite(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy,
 			IActionStrategy actionStrategy, IUpdateStrategy updateStrategy, Point pos, 
-			Dimension screenSize, int width, int height) {
+			Dimension screenSize, int width, int height, ImageObserver canvas) {
 		
 		_paintStrategy = paintStrategy;
 		_movementStrategy = movementStrategy;
@@ -47,6 +50,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_screenSize = screenSize;
 		_width = width;
 		_height = height;
+		_canvas = canvas;
 		setMovement();
 		
 	}
@@ -138,6 +142,10 @@ public abstract class ASprite implements IObserver<ICommand> {
 	
 	public int getHeight() {
 		return _height;
+	}
+	
+	public ImageObserver getCanvas() {
+		return null;
 	}
 	
 	public abstract String getID();
