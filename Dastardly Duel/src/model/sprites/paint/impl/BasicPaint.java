@@ -1,10 +1,11 @@
-package model.sprites.paint;
+package model.sprites.paint.impl;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
 import model.sprites.ASprite;
+import model.sprites.paint.IPaintStrategy;
 
 public class BasicPaint implements IPaintStrategy{
 

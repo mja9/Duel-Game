@@ -1,10 +1,11 @@
-package model.sprites.paint;
+package model.sprites.paint.impl;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 
 import model.sprites.ASprite;
+import model.sprites.paint.IPaintStrategy;
 
 public abstract class APaintStrategy implements IPaintStrategy {
 	
@@ -16,7 +17,6 @@ public abstract class APaintStrategy implements IPaintStrategy {
 
 	@Override
 	public void init(ASprite context) {
-		
 	}
 
 	@Override
