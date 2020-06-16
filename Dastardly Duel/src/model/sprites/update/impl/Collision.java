@@ -48,14 +48,14 @@ public class Collision implements IUpdateStrategy {
 		Point oldPos = new Point(otherContext.getPosition().x - otherContext.getSpeed().x,
 				otherContext.getPosition().y - otherContext.getSpeed().y);
 		
-		if ((oldPos.x - otherContext.getWidth() / 2 <= thisContext.getPosition().x + thisContext.getWidth() / 2)
-				| (oldPos.x + otherContext.getWidth() / 2 >= thisContext.getPosition().x - thisContext.getWidth() / 2)) {
+		if ((oldPos.x - otherContext.getWidth() / 2 < thisContext.getPosition().x + thisContext.getWidth() / 2)
+				| (oldPos.x + otherContext.getWidth() / 2 > thisContext.getPosition().x - thisContext.getWidth() / 2)) {
 			
 			// Hit the top
 			if (oldPos.y < thisContext.getPosition().y - thisContext.getHeight() / 2) {
 				otherContext.setPosition(new Point(otherContext.getPosition().x,
-						thisContext.getPosition().y - thisContext.getHeight() / 2 - otherContext.getHeight() / 2));
-				System.out.println("Hit the top");
+						thisContext.getPosition().y - (thisContext.getHeight() / 2) - (otherContext.getHeight() / 2)));
+				otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
 			}
 			
 			// Hit the bottom
@@ -71,7 +71,7 @@ public class Collision implements IUpdateStrategy {
 					otherContext.getWidth() / 2, otherContext.getPosition().y));
 			otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
 			
-		// Hit tje left
+		// Hit the left
 		} else {
 			otherContext.setPosition(new Point(thisContext.getPosition().x - thisContext.getWidth() / 2 - 
 					otherContext.getWidth() / 2, otherContext.getPosition().y));
