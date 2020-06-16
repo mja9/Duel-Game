@@ -72,7 +72,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_movementStrategy.move();
 		checkBoundary();
 		_updateStrategy.updateState(this, dispatcher);
-		_paintStrategy.paint(g, this._position, _width, _height);
+		_paintStrategy.paint(g, this);
 	}
 
 	@Override

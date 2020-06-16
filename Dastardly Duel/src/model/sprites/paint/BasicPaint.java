@@ -4,18 +4,23 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import model.sprites.ASprite;
+
 public class BasicPaint implements IPaintStrategy{
 
 	@Override
-	public void init() {		
+	public void init(ASprite context) {		
 	}
 
 	@Override
-	public void paint(Graphics g, Point p, int width, int height) {
+	public void paint(Graphics g, ASprite context) {
 		g.setColor(Color.WHITE);
-		g.fillRect(p.x - width / 2, p.y - height / 2, width, height);
+		g.fillRect(context.getPosition().x - context.getWidth() / 2,
+				context.getPosition().y - context.getHeight() / 2,
+				context.getWidth(), context.getHeight());
 		g.setColor(Color.RED);
-		g.drawLine(p.x, p.y, p.x, p.y);
+		g.drawLine(context.getPosition().x, context.getPosition().y,
+				context.getPosition().x, context.getPosition().y);
 	}
 
 }
