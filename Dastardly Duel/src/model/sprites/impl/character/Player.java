@@ -1,8 +1,8 @@
 package model.sprites.impl.character;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.image.ImageObserver;
 
 import model.sprites.ASprite;
 import model.sprites.action.IActionStrategy;
@@ -27,7 +27,7 @@ public class Player extends ASprite {
 	
 	public Player(IPaintStrategy paintStrategy, IMovementStrategy movementStrategy, IActionStrategy actionStrategy,
 			IUpdateStrategy updateStrategy, IMoveableStrategy moveableStrategy, 
-			Point pos, Dimension screenSize, int width, int height, ImageObserver canvas) {
+			Point pos, Dimension screenSize, int width, int height, Component canvas) {
 		super(paintStrategy, movementStrategy, actionStrategy, updateStrategy, pos, screenSize, width, height, canvas);
 		_moveableStrategy = moveableStrategy;
 	}

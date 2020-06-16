@@ -2,6 +2,7 @@ package model.sprites.paint.impl;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
@@ -26,6 +27,7 @@ public class ImagePaint extends APaintStrategy {
 	@Override
 	public void init(ASprite context) {
 		_canvas = context.getCanvas();
+		MediaTracker mediaTracker = new MediaTracker(context.getCanvas());
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package model;
 
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.image.ImageObserver;
 import java.util.function.Consumer;
 
 public interface IModel2ViewAdapter {
@@ -12,7 +12,7 @@ public interface IModel2ViewAdapter {
 	
 	public Dimension getScreenSize();
 	
-	public ImageObserver getCanvas();
+	public Component getCanvas();
 	
 	IModel2ViewAdapter NULL_ADAPTER = new IModel2ViewAdapter() {
 
@@ -30,7 +30,7 @@ public interface IModel2ViewAdapter {
 		}
 
 		@Override
-		public ImageObserver getCanvas() {
+		public Component getCanvas() {
 			return null;
 		}
 		

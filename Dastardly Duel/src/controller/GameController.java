@@ -1,9 +1,9 @@
 package controller;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
 import java.util.function.Consumer;
 
 import model.GameModel;
@@ -36,7 +36,7 @@ public class GameController {
 			}
 
 			@Override
-			public ImageObserver getCanvas() {
+			public Component getCanvas() {
 				return _GUI.getCanvas();
 			}
 			
