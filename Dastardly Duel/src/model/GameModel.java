@@ -60,7 +60,7 @@ public class GameModel {
 	
 	private void loadEnvironment() {
 		Platform platform = new Platform(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
-				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 30);
+				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 50);
 		_dispatcher.addObserver(platform);
 	}
 	
