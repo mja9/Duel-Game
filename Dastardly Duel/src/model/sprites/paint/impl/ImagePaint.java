@@ -1,6 +1,7 @@
 package model.sprites.paint.impl;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
@@ -13,9 +14,12 @@ public class ImagePaint extends APaintStrategy {
 	
 	private ImageObserver _canvas;
 	private Image _image;
-	private double _fillFactor = 0.9;
-	private double _scaleFactor;
-
+	private double _fillFactorX = 0.8;
+	private double _fillFactorY = 0.9;
+	private double _scaleFactorX;
+	private double _scaleFactorY;
+	protected AffineTransform _localAffineTransform = new AffineTransform();
+	
 	public ImagePaint(AffineTransform affineTransform, String filename) {
 		super(affineTransform);
 		try {
@@ -36,12 +40,17 @@ public class ImagePaint extends APaintStrategy {
 			System.err.println("ImagePaint.init(): Error waiting for image to load. Exception e = " + e + "\n");
 		}
 		
-		_scaleFactor = 2.0 / (_fillFactor * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0); 
+		// May need one for x and y
+		_scaleFactorX = 2.0 / (_fillFactorX * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0);
+		_scaleFactorX = 2.0 / (_fillFactorY * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0); 
 	}
 
 	@Override
 	public void paintTransform(Graphics g, ASprite context, AffineTransform affineTransform) {
-		
+		_localAffineTransform.setToScale(_scaleFactorX, _scaleFactorY);
+		_localAffineTransform.translate(-_image.getWidth(_canvas), -_image.getHeight(_canvas));
+		_localAffineTransform.preConcatenate(affineTransform);
+		((Graphics2D) g).drawImage(_image, _localAffineTransform, _canvas);
 	}
 
 }

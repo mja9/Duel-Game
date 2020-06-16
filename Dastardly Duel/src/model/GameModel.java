@@ -3,6 +3,7 @@ package model;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
 import java.util.function.Consumer;
 
 import javax.swing.Timer;
@@ -16,6 +17,7 @@ import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.paint.impl.BasicPaint;
+import model.sprites.paint.impl.ImagePaint;
 import model.sprites.update.IUpdateStrategy;
 import model.sprites.update.impl.Collision;
 import model.sprites.update.impl.PseudoGravity;
@@ -65,7 +67,7 @@ public class GameModel {
 	}
 	
 	private void loadPlayer() {
-		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
+		_player = new Player(new ImagePaint(new AffineTransform(), "images/rockmanclear.png"), IMovementStrategy.NULL_MOVEMENT, 
 			IActionStrategy.NULL_ACTION, new PseudoGravity(), new IMoveableStrategy() {
 
 			@Override
