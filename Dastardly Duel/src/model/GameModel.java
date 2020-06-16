@@ -89,7 +89,7 @@ public class GameModel {
 
 			@Override
 			public void moveUp() {	
-				_player.setSpeed(new Point(_player.getSpeed().x, -20));
+				_player.setSpeed(new Point(_player.getSpeed().x, -15));
 			}
 
 			@Override
