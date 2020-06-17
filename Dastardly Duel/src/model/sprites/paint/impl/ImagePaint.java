@@ -41,18 +41,20 @@ public class ImagePaint extends APaintStrategy {
 		}
 		
 		// May need one for x and y
-		_scaleFactorX = 2.0 / (_fillFactorX * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0);
-		_scaleFactorY = 2.0 / (_fillFactorY * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0); 
+//		_scaleFactorX = 2.0 / (_fillFactorX * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0);
+//		_scaleFactorY = 2.0 / (_fillFactorY * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0); 
+		_scaleFactorX = 2.0 / (_fillFactorX * _image.getWidth(_canvas) / 2.0);
+		_scaleFactorY = 2.0 / (_fillFactorY * _image.getHeight(_canvas) / 2.0); 
 	}
 	
 	@Override 
 	public void paintConfiguration(Graphics g, ASprite context) {
 		super.paintConfiguration(g, context);
-		if (Math.abs(Math.atan2(context.getSpeed().y, context.getSpeed().x)) > Math.PI / 2.0) {
-			AffineTransform affineTransform = getAffineTransform();
-			affineTransform.scale(1.0, -1.0);
-			setAffineTransform(affineTransform);
-		}
+//		if (Math.abs(Math.atan2(context.getSpeed().y, context.getSpeed().x)) > Math.PI / 2.0) {
+//			AffineTransform affineTransform = getAffineTransform();
+//			affineTransform.scale(1.0, -1.0);
+//			setAffineTransform(affineTransform);
+//		}
 	}
 
 	@Override
