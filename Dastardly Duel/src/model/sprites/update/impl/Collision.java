@@ -48,35 +48,35 @@ public class Collision implements IUpdateStrategy {
 		Point oldPos = new Point(thisContext.getPosition().x - thisContext.getSpeed().x,
 				thisContext.getPosition().y - thisContext.getSpeed().y);
 		
-		if ((oldPos.x - thisContext.getWidth() / 2 < otherContext.getPosition().x + otherContext.getWidth() / 2)
-				| (oldPos.x + thisContext.getWidth() / 2 > otherContext.getPosition().x - otherContext.getWidth() / 2)) {
+//		if ((oldPos.x - thisContext.getWidth() / 2 < otherContext.getPosition().x + otherContext.getWidth() / 2)
+//				| (oldPos.x + thisContext.getWidth() / 2 > otherContext.getPosition().x - otherContext.getWidth() / 2)) {
 			
 			// Hit the top
-			if (oldPos.y < otherContext.getPosition().y - otherContext.getHeight() / 2) {
+			if ((oldPos.y < otherContext.getPosition().y - otherContext.getHeight() / 2) && thisContext.getSpeed().y > 0) {
 				thisContext.setPosition(new Point(thisContext.getPosition().x,
 						otherContext.getPosition().y - (otherContext.getHeight() / 2) - (thisContext.getHeight() / 2)));
 				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
 			}
 			
 			// Hit the bottom
-			if (oldPos.y > otherContext.getPosition().y + otherContext.getHeight() / 2) {
-				thisContext.setPosition(new Point(thisContext.getPosition().x, 
-						otherContext.getPosition().y + otherContext.getHeight() + thisContext.getHeight()));
-				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
-			}
+//			if (oldPos.y > otherContext.getPosition().y + otherContext.getHeight() / 2) {
+//				thisContext.setPosition(new Point(thisContext.getPosition().x, 
+//						otherContext.getPosition().y + otherContext.getHeight() + thisContext.getHeight()));
+//				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
+//			}
 			
 		// Hit the right
-		} else if (oldPos.x > otherContext.getPosition().x + otherContext.getWidth() / 2) {
-			thisContext.setPosition(new Point(otherContext.getPosition().x + otherContext.getWidth() / 2 +
-					thisContext.getWidth() / 2, thisContext.getPosition().y));
-			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
-			
-		// Hit the left
-		} else {
-			thisContext.setPosition(new Point(otherContext.getPosition().x - otherContext.getWidth() / 2 - 
-					thisContext.getWidth() / 2, thisContext.getPosition().y));
-			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
-		}
+//		} else if (oldPos.x > otherContext.getPosition().x + otherContext.getWidth() / 2) {
+//			thisContext.setPosition(new Point(otherContext.getPosition().x + otherContext.getWidth() / 2 +
+//					thisContext.getWidth() / 2, thisContext.getPosition().y));
+//			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
+//			
+//		// Hit the left
+//		} else {
+//			thisContext.setPosition(new Point(otherContext.getPosition().x - otherContext.getWidth() / 2 - 
+//					thisContext.getWidth() / 2, thisContext.getPosition().y));
+//			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
+//		}
 		
 		
 	}
