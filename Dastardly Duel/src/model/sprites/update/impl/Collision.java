@@ -45,86 +45,74 @@ public class Collision implements IUpdateStrategy {
 	private void performAction(ASprite thisContext, ASprite otherContext) {
 		
 		// Find where otherContext was positioned before
-		Point oldPos = new Point(otherContext.getPosition().x - otherContext.getSpeed().x,
-				otherContext.getPosition().y - otherContext.getSpeed().y);
+		Point oldPos = new Point(thisContext.getPosition().x - thisContext.getSpeed().x,
+				thisContext.getPosition().y - thisContext.getSpeed().y);
 		
-		if ((oldPos.x - otherContext.getWidth() / 2 < thisContext.getPosition().x + thisContext.getWidth() / 2)
-				| (oldPos.x + otherContext.getWidth() / 2 > thisContext.getPosition().x - thisContext.getWidth() / 2)) {
+		if ((oldPos.x - thisContext.getWidth() / 2 < otherContext.getPosition().x + otherContext.getWidth() / 2)
+				| (oldPos.x + thisContext.getWidth() / 2 > otherContext.getPosition().x - otherContext.getWidth() / 2)) {
 			
 			// Hit the top
-			if (oldPos.y < thisContext.getPosition().y - thisContext.getHeight() / 2) {
-				otherContext.setPosition(new Point(otherContext.getPosition().x,
-						thisContext.getPosition().y - (thisContext.getHeight() / 2) - (otherContext.getHeight() / 2)));
-//				otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
+			if (oldPos.y < otherContext.getPosition().y - otherContext.getHeight() / 2) {
+				thisContext.setPosition(new Point(thisContext.getPosition().x,
+						otherContext.getPosition().y - (otherContext.getHeight() / 2) - (thisContext.getHeight() / 2)));
+				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
 			}
 			
 			// Hit the bottom
-			if (oldPos.y > thisContext.getPosition().y + thisContext.getHeight() / 2) {
-				otherContext.setPosition(new Point(otherContext.getPosition().x, 
-						thisContext.getPosition().y + thisContext.getHeight() + otherContext.getHeight()));
-				otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
+			if (oldPos.y > otherContext.getPosition().y + otherContext.getHeight() / 2) {
+				thisContext.setPosition(new Point(thisContext.getPosition().x, 
+						otherContext.getPosition().y + otherContext.getHeight() + thisContext.getHeight()));
+				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
 			}
 			
 		// Hit the right
-		} else if (oldPos.x > thisContext.getPosition().x + thisContext.getWidth() / 2) {
-			otherContext.setPosition(new Point(thisContext.getPosition().x + thisContext.getWidth() / 2 +
-					otherContext.getWidth() / 2, otherContext.getPosition().y));
-			otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+		} else if (oldPos.x > otherContext.getPosition().x + otherContext.getWidth() / 2) {
+			thisContext.setPosition(new Point(otherContext.getPosition().x + otherContext.getWidth() / 2 +
+					thisContext.getWidth() / 2, thisContext.getPosition().y));
+			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
 			
 		// Hit the left
 		} else {
-			otherContext.setPosition(new Point(thisContext.getPosition().x - thisContext.getWidth() / 2 - 
-					otherContext.getWidth() / 2, otherContext.getPosition().y));
-			otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+			thisContext.setPosition(new Point(otherContext.getPosition().x - otherContext.getWidth() / 2 - 
+					thisContext.getWidth() / 2, thisContext.getPosition().y));
+			thisContext.setSpeed(new Point(0, thisContext.getSpeed().y));
 		}
 		
 		
 	}
 	
-//	private void findIntersection(Point point, Point slope, Point thisPos, int height, int width) {
-//		
-//		boolean left = false;
-//		boolean right = false;
-//		boolean up = false;
-//		boolean down = false;
-//		Point pointLeft = new Point();
-//		Point pointRight = new Point();
-//		Point pointUp = new Point();
-//		Point pointDown = new Point();
-//
-//		int m = slope.x / slope.y;
-//		
-//		// Left line: y = [thisPos.y - height/2, thisPos.y + height/2], x = thisPos.x - width/2
-//		int yLeft = (m * thisPos.x - width / 2) - (m * point.x) + point.y;
-//		if ((yLeft >= thisPos.y - height / 2) && (yLeft <= thisPos.y + height / 2)) {
-//			System.out.println("Left\n");
-//			left = true;
-//			pointLeft = new Point(thisPos.x - width / 2, yLeft);	// point of intersection
-//		}
-//		
-//		// Right line:  y = [thisPos.y - height/2, thisPos.y + height/2], x = thisPos.x + width/2
-//		int yRight = (m * thisPos.x + width / 2) - (m * point.x) + point.y;
-//		if ((yRight >= thisPos.y - height / 2) && (yRight <= thisPos.y + height / 2)) {
-//			System.out.println("Right\n");
-//			right = true;
-//			pointRight = new Point(thisPos.x + width / 2, yRight);	// point of intersection
-//		}
-//		
-//		// Top line: y = this.Pos.y - height/2, x = [thisPos.x - width/2, thisPos.x + width/2]
-//		int xUp = ((1 / m) * thisPos.y - height/2) - ((1 / m) * point.y) + point.x;
-//		if ((xUp >= thisPos.x - width / 2) && (xUp <= thisPos.x + width / 2)) {
-//			System.out.println("Up\n");
-//			up = true;
-//			pointUp = new Point(xUp, thisPos.y - height / 2);
-//		}
-//		
-//		// Bottom line: y = this.Pos.y + height/2, x = [thisPos.x - width/2, thisPos.x + width/2]
-//		int xDown = ((1 / m) * thisPos.y + height/2) - ((1 / m) * point.y) + point.x;
-//		if ((xDown >= thisPos.x - width / 2) && (xDown <= thisPos.x + width / 2)) {
-//			System.out.println("Down\n");
-//			down = true;
-//			pointDown = new Point(xDown, thisPos.y + height / 2);
-//		}
-//	}
+//	// Find where otherContext was positioned before
+//			Point oldPos = new Point(otherContext.getPosition().x - otherContext.getSpeed().x,
+//					otherContext.getPosition().y - otherContext.getSpeed().y);
+//			
+//			if ((oldPos.x - otherContext.getWidth() / 2 < thisContext.getPosition().x + thisContext.getWidth() / 2)
+//					| (oldPos.x + otherContext.getWidth() / 2 > thisContext.getPosition().x - thisContext.getWidth() / 2)) {
+//				
+//				// Hit the top
+//				if (oldPos.y < thisContext.getPosition().y - thisContext.getHeight() / 2) {
+//					otherContext.setPosition(new Point(otherContext.getPosition().x,
+//							thisContext.getPosition().y - (thisContext.getHeight() / 2) - (otherContext.getHeight() / 2)));
+//					otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
+//				}
+//				
+//				// Hit the bottom
+//				if (oldPos.y > thisContext.getPosition().y + thisContext.getHeight() / 2) {
+//					otherContext.setPosition(new Point(otherContext.getPosition().x, 
+//							thisContext.getPosition().y + thisContext.getHeight() + otherContext.getHeight()));
+//					otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
+//				}
+//				
+//			// Hit the right
+//			} else if (oldPos.x > thisContext.getPosition().x + thisContext.getWidth() / 2) {
+//				otherContext.setPosition(new Point(thisContext.getPosition().x + thisContext.getWidth() / 2 +
+//						otherContext.getWidth() / 2, otherContext.getPosition().y));
+//				otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+//				
+//			// Hit the left
+//			} else {
+//				otherContext.setPosition(new Point(thisContext.getPosition().x - thisContext.getWidth() / 2 - 
+//						otherContext.getWidth() / 2, otherContext.getPosition().y));
+//				otherContext.setSpeed(new Point(0, otherContext.getSpeed().y));
+//			}
 	
 }
