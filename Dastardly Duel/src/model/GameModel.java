@@ -20,6 +20,7 @@ import model.sprites.paint.impl.BasicPaint;
 import model.sprites.paint.impl.ImagePaint;
 import model.sprites.update.IUpdateStrategy;
 import model.sprites.update.impl.Collision;
+import model.sprites.update.impl.MultiUpdate;
 import model.sprites.update.impl.PseudoGravity;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -61,13 +62,13 @@ public class GameModel {
 	
 	private void loadEnvironment() {
 		Platform platform = new Platform(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
-				new Collision(), new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 50, _model2View.getCanvas());
+				IUpdateStrategy.NULL_UPDATE, new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 50, _model2View.getCanvas());
 		_dispatcher.addObserver(platform);
 	}
 	
 	private void loadPlayer() {
 		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
-			IActionStrategy.NULL_ACTION, new PseudoGravity(), new IMoveableStrategy() {
+			IActionStrategy.NULL_ACTION, new MultiUpdate(new PseudoGravity(), new Collision()), new IMoveableStrategy() {
 
 			@Override
 			public void init() {		
