@@ -109,7 +109,7 @@ public class GameModel {
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));
-		_player.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancentered.png"));
+//		_player.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancentered.png"));
 		_dispatcher.addObserver(_player);
 	}
 	

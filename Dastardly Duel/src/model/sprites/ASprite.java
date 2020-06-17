@@ -102,6 +102,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		
 		if (_position.y - (_height / 2) <= 0) {
 			_position.y = _height / 2;
+			setSpeed(new Point(getSpeed().x, 0));
 		}
 		
 		// Check if hitting floor

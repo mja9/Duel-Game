@@ -55,7 +55,7 @@ public class Collision implements IUpdateStrategy {
 			if (oldPos.y < thisContext.getPosition().y - thisContext.getHeight() / 2) {
 				otherContext.setPosition(new Point(otherContext.getPosition().x,
 						thisContext.getPosition().y - (thisContext.getHeight() / 2) - (otherContext.getHeight() / 2)));
-				otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
+//				otherContext.setSpeed(new Point(otherContext.getSpeed().x, 0));
 			}
 			
 			// Hit the bottom
