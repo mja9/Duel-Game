@@ -26,7 +26,7 @@ public abstract class APaintStrategy implements IPaintStrategy {
 		double scaleY = context.getHeight();
 		_affineTransform.setToTranslation(context.getPosition().getX(), context.getPosition().y);
 		_affineTransform.scale(scaleX, scaleY);
-		_affineTransform.rotate(context.getSpeed().getX(), context.getSpeed().y);
+//		_affineTransform.rotate(context.getSpeed().getX(), context.getSpeed().y);
 		g.setColor(Color.RED);
 		paintConfiguration(g, context);
 		paintTransform(g, context, _affineTransform);
