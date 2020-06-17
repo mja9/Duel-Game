@@ -35,6 +35,14 @@ public abstract class APaintStrategy implements IPaintStrategy {
 	protected void paintConfiguration(Graphics g, ASprite context) {
 	}
 	
+	protected AffineTransform getAffineTransform() {
+		return _affineTransform;
+	}
+	
+	protected void setAffineTransform(AffineTransform newTransform) {
+		_affineTransform = newTransform;
+	}
+	
 	public abstract void paintTransform(Graphics g, ASprite context, AffineTransform affineTransform);
 
 }
