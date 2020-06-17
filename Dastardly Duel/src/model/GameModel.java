@@ -35,18 +35,17 @@ public class GameModel {
 	
 	IDispatcher<ICommand> _dispatcher = new StandardDispatcher<ICommand>();
 	
-	Player _player = new Player(IPaintStrategy.NULL_PAINT, IMovementStrategy.NULL_MOVEMENT, 
-			IActionStrategy.NULL_ACTION, IUpdateStrategy.NULL_UPDATE, IMoveableStrategy.NULL_MOVEABLE, 
-			new Point(0, 0), new Dimension(0, 0), 0, 0, _model2View.getCanvas());
+	Player _player;
 		
 	public GameModel(IModel2ViewAdapter model2View) {
 		_model2View = model2View;
 	}
 	
 	public void start() {
-		_timer.start();
 		loadPlayer();
 		loadEnvironment();
+		_timer.start();
+
 	}
 	
 	public void update(Graphics g) {
@@ -67,7 +66,7 @@ public class GameModel {
 	}
 	
 	private void loadPlayer() {
-		_player = new Player(new ImagePaint(new AffineTransform(), "images/rockmanclear.png"), IMovementStrategy.NULL_MOVEMENT, 
+		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
 			IActionStrategy.NULL_ACTION, new PseudoGravity(), new IMoveableStrategy() {
 
 			@Override
@@ -110,6 +109,7 @@ public class GameModel {
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));
+		_player.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmanclear.png"));
 		_dispatcher.addObserver(_player);
 	}
 	

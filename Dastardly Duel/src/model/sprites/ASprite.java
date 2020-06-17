@@ -40,6 +40,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 			Dimension screenSize, int width, int height, Component canvas) {
 		
 		_paintStrategy = paintStrategy;
+		_paintStrategy.init(this);
 		_movementStrategy = movementStrategy;
 		_actionStrategy = actionStrategy;
 		_updateStrategy = updateStrategy;
@@ -142,7 +143,12 @@ public abstract class ASprite implements IObserver<ICommand> {
 	}
 	
 	public Component getCanvas() {
-		return null;
+		return _canvas;
+	}
+	
+	public void setPaintStrategy(IPaintStrategy newStrat) {
+		_paintStrategy = newStrat;
+		_paintStrategy.init(this);
 	}
 	
 	public abstract String getID();

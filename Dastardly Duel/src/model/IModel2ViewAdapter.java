@@ -31,6 +31,7 @@ public interface IModel2ViewAdapter {
 
 		@Override
 		public Component getCanvas() {
+			System.out.println("This was used?\n");
 			return null;
 		}
 		

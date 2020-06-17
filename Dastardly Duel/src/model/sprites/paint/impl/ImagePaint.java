@@ -30,7 +30,7 @@ public class ImagePaint extends APaintStrategy {
 	}
 	
 	@Override
-	public void init(ASprite context) {
+	public void init(ASprite context) {		
 		_canvas = context.getCanvas();
 		MediaTracker mediaTracker = new MediaTracker(context.getCanvas());	// Image must load before use.
 		mediaTracker.addImage(_image, 1);

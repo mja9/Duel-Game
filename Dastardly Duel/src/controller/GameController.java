@@ -19,28 +19,6 @@ public class GameController {
 	
 	
 	public GameController() {
-		_model = new GameModel(new IModel2ViewAdapter() {
-			
-			public void update() {
-				_GUI.update();
-			}
-
-			@Override
-			public void addKeyCommand(String key, Consumer<String> command) {
-				_GUI.addKeyCommand(key, command);
-			}
-
-			@Override
-			public Dimension getScreenSize() {
-				return _GUI.getScreenSize();
-			}
-
-			@Override
-			public Component getCanvas() {
-				return _GUI.getCanvas();
-			}
-			
-		});
 		
 		_GUI = new GameGUI(new IView2ModelAdapter() {
 
@@ -50,6 +28,30 @@ public class GameController {
 			}
 			
 		});
+		
+		_model = new GameModel(new IModel2ViewAdapter() {
+					
+					public void update() {
+						_GUI.update();
+					}
+		
+					@Override
+					public void addKeyCommand(String key, Consumer<String> command) {
+						_GUI.addKeyCommand(key, command);
+					}
+		
+					@Override
+					public Dimension getScreenSize() {
+						return _GUI.getScreenSize();
+					}
+		
+					@Override
+					public Component getCanvas() {
+						return _GUI.getCanvas();
+					}
+					
+		});	
+		
 	}
 	
 	public void start() {
