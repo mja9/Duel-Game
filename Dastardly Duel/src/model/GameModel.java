@@ -106,7 +106,7 @@ public class GameModel {
 			
 		}, 
 			new Point(100, getScreenSize().height - 168), 
-			getScreenSize(), 10, 46, _model2View.getCanvas());
+			getScreenSize(), 36, 120, _model2View.getCanvas());
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));

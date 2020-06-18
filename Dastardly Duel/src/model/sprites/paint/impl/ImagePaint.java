@@ -14,8 +14,8 @@ public class ImagePaint extends APaintStrategy {
 	
 	private ImageObserver _canvas;
 	private Image _image;
-	private double _fillFactorX = 0.9;
-	private double _fillFactorY = 0.8;
+	private double _fillFactorX = 0.5;
+	private double _fillFactorY = 0.5;
 	private double _scaleFactorX;
 	private double _scaleFactorY;
 	protected AffineTransform _localAffineTransform = new AffineTransform();
@@ -40,12 +40,9 @@ public class ImagePaint extends APaintStrategy {
 			System.err.println("ImagePaint.init(): Error waiting for image to load. Exception e = " + e + "\n");
 		}
 		
-		// May need one for x and y
-//		_scaleFactorX = 2.0 / (_fillFactorX * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0);
-//		_scaleFactorY = 2.0 / (_fillFactorY * (_image.getWidth(_canvas) + _image.getHeight(_canvas)) / 2.0);
-		
-		_scaleFactorX = 2.0 / (_fillFactorX * _image.getWidth(_canvas) / 2.0);
-		_scaleFactorY = 2.0 / (_fillFactorY * _image.getHeight(_canvas) / 2.0); 
+		// Jumbo player
+//		_scaleFactorX = 2.0 / (_fillFactorX * _image.getWidth(_canvas) / 2.0);
+//		_scaleFactorY = 2.0 / (_fillFactorY * _image.getHeight(_canvas) / 2.0); 
 		
 		_scaleFactorX = 1.0 / (_fillFactorX * _image.getWidth(_canvas));
 		_scaleFactorY = 1.0 / (_fillFactorY * _image.getHeight(_canvas)); 
