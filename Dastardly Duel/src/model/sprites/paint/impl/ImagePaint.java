@@ -54,11 +54,11 @@ public class ImagePaint extends APaintStrategy {
 	@Override 
 	public void paintConfiguration(Graphics g, ASprite context) {
 		super.paintConfiguration(g, context);
-//		if (Math.abs(Math.atan2(context.getSpeed().y, context.getSpeed().x)) > Math.PI / 2.0) {
-//			AffineTransform affineTransform = getAffineTransform();
-//			affineTransform.scale(1.0, -1.0);
-//			setAffineTransform(affineTransform);
-//		}
+		if (Math.abs(Math.atan2(context.getSpeed().y, context.getSpeed().x)) > Math.PI / 2.0) {
+			AffineTransform affineTransform = getAffineTransform();
+			affineTransform.scale(-1.0, 1.0);
+			setAffineTransform(affineTransform);
+		}
 	}
 
 	@Override
