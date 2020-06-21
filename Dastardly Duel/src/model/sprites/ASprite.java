@@ -42,6 +42,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_paintStrategy = paintStrategy;
 		_paintStrategy.init(this);
 		_movementStrategy = movementStrategy;
+		_movementStrategy.init(this);
 		_actionStrategy = actionStrategy;
 		_actionStrategy.init(this);
 		_updateStrategy = updateStrategy;
@@ -58,7 +59,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_movementStrategy = new IMovementStrategy() {
 
 			@Override
-			public void init() {				
+			public void init(ASprite context) {				
 			}
 
 			@Override

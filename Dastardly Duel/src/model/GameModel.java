@@ -17,6 +17,7 @@ import model.sprites.impl.projectiles.Boulder;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;
+import model.sprites.movement.impl.ConstantMovement;
 import model.sprites.paint.IPaintStrategy;
 import model.sprites.paint.impl.BasicPaint;
 import model.sprites.paint.impl.ImagePaint;
@@ -96,7 +97,7 @@ public class GameModel {
 					}
 					
 				}, 
-						IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
+						new ConstantMovement(), IActionStrategy.NULL_ACTION, 
 						IUpdateStrategy.NULL_UPDATE, 
 						new Point(_context.getPosition().x + _context.getWidth() / 2 + 5, 
 								_context.getPosition().y - _context.getHeight() / 4), 
