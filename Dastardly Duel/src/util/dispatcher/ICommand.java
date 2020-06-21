@@ -1,6 +1,6 @@
 package util.dispatcher;
 
-import model.sprites.ASprite;
+import object.sprites.ASprite;
 
 public interface ICommand {
 	
