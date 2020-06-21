@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -12,6 +13,7 @@ import model.sprites.ASprite;
 import model.sprites.action.IActionStrategy;
 import model.sprites.impl.character.Player;
 import model.sprites.impl.environment.Platform;
+import model.sprites.impl.projectiles.Boulder;
 import model.sprites.movement.IMoveableKeys;
 import model.sprites.movement.IMoveableStrategy;
 import model.sprites.movement.IMovementStrategy;
@@ -68,7 +70,42 @@ public class GameModel {
 	
 	private void loadPlayer() {
 		_player = new Player(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, 
-			IActionStrategy.NULL_ACTION, new MultiUpdate(new PseudoGravity(), new Collision()), new IMoveableStrategy() {
+			new IActionStrategy() {
+
+			private final int projectileSpeed = 25;
+			private ASprite _context;
+
+			@Override
+			public void init(ASprite context) {		
+				_context = context;
+			}
+
+			@Override
+			public void performAction() {
+				Boulder boulder = new Boulder(new IPaintStrategy() {
+					
+					@Override
+					public void init(ASprite context) {
+					}
+
+					@Override
+					public void paint(Graphics g, ASprite context) {
+						g.setColor(Color.YELLOW);
+						g.fillOval(context.getPosition().x, context.getPosition().y, 
+								context.getWidth(), context.getHeight());
+					}
+					
+				}, 
+						IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
+						IUpdateStrategy.NULL_UPDATE, 
+						new Point(_context.getPosition().x + _context.getWidth() / 2 + 5, 
+								_context.getPosition().y - _context.getHeight() / 4), 
+						_context.getScreenSize(), 5, 5, _context.getCanvas());
+				_dispatcher.addObserver(boulder);
+				
+			}
+			
+			}, new MultiUpdate(new PseudoGravity(), new Collision()), new IMoveableStrategy() {
 
 			@Override
 			public void init() {		
@@ -110,7 +147,7 @@ public class GameModel {
 		_player.setMoveableKeys(IMoveableKeys.STANDARD_KEYS);
 		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_player.setSpeed(new Point(0, 20));
-		_player.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancentered.png"));
+//		_player.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancentered.png"));
 		_dispatcher.addObserver(_player);
 	}
 	

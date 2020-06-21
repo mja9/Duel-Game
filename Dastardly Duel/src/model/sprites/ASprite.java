@@ -152,6 +152,11 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_paintStrategy.init(this);
 	}
 	
+	public Dimension getScreenSize() {
+		return _screenSize;
+		
+	}
+	
 	public abstract String getID();
 	
 
