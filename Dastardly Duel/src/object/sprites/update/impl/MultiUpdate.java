@@ -1,7 +1,7 @@
 package object.sprites.update.impl;
 
-import model.sprites.ASprite;
-import model.sprites.update.IUpdateStrategy;
+import object.sprites.ASprite;
+import object.sprites.update.IUpdateStrategy;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 

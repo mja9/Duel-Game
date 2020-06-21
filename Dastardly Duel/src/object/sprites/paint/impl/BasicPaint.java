@@ -2,10 +2,9 @@ package object.sprites.paint.impl;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 
-import model.sprites.ASprite;
-import model.sprites.paint.IPaintStrategy;
+import object.sprites.ASprite;
+import object.sprites.paint.IPaintStrategy;
 
 public class BasicPaint implements IPaintStrategy{
 

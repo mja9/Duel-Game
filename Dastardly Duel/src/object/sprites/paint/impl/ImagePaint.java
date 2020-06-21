@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
-import model.sprites.ASprite;
+import object.sprites.ASprite;
 
 public class ImagePaint extends APaintStrategy {
 	

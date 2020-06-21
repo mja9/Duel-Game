@@ -1,9 +1,9 @@
-package model.sprites.movement.impl;
+package object.sprites.movement.impl;
 
 import java.awt.Point;
 
-import model.sprites.ASprite;
-import model.sprites.movement.IMovementStrategy;
+import object.sprites.ASprite;
+import object.sprites.movement.IMovementStrategy;
 
 public class ConstantMovement implements IMovementStrategy {
 	

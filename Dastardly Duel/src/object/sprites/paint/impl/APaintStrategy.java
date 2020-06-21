@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 
-import model.sprites.ASprite;
-import model.sprites.paint.IPaintStrategy;
+import object.sprites.ASprite;
+import object.sprites.paint.IPaintStrategy;
 
 public abstract class APaintStrategy implements IPaintStrategy {
 	
