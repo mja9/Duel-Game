@@ -157,6 +157,10 @@ public abstract class ASprite implements IObserver<ICommand> {
 		
 	}
 	
+	public void act() {
+		_actionStrategy.performAction();
+	}
+	
 	public abstract String getID();
 	
 
