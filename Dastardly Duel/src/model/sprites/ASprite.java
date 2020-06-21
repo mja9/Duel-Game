@@ -46,6 +46,7 @@ public abstract class ASprite implements IObserver<ICommand> {
 		_actionStrategy = actionStrategy;
 		_actionStrategy.init(this);
 		_updateStrategy = updateStrategy;
+		updateStrategy.init();
 		_position = pos;
 		_screenSize = screenSize;
 		_width = width;

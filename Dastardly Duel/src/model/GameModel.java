@@ -212,8 +212,6 @@ public class GameModel {
 
 			@Override
 			public void accept(String t) {
-//				System.out.println("Screen Size: " + getScreenSize() + "\n");
-//				System.out.println("Player position: " + _player.getPosition() + "\n");
 				_player.act();
 			}
 			
