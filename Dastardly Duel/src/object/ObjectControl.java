@@ -1,36 +1,26 @@
 package object;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Point;
 import java.util.function.Consumer;
 
-import object.sprites.action.IActionStrategy;
 import object.sprites.impl.interactive.sessile.Platform;
-import object.sprites.impl.interactive.vagile.auto.Boulder;
 import object.sprites.impl.interactive.vagile.manual.Player;
 import object.sprites.movement.IMoveableKeys;
 import object.sprites.movement.IMoveableStrategy;
-import object.sprites.movement.IMovementStrategy;
-import object.sprites.movement.impl.ConstantMovement;
-import object.sprites.paint.IPaintStrategy;
 import object.sprites.paint.impl.BasicPaint;
 import object.sprites.update.IUpdateStrategy;
-import object.sprites.update.impl.Collision;
-import object.sprites.update.impl.MultiUpdate;
-import object.sprites.update.impl.PseudoGravity;
 
 public class ObjectControl {
 	
 	IObject2ViewAdapter _object2View = IObject2ViewAdapter.NULL_ADAPTER;
 	
-	IObject2ModelAdapter _object2Mod = IObject2ModelAdapter.NULL_ADAPTER;
+	IObject2ModelAdapter _object2Model = IObject2ModelAdapter.NULL_ADAPTER;
 	
 	Player _player;
 	
 	public ObjectControl(IObject2ViewAdapter object2View, IObject2ModelAdapter object2Model) {
 		_object2View = object2View;
-		_object2Mod = object2Model;
+		_object2Model = object2Model;
 	}
 	
 	public void start() {
@@ -40,14 +30,13 @@ public class ObjectControl {
 	
 	private void loadPlayer() {
 		_player = new Player(new Point(100, _object2View.getScreenSize().height - 168), new BasicPaint(), _object2View);
+		_object2Model.addObserver(_player);
 	}
 	
 	private void loadEnvironment() {
-		
-//		Platform platform = new Platform(new BasicPaint(), IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
-//				IUpdateStrategy.NULL_UPDATE, new Point(250, getScreenSize().height - 350), getScreenSize(), 300, 1, _model2View.getCanvas());
-//		_dispatcher.addObserver(platform);
-		
+		Platform demoPlatform = new Platform(new Point(250, _object2View.getScreenSize().height - 350), 300, 1, 
+				new BasicPaint(), _object2View, IUpdateStrategy.NULL_UPDATE);
+		_object2Model.addObserver(demoPlatform);
 	}
 	
 public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy moveableStrategy) {
