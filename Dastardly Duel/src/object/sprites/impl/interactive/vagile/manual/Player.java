@@ -9,7 +9,7 @@ import object.sprites.movement.IMoveableKeys;
 import object.sprites.movement.IMoveableStrategy;
 import object.sprites.movement.IMovementStrategy;
 import object.sprites.movement.impl.BasicMoveable;
-import object.sprites.movement.impl.ConstantMovement;
+import object.sprites.movement.impl.BasicMovement;
 import object.sprites.paint.IPaintStrategy;
 import object.sprites.update.IUpdateStrategy;
 import object.sprites.update.impl.Bounce;
@@ -22,7 +22,7 @@ public class Player extends ManualObject {
 	static int width = 36;
 	static int height = 120;
 	static IUpdateStrategy updateStrategy = new MultiUpdate(new Bounce(), new MultiUpdate(new PseudoGravity(), new Collision()));
-	static IMovementStrategy movementStrategy = new ConstantMovement();
+	static IMovementStrategy movementStrategy = new BasicMovement();
 	static IMoveableStrategy moveableStrategy = new BasicMoveable();
 	static IMoveableKeys moveableKeys = IMoveableKeys.STANDARD_KEYS;
 	static IActionStrategy actionStrategy = new BoulderAttack();

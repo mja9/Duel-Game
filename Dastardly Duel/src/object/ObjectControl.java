@@ -30,6 +30,7 @@ public class ObjectControl {
 	
 	private void loadPlayer() {
 		_player = new Player(new Point(100, _object2View.getScreenSize().height - 168), new BasicPaint(), _object2View);
+		registerMovementKeys(_player.getMoveableKeys(), _player.getMoveableStrategy());
 		_object2Model.addObserver(_player);
 	}
 	

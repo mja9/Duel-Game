@@ -26,6 +26,7 @@ public class ManualObject extends VagileObject{
 			IMoveableStrategy moveableStrategy, IMoveableKeys moveableKeys, IActionStrategy actionStrategy) {
 		super(pos, width, height, paintStrategy, object2Model, updateStrategy, movementStrategy);
 		_moveableStrategy = moveableStrategy;
+		_moveableStrategy.init(this);
 		_moveableKeys = moveableKeys;
 		_actionStrategy = actionStrategy;
 		_actionStrategy.init(this);
