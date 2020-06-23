@@ -8,6 +8,11 @@ import java.util.function.Consumer;
 
 import model.GameModel;
 import model.IModel2ViewAdapter;
+import object.IObject2ModelAdapter;
+import object.IObject2ViewAdapter;
+import object.ObjectControl;
+import util.dispatcher.ICommand;
+import util.dispatcher.IObserver;
 import view.GameGUI;
 import view.IView2ModelAdapter;
 
@@ -16,6 +21,8 @@ public class GameController {
 	private GameModel _model;
 	
 	private GameGUI _GUI;
+	
+	private ObjectControl _objectControl;
 	
 	
 	public GameController() {
@@ -34,27 +41,38 @@ public class GameController {
 					public void update() {
 						_GUI.update();
 					}
-		
-					@Override
-					public void addKeyCommand(String key, Consumer<String> command) {
-						_GUI.addKeyCommand(key, command);
-					}
-		
-					@Override
-					public Dimension getScreenSize() {
-						return _GUI.getScreenSize();
-					}
-		
-					@Override
-					public Component getCanvas() {
-						return _GUI.getCanvas();
-					}
-					
 		});	
+		
+		_objectControl = new ObjectControl(new IObject2ViewAdapter() {
+
+			@Override
+			public Dimension getScreenSize() {
+				return _GUI.getScreenSize();
+			}
+
+			@Override
+			public Component getCanvas() {
+				return _GUI.getCanvas();
+			}
+
+			@Override
+			public void addKeyCommand(String key, Consumer<String> command) {
+				_GUI.addKeyCommand(key, command);
+			}
+			
+		}, new IObject2ModelAdapter() {
+
+			@Override
+			public void addObserver(IObserver<ICommand> observer) {
+				_model.addObserver(observer);
+			}
+			
+		});
 		
 	}
 	
 	public void start() {
+		_objectControl.start();
 		_model.start();
 		_GUI.start();
 	}

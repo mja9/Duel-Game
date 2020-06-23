@@ -2,7 +2,7 @@ package object.sprites.impl.interactive.vagile;
 
 import java.awt.Point;
 
-import object.IObject2ModelAdapter;
+import object.IObject2ViewAdapter;
 import object.sprites.impl.interactive.AInteractiveObject;
 import object.sprites.movement.IMovementStrategy;
 import object.sprites.paint.IPaintStrategy;
@@ -15,7 +15,7 @@ public class VagileObject extends AInteractiveObject {
 	IMovementStrategy _movementStrategy = IMovementStrategy.NULL_MOVEMENT;
 
 	public VagileObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IObject2ModelAdapter object2Model, IUpdateStrategy updateStrategy, 
+			IObject2ViewAdapter object2Model, IUpdateStrategy updateStrategy, 
 			IMovementStrategy movementStrategy) {
 		super(pos, width, height, paintStrategy, object2Model, updateStrategy);
 		_movementStrategy = movementStrategy;

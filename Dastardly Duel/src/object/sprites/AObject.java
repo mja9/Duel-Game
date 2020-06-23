@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import object.IObject2ModelAdapter;
+import object.IObject2ViewAdapter;
 import object.sprites.action.IActionStrategy;
 import object.sprites.movement.IMovementStrategy;
 import object.sprites.paint.IPaintStrategy;
@@ -26,10 +26,10 @@ public abstract class AObject implements IObserver<ICommand> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
-	IObject2ModelAdapter _object2Model = IObject2ModelAdapter.NULL_ADAPTER;
+	IObject2ViewAdapter _object2Model = IObject2ViewAdapter.NULL_ADAPTER;
 	
 	public AObject(Point pos, int width, int height, IPaintStrategy paintStrategy, 
-			IObject2ModelAdapter object2Model) {
+			IObject2ViewAdapter object2Model) {
 		
 		_paintStrategy = paintStrategy;
 		_paintStrategy.init(this);
@@ -94,7 +94,7 @@ public abstract class AObject implements IObserver<ICommand> {
 		return _object2Model.getCanvas();
 	}
 	
-	public IObject2ModelAdapter getAdapter() {
+	public IObject2ViewAdapter getAdapter() {
 		return _object2Model;
 	}
 	

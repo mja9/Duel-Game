@@ -2,9 +2,11 @@ package object.sprites.movement;
 
 import java.awt.Point;
 
+import object.sprites.impl.interactive.vagile.manual.ManualObject;
+
 public interface IMoveableStrategy {
 	
-	void init();
+	void init(ManualObject context);
 	
 	Point getPoint();
 	
@@ -18,10 +20,12 @@ public interface IMoveableStrategy {
 	
 	void stop();
 	
+	void act();
+	
 	public final IMoveableStrategy NULL_MOVEABLE = new IMoveableStrategy() {
 
 		@Override
-		public void init() {			
+		public void init(ManualObject context) {			
 		}
 
 		@Override
@@ -47,6 +51,10 @@ public interface IMoveableStrategy {
 
 		@Override
 		public void stop() {			
+		}
+
+		@Override
+		public void act() {			
 		}
 		
 	};
