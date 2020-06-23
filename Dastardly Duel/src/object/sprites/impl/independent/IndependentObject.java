@@ -5,6 +5,8 @@ import java.awt.Point;
 import object.IObject2ModelAdapter;
 import object.sprites.AObject;
 import object.sprites.paint.IPaintStrategy;
+import util.dispatcher.ICommand;
+import util.dispatcher.IDispatcher;
 
 public class IndependentObject extends AObject {
 	
@@ -16,7 +18,7 @@ public class IndependentObject extends AObject {
 	}
 
 	@Override
-	protected void updateState() {		
+	protected void updateState(AObject context, IDispatcher<ICommand> dispatcher) {		
 	}
 
 	@Override

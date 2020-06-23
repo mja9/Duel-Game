@@ -6,7 +6,6 @@ import java.awt.Point;
 
 import object.sprites.AObject;
 import object.sprites.impl.interactive.vagile.auto.Boulder;
-import object.sprites.movement.IMovementStrategy;
 import object.sprites.movement.impl.ConstantMovement;
 import object.sprites.paint.IPaintStrategy;
 import object.sprites.update.IUpdateStrategy;
@@ -38,7 +37,7 @@ public class BoulderAttack implements IActionStrategy {
 								context.getWidth(), context.getHeight());
 					}
 					
-				}, getObjectAdapter(), IUpdateStrategy.NULL_UPDATE, new ConstantMovement());
+				}, _context.getAdapter(), IUpdateStrategy.NULL_UPDATE, new ConstantMovement());
 		
 		
 	}
