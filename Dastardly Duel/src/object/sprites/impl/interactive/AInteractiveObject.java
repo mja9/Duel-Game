@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import object.IObject2ViewAdapter;
 import object.sprites.AObject;
+import object.sprites.IGameObject2ControlAdapter;
 import object.sprites.paint.IPaintStrategy;
 import object.sprites.update.IUpdateStrategy;
 import util.dispatcher.ICommand;
@@ -16,8 +17,8 @@ public abstract class AInteractiveObject extends AObject {
 	IUpdateStrategy _updateStrategy = IUpdateStrategy.NULL_UPDATE;
 
 	public AInteractiveObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IObject2ViewAdapter object2Model, IUpdateStrategy updateStrategy) {
-		super(pos, width, height, paintStrategy, object2Model);
+			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy) {
+		super(pos, width, height, paintStrategy, gameObject2Control);
 		_updateStrategy = updateStrategy;
 		_updateStrategy.init();
 	}

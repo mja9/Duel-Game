@@ -2,7 +2,7 @@ package object.sprites.impl.interactive.vagile.manual;
 
 import java.awt.Point;
 
-import object.IObject2ViewAdapter;
+import object.sprites.IGameObject2ControlAdapter;
 import object.sprites.action.IActionStrategy;
 import object.sprites.impl.interactive.vagile.VagileObject;
 import object.sprites.movement.IMoveableKeys;
@@ -22,9 +22,9 @@ public class ManualObject extends VagileObject{
 	IActionStrategy _actionStrategy = IActionStrategy.NULL_ACTION;
 
 	public ManualObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IObject2ViewAdapter object2Model, IUpdateStrategy updateStrategy, IMovementStrategy movementStrategy, 
+			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy, IMovementStrategy movementStrategy, 
 			IMoveableStrategy moveableStrategy, IMoveableKeys moveableKeys, IActionStrategy actionStrategy) {
-		super(pos, width, height, paintStrategy, object2Model, updateStrategy, movementStrategy);
+		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, movementStrategy);
 		_moveableStrategy = moveableStrategy;
 		_moveableStrategy.init(this);
 		_moveableKeys = moveableKeys;

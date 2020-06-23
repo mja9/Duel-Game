@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import object.IObject2ViewAdapter;
 import object.sprites.action.IActionStrategy;
 import object.sprites.movement.IMovementStrategy;
 import object.sprites.paint.IPaintStrategy;
@@ -26,17 +25,17 @@ public abstract class AObject implements IObserver<ICommand> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
-	IObject2ViewAdapter _object2Model = IObject2ViewAdapter.NULL_ADAPTER;
+	IGameObject2ControlAdapter _gameObject2Control = IGameObject2ControlAdapter.NULL_ADAPTER;
 	
 	public AObject(Point pos, int width, int height, IPaintStrategy paintStrategy, 
-			IObject2ViewAdapter object2Model) {
+			IGameObject2ControlAdapter gameObject2Control) {
 		
 		_paintStrategy = paintStrategy;
 		_paintStrategy.init(this);
 		_position = pos;
 		_width = width;
 		_height = height;
-		_object2Model = object2Model;
+		_gameObject2Control = gameObject2Control;
 	}
 	
 	public void update(IDispatcher<ICommand> dispatcher, Graphics g) {
@@ -87,15 +86,15 @@ public abstract class AObject implements IObserver<ICommand> {
 	}
 	
 	public Dimension getScreenSize() {
-		return _object2Model.getScreenSize();	
+		return _gameObject2Control.getScreenSize();	
 	}
 	
 	public Component getCanvas() {
-		return _object2Model.getCanvas();
+		return _gameObject2Control.getCanvas();
 	}
 	
-	public IObject2ViewAdapter getAdapter() {
-		return _object2Model;
+	public IGameObject2ControlAdapter getAdapter() {
+		return _gameObject2Control;
 	}
 	
 	protected abstract void updateState(AObject context, IDispatcher<ICommand> dispatcher);

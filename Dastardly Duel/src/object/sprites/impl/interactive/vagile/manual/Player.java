@@ -3,6 +3,7 @@ package object.sprites.impl.interactive.vagile.manual;
 import java.awt.Point;
 
 import object.IObject2ViewAdapter;
+import object.sprites.IGameObject2ControlAdapter;
 import object.sprites.action.BoulderAttack;
 import object.sprites.action.IActionStrategy;
 import object.sprites.movement.IMoveableKeys;
@@ -27,8 +28,8 @@ public class Player extends ManualObject {
 	static IMoveableKeys moveableKeys = IMoveableKeys.STANDARD_KEYS;
 	static IActionStrategy actionStrategy = new BoulderAttack();
 	
-	public Player(Point pos, IPaintStrategy paintStrategy, IObject2ViewAdapter object2View) {
-		super(pos, width, height, paintStrategy, object2View, updateStrategy, movementStrategy, moveableStrategy,
+	public Player(Point pos, IPaintStrategy paintStrategy, IGameObject2ControlAdapter gameObject2Control) {
+		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, movementStrategy, moveableStrategy,
 				moveableKeys, actionStrategy);
 	}
 

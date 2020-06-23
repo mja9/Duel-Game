@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import object.IObject2ViewAdapter;
 import object.sprites.AObject;
+import object.sprites.IGameObject2ControlAdapter;
 import object.sprites.paint.IPaintStrategy;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -13,8 +14,8 @@ public class IndependentObject extends AObject {
 	private final String ID = "independent";
 
 	public IndependentObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IObject2ViewAdapter object2Model) {
-		super(pos, width, height, paintStrategy, object2Model);
+			IGameObject2ControlAdapter gameObject2Control) {
+		super(pos, width, height, paintStrategy, gameObject2Control);
 	}
 
 	@Override
