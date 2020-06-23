@@ -5,13 +5,13 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.function.Consumer;
 
-import object.sprites.IGameObject2ControlAdapter;
-import object.sprites.impl.interactive.sessile.Platform;
-import object.sprites.impl.interactive.vagile.manual.Player;
-import object.sprites.movement.IMoveableKeys;
-import object.sprites.movement.IMoveableStrategy;
-import object.sprites.paint.impl.BasicPaint;
-import object.sprites.update.IUpdateStrategy;
+import object.gameobjects.IGameObject2ControlAdapter;
+import object.gameobjects.impl.interactive.sessile.Platform;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
+import object.gameobjects.movement.IMoveableKeys;
+import object.gameobjects.movement.IMoveableStrategy;
+import object.gameobjects.paint.impl.BasicPaint;
+import object.gameobjects.update.IUpdateStrategy;
 import util.dispatcher.ICommand;
 import util.dispatcher.IObserver;
 

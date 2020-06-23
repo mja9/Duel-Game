@@ -1,1 +1,0 @@
-package object.sprites.impl.independent;

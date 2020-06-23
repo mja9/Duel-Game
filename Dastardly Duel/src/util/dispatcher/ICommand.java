@@ -1,9 +1,9 @@
 package util.dispatcher;
 
-import object.sprites.AObject;
+import object.gameobjects.AGameObject;
 
 public interface ICommand {
 	
-	public void apply(AObject context, IDispatcher<ICommand> dispatcher);
+	public void apply(AGameObject context, IDispatcher<ICommand> dispatcher);
 
 }

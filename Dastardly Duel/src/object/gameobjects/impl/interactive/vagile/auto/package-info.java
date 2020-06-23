@@ -1,0 +1,1 @@
+package object.gameobjects.impl.interactive.vagile.auto;

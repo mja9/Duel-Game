@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 import javax.swing.Timer;
 
-import object.sprites.AObject;
-import object.sprites.impl.interactive.vagile.manual.Player;
+import object.gameobjects.AGameObject;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.IObserver;
@@ -34,7 +34,7 @@ public class GameModel {
 		_dispatcher.sendMessage(new ICommand() {
 
 			@Override
-			public void apply(AObject context, IDispatcher<ICommand> dispatcher) {
+			public void apply(AGameObject context, IDispatcher<ICommand> dispatcher) {
 				context.update(dispatcher, g);
 			}
 			
