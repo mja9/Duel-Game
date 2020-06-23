@@ -6,6 +6,8 @@ import object.IObject2ModelAdapter;
 import object.sprites.AObject;
 import object.sprites.paint.IPaintStrategy;
 import object.sprites.update.IUpdateStrategy;
+import util.dispatcher.ICommand;
+import util.dispatcher.IDispatcher;
 
 public abstract class AInteractiveObject extends AObject {
 	
@@ -21,7 +23,7 @@ public abstract class AInteractiveObject extends AObject {
 	}
 
 	@Override
-	protected void updateState() {
+	protected void updateState(AObject context, IDispatcher<ICommand> dispatcher) {
 		move();
 		_updateStrategy.updateState(context, dispatcher);
 	}

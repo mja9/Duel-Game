@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 
 public class ImagePaint extends APaintStrategy {
 	
@@ -30,7 +30,7 @@ public class ImagePaint extends APaintStrategy {
 	}
 	
 	@Override
-	public void init(ASprite context) {		
+	public void init(AObject context) {		
 		_canvas = context.getCanvas();
 		MediaTracker mediaTracker = new MediaTracker(context.getCanvas());	// Image must load before use.
 		mediaTracker.addImage(_image, 1);
@@ -49,7 +49,7 @@ public class ImagePaint extends APaintStrategy {
 	}
 	
 	@Override 
-	public void paintConfiguration(Graphics g, ASprite context) {
+	public void paintConfiguration(Graphics g, AObject context) {
 		super.paintConfiguration(g, context);
 		if (Math.abs(Math.atan2(context.getSpeed().y, context.getSpeed().x)) > Math.PI / 2.0) {
 			AffineTransform affineTransform = getAffineTransform();
@@ -59,7 +59,7 @@ public class ImagePaint extends APaintStrategy {
 	}
 
 	@Override
-	public void paintTransform(Graphics g, ASprite context, AffineTransform affineTransform) {
+	public void paintTransform(Graphics g, AObject context, AffineTransform affineTransform) {
 		_localAffineTransform.setToScale(_scaleFactorX, _scaleFactorY);
 		_localAffineTransform.translate(-_image.getWidth(_canvas), -_image.getHeight(_canvas));
 		_localAffineTransform.preConcatenate(affineTransform);

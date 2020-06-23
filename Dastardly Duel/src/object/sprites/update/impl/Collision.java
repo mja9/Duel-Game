@@ -2,7 +2,7 @@ package object.sprites.update.impl;
 
 import java.awt.Point;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 import object.sprites.update.IUpdateStrategy;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -14,14 +14,14 @@ public class Collision implements IUpdateStrategy {
 	}
 
 	@Override
-	public void updateState(ASprite thisContext, IDispatcher<ICommand> dispatcher) {
+	public void updateState(AObject thisContext, IDispatcher<ICommand> dispatcher) {
 		
 		Point thisCenter = thisContext.getPosition();
 		
 		dispatcher.sendMessage(new ICommand() {
 
 			@Override
-			public void apply(ASprite otherContext, IDispatcher<ICommand> dispatcher) {
+			public void apply(AObject otherContext, IDispatcher<ICommand> dispatcher) {
 				if (otherContext != thisContext) {
 					
 					Point otherCenter = otherContext.getPosition();
@@ -42,7 +42,7 @@ public class Collision implements IUpdateStrategy {
 	}
 	
 	// For testing purposes only!
-	private void performAction(ASprite thisContext, ASprite otherContext) {
+	private void performAction(AObject thisContext, AObject otherContext) {
 		
 		// Find where otherContext was positioned before
 		Point oldPos = new Point(thisContext.getPosition().x - thisContext.getSpeed().x,

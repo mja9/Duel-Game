@@ -1,9 +1,9 @@
 package util.dispatcher;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 
 public interface ICommand {
 	
-	public void apply(ASprite context, IDispatcher<ICommand> dispatcher);
+	public void apply(AObject context, IDispatcher<ICommand> dispatcher);
 
 }

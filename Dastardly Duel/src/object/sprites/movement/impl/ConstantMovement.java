@@ -2,15 +2,15 @@ package object.sprites.movement.impl;
 
 import java.awt.Point;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 import object.sprites.movement.IMovementStrategy;
 
 public class ConstantMovement implements IMovementStrategy {
 	
-	private ASprite _context;
+	private AObject _context;
 
 	@Override
-	public void init(ASprite context) {
+	public void init(AObject context) {
 		_context = context;
 		_context.setSpeed(new Point(10, 0));
 	}

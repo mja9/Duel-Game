@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.AffineTransform;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 import object.sprites.paint.IPaintStrategy;
 
 public abstract class APaintStrategy implements IPaintStrategy {
@@ -16,11 +16,11 @@ public abstract class APaintStrategy implements IPaintStrategy {
 	}
 
 	@Override
-	public void init(ASprite context) {
+	public void init(AObject context) {
 	}
 
 	@Override
-	public void paint(Graphics g, ASprite context) {
+	public void paint(Graphics g, AObject context) {
 		
 		double scaleX = context.getWidth();
 		double scaleY = context.getHeight();
@@ -32,7 +32,7 @@ public abstract class APaintStrategy implements IPaintStrategy {
 		paintTransform(g, context, _affineTransform);
 	}
 	
-	protected void paintConfiguration(Graphics g, ASprite context) {
+	protected void paintConfiguration(Graphics g, AObject context) {
 	}
 	
 	protected AffineTransform getAffineTransform() {
@@ -43,6 +43,6 @@ public abstract class APaintStrategy implements IPaintStrategy {
 		_affineTransform = newTransform;
 	}
 	
-	public abstract void paintTransform(Graphics g, ASprite context, AffineTransform affineTransform);
+	public abstract void paintTransform(Graphics g, AObject context, AffineTransform affineTransform);
 
 }

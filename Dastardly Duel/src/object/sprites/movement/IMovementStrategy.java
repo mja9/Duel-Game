@@ -1,17 +1,17 @@
 package object.sprites.movement;
 
-import object.sprites.ASprite;
+import object.sprites.AObject;
 
 public interface IMovementStrategy {
 	
-	void init(ASprite context);
+	void init(AObject context);
 	
 	void move();
 	
 	IMovementStrategy NULL_MOVEMENT = new IMovementStrategy() {
 
 		@Override
-		public void init(ASprite context) {			
+		public void init(AObject context) {			
 		}
 
 		@Override

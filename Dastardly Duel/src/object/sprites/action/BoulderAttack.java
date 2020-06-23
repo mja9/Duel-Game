@@ -4,43 +4,41 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import object.sprites.ASprite;
-import object.sprites.impl.projectiles.Boulder;
+import object.sprites.AObject;
+import object.sprites.impl.interactive.vagile.auto.Boulder;
 import object.sprites.movement.IMovementStrategy;
+import object.sprites.movement.impl.ConstantMovement;
 import object.sprites.paint.IPaintStrategy;
 import object.sprites.update.IUpdateStrategy;
 
 public class BoulderAttack implements IActionStrategy {
 	
 	private final int projectileSpeed = 25;
-	private ASprite _context;
+	private AObject _context;
 
 	@Override
-	public void init(ASprite context) {		
+	public void init(AObject context) {		
 		_context = context;
 	}
 
 	@Override
 	public void performAction() {
-		Boulder boulder = new Boulder(new IPaintStrategy() {
-			
-			@Override
-			public void init(ASprite context) {
-			}
-
-			@Override
-			public void paint(Graphics g, ASprite context) {
-				g.setColor(Color.YELLOW);
-				g.fillOval(context.getPosition().x, context.getPosition().y, 
-						context.getWidth(), context.getHeight());
-			}
-			
-		}, 
-				IMovementStrategy.NULL_MOVEMENT, IActionStrategy.NULL_ACTION, 
-				IUpdateStrategy.NULL_UPDATE, 
-				new Point(_context.getPosition().x + _context.getWidth() / 2 + 5, 
+		Boulder boulder = new Boulder(new Point(_context.getPosition().x + _context.getWidth() / 2 + 5, 
 						_context.getPosition().y - _context.getHeight() / 4), 
-				_context.getScreenSize(), 5, 5, _context.getCanvas());
+				5, 5, new IPaintStrategy() {
+					
+					@Override
+					public void init(AObject context) {
+					}
+		
+					@Override
+					public void paint(Graphics g, AObject context) {
+						g.setColor(Color.YELLOW);
+						g.fillOval(context.getPosition().x, context.getPosition().y, 
+								context.getWidth(), context.getHeight());
+					}
+					
+				}, getObjectAdapter(), IUpdateStrategy.NULL_UPDATE, new ConstantMovement());
 		
 		
 	}

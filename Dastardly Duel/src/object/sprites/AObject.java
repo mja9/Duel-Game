@@ -40,7 +40,7 @@ public abstract class AObject implements IObserver<ICommand> {
 	}
 	
 	public void update(IDispatcher<ICommand> dispatcher, Graphics g) {
-		updateState();
+		updateState(this, dispatcher);
 		_paintStrategy.paint(g, this);
 	}
 	
@@ -94,7 +94,7 @@ public abstract class AObject implements IObserver<ICommand> {
 		return _object2Model.getCanvas();
 	}
 	
-	protected abstract void updateState();
+	protected abstract void updateState(AObject context, IDispatcher<ICommand> dispatcher);
 	
 	public abstract String getID();
 	
