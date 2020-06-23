@@ -7,6 +7,8 @@ import object.sprites.AObject;
 import object.sprites.paint.IPaintStrategy;
 
 public class IndependentObject extends AObject {
+	
+	private final String ID = "independent";
 
 	public IndependentObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IObject2ModelAdapter object2Model) {
@@ -19,7 +21,7 @@ public class IndependentObject extends AObject {
 
 	@Override
 	public String getID() {
-		return null;
+		return ID;
 	}
 
 }

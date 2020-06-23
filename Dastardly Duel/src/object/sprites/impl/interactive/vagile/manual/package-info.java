@@ -1,0 +1,1 @@
+package object.sprites.impl.interactive.vagile.manual;
