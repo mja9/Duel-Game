@@ -7,6 +7,7 @@ import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.interaction.IInteractionStrategy;
+import object.gameobjects.interaction.impl.Bounce;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
@@ -24,7 +25,7 @@ public class Player extends ManualObject {
 	static int width = 36;
 	static int height = 120;
 	static IUpdateStrategy updateStrategy = new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision()));
-	static IInteractionStrategy interactStrategy = IInteractionStrategy.NULL_INTERACTION;
+	static IInteractionStrategy interactStrategy = new Bounce();
 	static IMovementStrategy movementStrategy = new BasicMovement();
 	static IMoveableStrategy moveableStrategy = new BasicMoveable();
 	static IMoveableKeys moveableKeys = IMoveableKeys.STANDARD_KEYS;
