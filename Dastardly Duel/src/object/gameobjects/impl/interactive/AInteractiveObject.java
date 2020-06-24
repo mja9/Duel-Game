@@ -32,7 +32,7 @@ public abstract class AInteractiveObject extends AGameObject {
 	@Override
 	protected void updateState(AGameObject context, IDispatcher<ICommand> dispatcher) {
 		move();
-		_updateStrategy.updateState(context, dispatcher);
+		_updateStrategy.updateState(this, dispatcher);
 	}
 	
 	public void interact() {
