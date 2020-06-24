@@ -1,6 +1,6 @@
 package object.gameobjects.update.impl;
 
-import object.gameobjects.AGameObject;
+import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.update.IUpdateStrategy;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -21,7 +21,7 @@ public class MultiUpdate implements IUpdateStrategy {
 	}
 
 	@Override
-	public void updateState(AGameObject context, IDispatcher<ICommand> dispatcher) {
+	public void updateState(AInteractiveObject context, IDispatcher<ICommand> dispatcher) {
 		_strategy1.updateState(context, dispatcher);
 		_strategy2.updateState(context, dispatcher);
 	}

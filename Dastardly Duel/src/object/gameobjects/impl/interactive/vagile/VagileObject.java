@@ -5,6 +5,7 @@ import java.awt.Point;
 import object.IObject2ViewAdapter;
 import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.impl.interactive.AInteractiveObject;
+import object.gameobjects.interaction.IInteractionStrategy;
 import object.gameobjects.movement.IMovementStrategy;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.update.IUpdateStrategy;
@@ -17,8 +18,8 @@ public class VagileObject extends AInteractiveObject {
 
 	public VagileObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy, 
-			IMovementStrategy movementStrategy) {
-		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy);
+			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy) {
+		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy);
 		_movementStrategy = movementStrategy;
 		_movementStrategy.init(this);
 	}

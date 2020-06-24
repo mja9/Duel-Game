@@ -9,6 +9,8 @@ import util.dispatcher.IObserver;
 public interface IGameObject2ControlAdapter {
 	
 	public void addObserver(IObserver<ICommand> observer);
+	
+	public void removeObserver(IObserver<ICommand> observer);
 
 	public Dimension getScreenSize();
 	
@@ -28,6 +30,10 @@ public interface IGameObject2ControlAdapter {
 		@Override
 		public Component getCanvas() {
 			return null;
+		}
+
+		@Override
+		public void removeObserver(IObserver<ICommand> observer) {			
 		}
 		
 	};

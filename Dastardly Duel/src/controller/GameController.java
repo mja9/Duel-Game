@@ -66,6 +66,11 @@ public class GameController {
 			public void addObserver(IObserver<ICommand> observer) {
 				_model.addObserver(observer);
 			}
+
+			@Override
+			public void removeObserver(IObserver<ICommand> observer) {
+				_model.removeObserver(observer);
+			}
 			
 		});
 		

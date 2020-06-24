@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.impl.interactive.sessile.Platform;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
+import object.gameobjects.interaction.IInteractionStrategy;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
@@ -39,6 +40,11 @@ public class ObjectControl {
 		public Component getCanvas() {
 			return _object2View.getCanvas();
 		}
+
+		@Override
+		public void removeObserver(IObserver<ICommand> observer) {
+			_object2Model.removeObserver(observer);
+		}
 		
 	};
 	
@@ -60,7 +66,7 @@ public class ObjectControl {
 	
 	private void loadEnvironment() {
 		Platform demoPlatform = new Platform(new Point(250, _object2View.getScreenSize().height - 350), 300, 1, 
-				new BasicPaint(), _gameObject2Control, IUpdateStrategy.NULL_UPDATE);
+				new BasicPaint(), _gameObject2Control, IUpdateStrategy.NULL_UPDATE, IInteractionStrategy.NULL_INTERACTION);
 		_object2Model.addObserver(demoPlatform);
 	}
 	

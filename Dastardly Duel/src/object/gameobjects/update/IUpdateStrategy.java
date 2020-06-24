@@ -1,6 +1,6 @@
 package object.gameobjects.update;
 
-import object.gameobjects.AGameObject;
+import object.gameobjects.impl.interactive.AInteractiveObject;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 
@@ -8,7 +8,7 @@ public interface IUpdateStrategy {
 	
 	void init();
 	
-	void updateState(AGameObject context, IDispatcher<ICommand> dispatcher);
+	void updateState(AInteractiveObject context, IDispatcher<ICommand> dispatcher);
 	
 	IUpdateStrategy NULL_UPDATE = new IUpdateStrategy() {
 
@@ -17,7 +17,7 @@ public interface IUpdateStrategy {
 		}
 
 		@Override
-		public void updateState(AGameObject context, IDispatcher<ICommand> dispatcher) {
+		public void updateState(AInteractiveObject context, IDispatcher<ICommand> dispatcher) {
 		}
 		
 	};

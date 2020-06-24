@@ -45,4 +45,8 @@ public class GameModel {
 		_dispatcher.addObserver(observer);
 	}
 	
+	public void removeObserver(IObserver<ICommand> observer) {
+		_dispatcher.removeObserver(observer);
+	}
+	
 }
