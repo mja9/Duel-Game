@@ -19,7 +19,7 @@ public class RockWall extends SessileObject{
 	
 	private static IPaintStrategy paintStrategy = new BasicPaint();
 	
-	private static int initialWidth = 2;
+	private static int initialWidth = 16;
 	
 	private static int initialHeight = 0;
 	
