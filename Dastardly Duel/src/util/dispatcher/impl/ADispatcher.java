@@ -9,11 +9,17 @@ import util.dispatcher.IObserver;
 
 public abstract class ADispatcher<TMessage> implements IDispatcher<TMessage> {
 	
+	private HashSet<IObserver<TMessage>> toRemove = new HashSet<IObserver<TMessage>>();
+	
 	// Create the internal set of Observers
 	private HashSet<IObserver<TMessage>> observers = new HashSet<IObserver<TMessage>>();
 	
 	protected HashSet<IObserver<TMessage>> getObserverSet() {
 		return observers;
+	}
+	
+	protected HashSet<IObserver<TMessage>> getRemovalSet() {
+		return toRemove;
 	}
 
 	@Override
@@ -23,7 +29,6 @@ public abstract class ADispatcher<TMessage> implements IDispatcher<TMessage> {
 
 	@Override
 	public Boolean addAllObservers(Set<IObserver<TMessage>> observers) {
-		// TODO Coming soon.
 		return this.observers.addAll((Collection<? extends IObserver<TMessage>>) observers);
 	}
 
@@ -36,7 +41,8 @@ public abstract class ADispatcher<TMessage> implements IDispatcher<TMessage> {
 
 	@Override
 	public Boolean removeObserver(IObserver<TMessage> observer) {
-		return observers.remove(observer);
+//		return observers.remove(observer);
+		return toRemove.add(observer);
 	}
 
 	@Override
