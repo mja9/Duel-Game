@@ -39,6 +39,7 @@ public class BoulderAttack implements IActionStrategy {
 					}
 					
 				}, _context.getAdapter(), IUpdateStrategy.NULL_UPDATE, new Kill(), new ConstantMovement());
+		boulder.setSpeed(new Point(_context.getSpeed().x < 0 ? projectileSpeed * -1 : projectileSpeed * 1, 0));
 		_context.getAdapter().addObserver(boulder);
 		
 	}
