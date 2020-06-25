@@ -40,7 +40,7 @@ public class RockWall extends SessileObject{
 				direction = -1;
 				context.setHeight(context.getHeight() + direction);
 				
-			} else if (direction == -1 && context.getHeight() == 0) {
+			} else if (direction == -1 && context.getHeight() <= 0) {
 				context.interact();
 				
 			} else {

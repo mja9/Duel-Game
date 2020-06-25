@@ -1,27 +1,33 @@
 package util.dispatcher.impl;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 import util.dispatcher.IDispatcher;
 import util.dispatcher.IObserver;
 
 public abstract class ADispatcher<TMessage> implements IDispatcher<TMessage> {
 	
-	private HashSet<IObserver<TMessage>> toRemove = new HashSet<IObserver<TMessage>>();
-	
+	private final Comparator<IObserver<TMessage>> observerComparator = new Comparator<IObserver<TMessage>>() {
+
+		@Override
+		public int compare(IObserver<TMessage> o1, IObserver<TMessage> o2) {
+			return o1.equals(o2) ? 0 : 
+				o1.hashCode() <= o2.hashCode() ? -1 : 1;
+		}
+		
+	};
+		
 	// Create the internal set of Observers
-	private HashSet<IObserver<TMessage>> observers = new HashSet<IObserver<TMessage>>();
+	private ConcurrentSkipListSet<IObserver<TMessage>> observers = new ConcurrentSkipListSet<IObserver<TMessage>>(observerComparator);
 	
-	protected HashSet<IObserver<TMessage>> getObserverSet() {
+	protected ConcurrentSkipListSet<IObserver<TMessage>> getObserverSet() {
 		return observers;
 	}
 	
-	protected HashSet<IObserver<TMessage>> getRemovalSet() {
-		return toRemove;
-	}
-
 	@Override
 	public Boolean addObserver(IObserver<TMessage> observer) {
 		return observers.add(observer);
@@ -32,17 +38,14 @@ public abstract class ADispatcher<TMessage> implements IDispatcher<TMessage> {
 		return this.observers.addAll((Collection<? extends IObserver<TMessage>>) observers);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	// TODO Find a way to safely remove the suppress warning.
 	public Set<IObserver<TMessage>> getObservers() {
-		return (HashSet<IObserver<TMessage>>) observers.clone();	// Obtain a shallow copy.
+		return observers.clone();	// Obtain a shallow copy.
 	}
 
 	@Override
 	public Boolean removeObserver(IObserver<TMessage> observer) {
-//		return observers.remove(observer);
-		return toRemove.add(observer);
+		return observers.remove(observer);
 	}
 
 	@Override
