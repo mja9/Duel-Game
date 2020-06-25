@@ -6,6 +6,7 @@ import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.impl.interactive.vagile.auto.AutoObject;
 import object.gameobjects.interaction.IInteractionStrategy;
+import object.gameobjects.interaction.impl.Kill;
 import object.gameobjects.movement.IMovementStrategy;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
@@ -25,7 +26,7 @@ public class RockWall extends SessileObject{
 	
 	private static IUpdateStrategy updateStrategy = new IUpdateStrategy() {
 		
-		private int direction = -1;
+		private int direction = 1;
 		private int maxHeight = 130;
 
 		@Override
@@ -35,12 +36,12 @@ public class RockWall extends SessileObject{
 		@Override
 		public void updateState(AInteractiveObject context, IDispatcher<ICommand> dispatcher) {
 			
-			if (direction == -1 && context.getHeight() == maxHeight) {
-				direction = 1;
+			if (direction == 1 && context.getHeight() == maxHeight) {
+				direction = -1;
 				context.setHeight(context.getHeight() + direction);
 				
-			} else if (direction == 1 && context.getHeight() == 0) {
-				dispatcher.removeObserver(context);
+			} else if (direction == -1 && context.getHeight() == 0) {
+				context.interact();
 				
 			} else {
 				context.setHeight(context.getHeight() + direction);
@@ -50,7 +51,7 @@ public class RockWall extends SessileObject{
 		
 	};
 	
-	private static IInteractionStrategy interactStrategy = IInteractionStrategy.NULL_INTERACTION;
+	private static IInteractionStrategy interactStrategy = new Kill();
 	
 
 	public RockWall(Point pos, IGameObject2ControlAdapter gameObject2Control) {
