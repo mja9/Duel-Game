@@ -2,12 +2,20 @@ package object.gameobjects.movement.impl;
 
 import java.awt.Point;
 
+import javax.swing.Timer;
+
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
 import object.gameobjects.movement.IMoveableStrategy;
 
 public class BasicMoveable implements IMoveableStrategy {
 	
 	private ManualObject _context;
+	
+	private int jumpStatus = 0;
+	
+	private int jumpCoolDown = 2000;
+	
+	Timer _coolDownTimer = new Timer(jumpCoolDown, (e) -> resetJumpStatus());
 
 	@Override
 	public void init(ManualObject context) {
@@ -31,7 +39,21 @@ public class BasicMoveable implements IMoveableStrategy {
 
 	@Override
 	public void moveUp() {	
-		_context.setSpeed(new Point(_context.getSpeed().x, -20));
+		
+		if (jumpStatus < 2) {
+			_context.setSpeed(new Point(_context.getSpeed().x, -20));
+			jumpStatus++;
+		}
+		
+		if (jumpStatus == 2) {
+			_coolDownTimer.start();
+		}
+		
+	}
+	
+	private void resetJumpStatus() {
+		jumpStatus = 0;
+		_coolDownTimer.stop();
 	}
 
 	@Override
