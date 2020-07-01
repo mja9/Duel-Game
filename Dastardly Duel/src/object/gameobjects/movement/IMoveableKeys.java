@@ -10,6 +10,10 @@ public interface IMoveableKeys {
 	
 	String getDownKey();
 	
+	String getPrimaryActionKey();
+	
+	String getSecondaryActionKey();
+	
 	public final IMoveableKeys STANDARD_KEYS = new IMoveableKeys() {
 
 		@Override
@@ -30,6 +34,16 @@ public interface IMoveableKeys {
 		@Override
 		public String getDownKey() {
 			return "DOWN";
+		}
+
+		@Override
+		public String getPrimaryActionKey() {
+			return "M";
+		}
+
+		@Override
+		public String getSecondaryActionKey() {
+			return "N";
 		}
 		
 	};

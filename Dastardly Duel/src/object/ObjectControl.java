@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.util.function.Consumer;
 
 import object.gameobjects.IGameObject2ControlAdapter;
+import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.impl.interactive.sessile.SessileObject;
@@ -79,13 +80,15 @@ public class ObjectControl {
 			
 			IMoveableKeys moveableKeys = IMoveableKeys.STANDARD_KEYS;
 			
-			IActionStrategy actionStrategy = new BoulderAttack();
-//			IActionStrategy actionStrategy = new Block();
+			IActionStrategy actionStrategy1 = new BoulderAttack();
+			
+			IActionStrategy actionStrategy2 = new Block();
 			
 			IPaintStrategy paintStrategy = new BasicPaint();
 			
 			ManualObject product = new ManualObject(pos, width, height, paintStrategy, _gameObject2Control, 
-					updateStrategy, interactStrategy, movementStrategy, moveableStrategy, moveableKeys, actionStrategy);
+					updateStrategy, interactStrategy, movementStrategy, moveableStrategy, moveableKeys, 
+					actionStrategy1, actionStrategy2);
 			
 			registerMovementKeys(product.getMoveableKeys(), product.getMoveableStrategy());
 			
@@ -142,7 +145,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 			
 		});
 		
-		_object2View.addKeyCommand("released LEFT", new Consumer<String>() {
+		_object2View.addKeyCommand("released " + keys.getLeftKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
@@ -160,7 +163,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 			
 		});
 		
-		_object2View.addKeyCommand("released RIGHT", new Consumer<String>() {
+		_object2View.addKeyCommand("released " + keys.getRightKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
@@ -169,7 +172,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 			
 		});
 		
-		_object2View.addKeyCommand("released UP", new Consumer<String>() {
+		_object2View.addKeyCommand("released " + keys.getUpKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
@@ -187,11 +190,20 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 			
 		});
 		
-		_object2View.addKeyCommand("released SPACE", new Consumer<String>() {
+		_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.act();
+				moveableStrategy.act1();
+			}
+			
+		});
+		
+		_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				moveableStrategy.act2();
 			}
 			
 		});

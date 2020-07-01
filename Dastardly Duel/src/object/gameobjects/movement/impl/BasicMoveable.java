@@ -44,8 +44,13 @@ public class BasicMoveable implements IMoveableStrategy {
 	}
 
 	@Override
-	public void act() {
-		_context.act();
+	public void act1() {
+		_context.performPrimaryAction();
+	}
+
+	@Override
+	public void act2() {
+		_context.performSecondaryAction();
 	}
 
 }

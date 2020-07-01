@@ -20,7 +20,9 @@ public interface IMoveableStrategy {
 	
 	void stop();
 	
-	void act();
+	void act1();
+	
+	void act2();
 	
 	public final IMoveableStrategy NULL_MOVEABLE = new IMoveableStrategy() {
 
@@ -54,7 +56,11 @@ public interface IMoveableStrategy {
 		}
 
 		@Override
-		public void act() {			
+		public void act1() {			
+		}
+
+		@Override
+		public void act2() {			
 		}
 		
 	};

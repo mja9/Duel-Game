@@ -20,18 +20,22 @@ public class ManualObject extends VagileObject{
 	
 	IMoveableKeys _moveableKeys = IMoveableKeys.STANDARD_KEYS;
 	
-	IActionStrategy _actionStrategy = IActionStrategy.NULL_ACTION;
+	IActionStrategy _primaryAction = IActionStrategy.NULL_ACTION;
+	
+	IActionStrategy _secondaryAction = IActionStrategy.NULL_ACTION;
 
 	public ManualObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy, IInteractionStrategy interactStrategy,
 			IMovementStrategy movementStrategy, IMoveableStrategy moveableStrategy, IMoveableKeys moveableKeys, 
-			IActionStrategy actionStrategy) {
+			IActionStrategy primaryAction, IActionStrategy secondaryAction) {
 		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy, movementStrategy);
 		_moveableStrategy = moveableStrategy;
 		_moveableStrategy.init(this);
 		_moveableKeys = moveableKeys;
-		_actionStrategy = actionStrategy;
-		_actionStrategy.init(this);
+		_primaryAction = primaryAction;
+		_primaryAction.init(this);
+		_secondaryAction = secondaryAction;
+		_secondaryAction.init(this);
 	}
 	
 	public IMoveableStrategy getMoveableStrategy() {
@@ -50,8 +54,12 @@ public class ManualObject extends VagileObject{
 		_moveableKeys = newKeys;
 	}
 	
-	public void act() {
-		_actionStrategy.performAction();
+	public void performPrimaryAction() {
+		_primaryAction.performAction();
+	}
+	
+	public void performSecondaryAction() {
+		_secondaryAction.performAction();
 	}
 	
 	@Override 
