@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import javax.swing.Timer;
 
 import object.gameobjects.AGameObject;
-import object.gameobjects.impl.interactive.vagile.manual.Player;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 import util.dispatcher.IObserver;
