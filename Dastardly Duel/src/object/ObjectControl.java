@@ -9,6 +9,7 @@ import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
+import object.gameobjects.impl.interactive.sessile.Platform;
 import object.gameobjects.impl.interactive.sessile.SessileObject;
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
@@ -60,63 +61,6 @@ public class ObjectControl {
 		
 	};
 	
-	IFactory<ManualObject> _playerFactory = new IFactory<ManualObject>() {
-
-		@Override
-		public ManualObject make(Object... parameters) {
-			
-			Point pos = (Point) parameters[0];
-			
-			int width = 36;
-					
-			int height = 120;
-			
-			IUpdateStrategy updateStrategy = new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision()));
-			
-			IInteractionStrategy interactStrategy = new Bounce();
-			
-			IMovementStrategy movementStrategy = new BasicMovement();
-			
-			IMoveableStrategy moveableStrategy = new BasicMoveable();
-			
-			IMoveableKeys moveableKeys = IMoveableKeys.STANDARD_KEYS;
-			
-			IActionStrategy actionStrategy1 = new BoulderAttack();
-			
-			IActionStrategy actionStrategy2 = new Block();
-			
-			IPaintStrategy paintStrategy = new BasicPaint();
-			
-			ManualObject product = new ManualObject(pos, width, height, paintStrategy, _gameObject2Control, 
-					updateStrategy, interactStrategy, movementStrategy, moveableStrategy, moveableKeys, 
-					actionStrategy1, actionStrategy2);
-			
-			registerMovementKeys(product.getMoveableKeys(), product.getMoveableStrategy());
-			
-			return product;
-		}
-		
-	};
-	
-	IFactory<SessileObject> _platformFactory = new IFactory<SessileObject>() {
-
-		@Override
-		public SessileObject make(Object... parameters) {
-						
-			Point pos = (Point) parameters[0];
-			
-			int width = 300;
-			
-			int height = 1;
-			
-			IPaintStrategy paintStrategy = new BasicPaint();
-			
-			return new SessileObject(pos, width, height, paintStrategy, _gameObject2Control, IUpdateStrategy.NULL_UPDATE,
-					IInteractionStrategy.NULL_INTERACTION);
-		}
-		
-	};
-	
 	public ObjectControl(IObject2ViewAdapter object2View, IObject2ModelAdapter object2Model) {
 		_object2View = object2View;
 		_object2Model = object2Model;
@@ -128,14 +72,14 @@ public class ObjectControl {
 	}
 	
 	private void loadPlayer() {
-//		_object2Model.addObserver(_playerFactory.make(new Point(100, _object2View.getScreenSize().height - 168)));
 		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObject2Control);
 		registerMovementKeys(player.getMoveableKeys(), player.getMoveableStrategy());
 		_object2Model.addObserver(player);
 	}
 	
 	private void loadEnvironment() {
-		_object2Model.addObserver(_platformFactory.make(new Point(250, _object2View.getScreenSize().height - 350)));
+		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 350), 
+				300, 1, _gameObject2Control));
 	}
 	
 public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy moveableStrategy) {
