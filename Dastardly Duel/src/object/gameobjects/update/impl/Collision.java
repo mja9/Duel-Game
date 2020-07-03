@@ -5,6 +5,7 @@ import java.awt.Point;
 import object.gameobjects.AGameObject;
 import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.update.IUpdateStrategy;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 
@@ -57,6 +58,7 @@ public class Collision implements IUpdateStrategy {
 				thisContext.setPosition(new Point(thisContext.getPosition().x,
 						otherContext.getPosition().y - (otherContext.getHeight() / 2) - (thisContext.getHeight() / 2)));
 				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
+				((Player) thisContext).changeState();
 			}
 			
 			// Hit the bottom

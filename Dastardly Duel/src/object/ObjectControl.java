@@ -11,6 +11,7 @@ import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.impl.interactive.sessile.SessileObject;
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
 import object.gameobjects.interaction.impl.Bounce;
 import object.gameobjects.movement.IMoveableKeys;
@@ -127,7 +128,10 @@ public class ObjectControl {
 	}
 	
 	private void loadPlayer() {
-		_object2Model.addObserver(_playerFactory.make(new Point(100, _object2View.getScreenSize().height - 168)));
+//		_object2Model.addObserver(_playerFactory.make(new Point(100, _object2View.getScreenSize().height - 168)));
+		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObject2Control);
+		registerMovementKeys(player.getMoveableKeys(), player.getMoveableStrategy());
+		_object2Model.addObserver(player);
 	}
 	
 	private void loadEnvironment() {

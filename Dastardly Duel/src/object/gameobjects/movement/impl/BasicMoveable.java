@@ -11,12 +11,8 @@ public class BasicMoveable implements IMoveableStrategy {
 	
 	private ManualObject _context;
 	
-	private int jumpStatus = 0;
+	private int _currentState = 1;
 	
-	private int jumpCoolDown = 1250;
-	
-	Timer _coolDownTimer = new Timer(jumpCoolDown, (e) -> resetJumpStatus());
-
 	@Override
 	public void init(ManualObject context) {
 		_context = context;
@@ -39,18 +35,24 @@ public class BasicMoveable implements IMoveableStrategy {
 
 	@Override
 	public void moveUp() {	
-		
-		if (jumpStatus == 0) {
-			_context.setSpeed(new Point(_context.getSpeed().x, -20));
-			jumpStatus++;
-			_coolDownTimer.start();
+		if (_currentState == 1) {
+			groundState();
+			changeState();
+		} else {
+			airState();
 		}
-		
 	}
 	
-	private void resetJumpStatus() {
-		jumpStatus = 0;
-		_coolDownTimer.stop();
+	private void groundState() {
+		_context.setSpeed(new Point(_context.getSpeed().x, -20));
+
+	}
+
+	private void airState() {
+	}
+	
+	public void changeState() {
+		_currentState = -_currentState;
 	}
 
 	@Override

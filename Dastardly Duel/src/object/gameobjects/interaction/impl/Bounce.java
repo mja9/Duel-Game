@@ -3,6 +3,7 @@ package object.gameobjects.interaction.impl;
 import java.awt.Point;
 
 import object.gameobjects.impl.interactive.AInteractiveObject;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
 
 public class Bounce implements IInteractionStrategy {
@@ -39,6 +40,8 @@ public class Bounce implements IInteractionStrategy {
 		if (_context.getPosition().y + (_context.getHeight() / 2) >= screenHeight - (screenHeight / 4)) {
 			_context.setPosition(new Point(_context.getPosition().x, 
 					screenHeight - (screenHeight / 4) - (_context.getHeight() / 2)));
+			
+			((Player) _context).changeState();
 		}
 		
 	}
