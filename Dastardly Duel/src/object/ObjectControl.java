@@ -18,7 +18,7 @@ import object.gameobjects.interaction.impl.Bounce;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
-import object.gameobjects.movement.impl.BasicMoveable;
+import object.gameobjects.movement.impl.GroundMoveable;
 import object.gameobjects.movement.impl.BasicMovement;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
@@ -73,7 +73,7 @@ public class ObjectControl {
 	
 	private void loadPlayer() {
 		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObject2Control);
-		registerMovementKeys(player.getMoveableKeys(), player.getMoveableStrategy());
+		registerMovementKeys(player.getMoveableKeys(), player);
 		_object2Model.addObserver(player);
 	}
 	
@@ -81,14 +81,14 @@ public class ObjectControl {
 		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 350), 
 				300, 1, _gameObject2Control));
 	}
-	
-public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy moveableStrategy) {
+		
+public void registerMovementKeys(IMoveableKeys keys, final ManualObject context) {
 		
 		_object2View.addKeyCommand(keys.getLeftKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.moveLeft();
+				context.getMoveableStrategy().moveLeft();
 			}
 			
 		});
@@ -97,7 +97,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.stop();
+				context.getMoveableStrategy().stop();
 			}
 			
 		});
@@ -106,7 +106,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.moveRight();
+				context.getMoveableStrategy().moveRight();
 			}
 			
 		});
@@ -115,7 +115,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.stop();
+				context.getMoveableStrategy().stop();
 			}
 			
 		});
@@ -124,7 +124,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.moveUp();
+				context.getMoveableStrategy().moveUp();
 			}
 			
 		});
@@ -133,7 +133,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.moveDown();
+				context.getMoveableStrategy().moveDown();
 			}
 			
 		});
@@ -142,7 +142,7 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.act1();
+				context.getMoveableStrategy().act1();
 			}
 			
 		});
@@ -151,11 +151,10 @@ public void registerMovementKeys(IMoveableKeys keys, final IMoveableStrategy mov
 
 			@Override
 			public void accept(String t) {
-				moveableStrategy.act2();
+				context.getMoveableStrategy().act2();
 			}
 			
 		});
 	}
-			
 
 }

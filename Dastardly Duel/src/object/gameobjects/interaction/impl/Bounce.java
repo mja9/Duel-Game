@@ -41,7 +41,7 @@ public class Bounce implements IInteractionStrategy {
 			_context.setPosition(new Point(_context.getPosition().x, 
 					screenHeight - (screenHeight / 4) - (_context.getHeight() / 2)));
 			
-			((Player) _context).changeState();
+			((Player) _context).changeState("ground");
 		}
 		
 	}

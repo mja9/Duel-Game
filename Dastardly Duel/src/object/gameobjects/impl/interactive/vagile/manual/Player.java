@@ -13,8 +13,9 @@ import object.gameobjects.interaction.impl.Bounce;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
-import object.gameobjects.movement.impl.BasicMoveable;
+import object.gameobjects.movement.impl.GroundMoveable;
 import object.gameobjects.movement.impl.BasicMovement;
+import object.gameobjects.movement.impl.InAirMoveable;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
 import object.gameobjects.update.IUpdateStrategy;
@@ -27,8 +28,6 @@ public class Player extends ManualObject {
 	
 	HashMap<String, Consumer<String>> _stateVisitor = new HashMap<String, Consumer<String>>();
 	
-	private BasicMoveable _moveable;
-
 	private Player(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy,
 			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy,
@@ -36,39 +35,38 @@ public class Player extends ManualObject {
 			IActionStrategy secondaryAction) {
 		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy, movementStrategy,
 				moveableStrategy, moveableKeys, primaryAction, secondaryAction);
-		_moveable = (BasicMoveable) moveableStrategy;
 	}
 	
 	public Player(Point pos, IGameObject2ControlAdapter gameObject2Control) {
 		this(pos, 36, 120, new BasicPaint(), gameObject2Control,
 				new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), 
-				new Bounce(), new BasicMovement(), new BasicMoveable(), IMoveableKeys.STANDARD_KEYS, 
+				new Bounce(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 
 				new BoulderAttack(), new Block());
+		createStateVisitor();
 	}
-//	
-//	private void createStateVisitor() {
-//		_stateVisitor.put("ground", new Consumer<String>() {
-//
-//			@Override
-//			public void accept(String t) {
-//				
-//			}
-//			
-//		});
-//		
-//		_stateVisitor.put("air", new Consumer<String>() {
-//
-//			@Override
-//			public void accept(String t) {
-//				
-//			}
-//			
-//		});
-//	}
 	
-	// State declaration methods -- Set state -- we'll use a visitor for this to be able to add more states!
-	public void changeState() {
-		_moveable.changeState();
+	private void createStateVisitor() {
+		_stateVisitor.put("ground", new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				Player.this.setMoveableStrategy(new GroundMoveable());
+			}
+			
+		});
+		
+		_stateVisitor.put("air", new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				Player.this.setMoveableStrategy(new InAirMoveable());
+			}
+			
+		});
+	}
+	
+	public void changeState(String state) {
+		_stateVisitor.get(state).accept(state);
 	}
 	
 	

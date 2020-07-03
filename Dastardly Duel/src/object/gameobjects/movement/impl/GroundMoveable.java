@@ -5,14 +5,13 @@ import java.awt.Point;
 import javax.swing.Timer;
 
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.movement.IMoveableStrategy;
 
-public class BasicMoveable implements IMoveableStrategy {
+public class GroundMoveable implements IMoveableStrategy {
 	
 	private ManualObject _context;
-	
-	private int _currentState = 1;
-	
+		
 	@Override
 	public void init(ManualObject context) {
 		_context = context;
@@ -35,26 +34,10 @@ public class BasicMoveable implements IMoveableStrategy {
 
 	@Override
 	public void moveUp() {	
-		if (_currentState == 1) {
-			groundState();
-			changeState();
-		} else {
-			airState();
-		}
-	}
-	
-	private void groundState() {
 		_context.setSpeed(new Point(_context.getSpeed().x, -20));
-
-	}
-
-	private void airState() {
+		((Player) _context).changeState("air");
 	}
 	
-	public void changeState() {
-		_currentState = -_currentState;
-	}
-
 	@Override
 	public void moveDown() {		
 	}

@@ -44,6 +44,7 @@ public class ManualObject extends VagileObject{
 	
 	public void setMoveableStrategy(IMoveableStrategy newStrat) {
 		_moveableStrategy = newStrat;
+		_moveableStrategy.init(this);
 	}
 	
 	public IMoveableKeys getMoveableKeys() {
