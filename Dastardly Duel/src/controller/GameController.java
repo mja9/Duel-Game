@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 import model.GameModel;
 import model.IModel2ViewAdapter;
+import model.IModel2ObjectAdapter;
 import object.IObject2ModelAdapter;
 import object.IObject2ViewAdapter;
 import object.ObjectControl;
@@ -41,6 +42,13 @@ public class GameController {
 					public void update() {
 						_GUI.update();
 					}
+		}, new IModel2ObjectAdapter() {
+
+			@Override
+			public void updateRemotePlayer(String id) {
+				_objectControl.updateRemotePlayer(id);
+			}
+			
 		});	
 		
 		_objectControl = new ObjectControl(new IObject2ViewAdapter() {

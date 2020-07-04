@@ -81,80 +81,84 @@ public class ObjectControl {
 		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 350), 
 				300, 1, _gameObject2Control));
 	}
+	
+	public void updateRemotePlayer(String id) {
 		
-public void registerMovementKeys(IMoveableKeys keys, final ManualObject context) {
-		
-		_object2View.addKeyCommand(keys.getLeftKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().moveLeft();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand("released " + keys.getLeftKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().stop();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand(keys.getRightKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().moveRight();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand("released " + keys.getRightKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().stop();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand("released " + keys.getUpKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().moveUp();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand(keys.getDownKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().moveDown();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().act1();
-			}
-			
-		});
-		
-		_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
-
-			@Override
-			public void accept(String t) {
-				context.getMoveableStrategy().act2();
-			}
-			
-		});
 	}
+		
+	private void registerMovementKeys(IMoveableKeys keys, final ManualObject context) {
+			
+			_object2View.addKeyCommand(keys.getLeftKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().moveLeft();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand("released " + keys.getLeftKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().stop();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand(keys.getRightKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().moveRight();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand("released " + keys.getRightKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().stop();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand("released " + keys.getUpKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().moveUp();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand(keys.getDownKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().moveDown();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().act1();
+				}
+				
+			});
+			
+			_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
+	
+				@Override
+				public void accept(String t) {
+					context.getMoveableStrategy().act2();
+				}
+				
+			});
+		}
 
 }
