@@ -147,7 +147,7 @@ public class GameModel {
 		
 		// Create the stub for this player
 		try {
-			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 2100);
+			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 0);
 			Registry localRegistry = LocateRegistry.getRegistry();
 			localRegistry.rebind("test1", stub);
 
