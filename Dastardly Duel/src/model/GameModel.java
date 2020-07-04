@@ -1,7 +1,11 @@
 package model;
 
 import java.awt.Graphics;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import javax.swing.Timer;
 
@@ -24,7 +28,7 @@ public class GameModel {
 	 * An adapter for external communication between this package and 
 	 * a game object-handling package.
 	 */
-	IModel2ObjectAdapter _model2Object;
+	IModel2ObjectAdapter _model2Object = IModel2ObjectAdapter.NULL_ADAPTER;
 	
 	/**
 	 * The measure of ticks per second for the timer. Each tick 
@@ -65,6 +69,11 @@ public class GameModel {
 	IRemotePlayerMessage _remotePlayerStub;
 	
 	/**
+	 * The name of the local address for this player.
+	 */
+	private String _localAddress = "";
+	
+	/**
 	 * 
 	 * The game model controlling the mechanics driving the game. This 
 	 * module dictates frame rate, RMI capabilities, and local update 
@@ -81,6 +90,7 @@ public class GameModel {
 	
 	public void start() {
 		_timer.start();
+		startRMI();
 
 	}
 	
@@ -107,6 +117,45 @@ public class GameModel {
 	
 	
 	public void startRMI()  {
+		
+		// NOTE: In the provided he sets the security policy via the security.policy file
+		
+		// Create and install the security manager
+		if (System.getSecurityManager() == null) {
+			System.setSecurityManager(new SecurityManager());
+		}
+		
+		// Try and obtain the local IP Address and set local properties -- need to look into this more
+		try {
+			_localAddress = java.net.InetAddress.getLocalHost().getHostAddress();
+//			System.out.println(localAddress);
+			
+			// Set system properties -- I HAVE NONE OF THESE PERMISSIONS
+//			System.setProperty("java.rmi.server.hostname", localAddress);
+
+//			System.setProperty("java.rmi.server.codebase",
+//					"http://" + System.getProperty("java.rmi.server.hostname")
+//					+ ":" + 2001 + "/");
+			
+			// Must be false to allow remote class dynamic loading (defaults to true for JDK 1.7+)
+//			System.setProperty("java.rmi.server.useCodebaseOnly", "false");
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			System.err.println("Error: IP for the host could not be determined. " + e);
+		}
+		
+		// Create the stub for this player
+		try {
+			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 2100);
+			Registry localRegistry = LocateRegistry.getRegistry();
+			localRegistry.rebind("test1", stub);
+
+		} catch (RemoteException e) {
+			System.err.println("Error: Encountered problem creating and binding stub in the registry. " + e);
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
