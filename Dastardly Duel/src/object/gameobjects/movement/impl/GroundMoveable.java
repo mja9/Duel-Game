@@ -1,12 +1,12 @@
 package object.gameobjects.movement.impl;
 
 import java.awt.Point;
-
-import javax.swing.Timer;
+import java.awt.geom.AffineTransform;
 
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.movement.IMoveableStrategy;
+import object.gameobjects.paint.impl.ImagePaint;
 
 public class GroundMoveable implements IMoveableStrategy {
 	
@@ -25,11 +25,13 @@ public class GroundMoveable implements IMoveableStrategy {
 	@Override
 	public void moveLeft() {	
 		_context.setSpeed(new Point(-5, _context.getSpeed().y));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/run.gif"));
 	}
 
 	@Override
 	public void moveRight() {	
 		_context.setSpeed(new Point(5, _context.getSpeed().y));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/run.gif"));
 	}
 
 	@Override
@@ -45,6 +47,7 @@ public class GroundMoveable implements IMoveableStrategy {
 	@Override
 	public void stop() {
 		_context.setSpeed(new Point(0, _context.getSpeed().y));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png"));
 	}
 
 	@Override

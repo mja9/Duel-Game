@@ -18,7 +18,6 @@ import object.gameobjects.movement.impl.GroundMoveable;
 import object.gameobjects.movement.impl.BasicMovement;
 import object.gameobjects.movement.impl.InAirMoveable;
 import object.gameobjects.paint.IPaintStrategy;
-import object.gameobjects.paint.impl.BasicPaint;
 import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
 import object.gameobjects.update.impl.Collision;
