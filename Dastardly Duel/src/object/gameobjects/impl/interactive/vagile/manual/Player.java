@@ -39,7 +39,7 @@ public class Player extends ManualObject {
 	}
 	
 	public Player(Point pos, IGameObject2ControlAdapter gameObject2Control) {
-		this(pos, 36, 120, new ImagePaint(new AffineTransform(), "images/rockmancropped.png"), gameObject2Control,
+		this(pos, 36, 120, new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98), gameObject2Control,
 				new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), 
 				new Bounce(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 
 				new BoulderAttack(), new Block());
@@ -51,6 +51,7 @@ public class Player extends ManualObject {
 
 			@Override
 			public void accept(String t) {
+				Player.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
 				Player.this.setMoveableStrategy(new GroundMoveable());
 			}
 			

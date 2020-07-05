@@ -14,14 +14,16 @@ public class ImagePaint extends APaintStrategy {
 	
 	private ImageObserver _canvas;
 	private Image _image;
-	private double _fillFactorX = 0.57;
-	private double _fillFactorY = 0.98;
+	private double _fillFactorX = 0.0;
+	private double _fillFactorY = 0.0;
 	private double _scaleFactorX;
 	private double _scaleFactorY;
 	protected AffineTransform _localAffineTransform = new AffineTransform();
 	
-	public ImagePaint(AffineTransform affineTransform, String filename) {
+	public ImagePaint(AffineTransform affineTransform, String filename, double fillFactorX, double fillFactorY) {
 		super(affineTransform);
+		_fillFactorX = fillFactorX;
+		_fillFactorY = fillFactorY;
 		try {
 			_image = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(filename));
 		} catch (Exception e) {
