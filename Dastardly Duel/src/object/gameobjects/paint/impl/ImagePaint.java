@@ -40,10 +40,6 @@ public class ImagePaint extends APaintStrategy {
 			System.err.println("ImagePaint.init(): Error waiting for image to load. Exception e = " + e + "\n");
 		}
 		
-		// Jumbo player
-//		_scaleFactorX = 2.0 / (_fillFactorX * _image.getWidth(_canvas) / 2.0);
-//		_scaleFactorY = 2.0 / (_fillFactorY * _image.getHeight(_canvas) / 2.0); 
-		
 		_scaleFactorX = 1.0 / (_fillFactorX * _image.getWidth(_canvas));
 		_scaleFactorY = 1.0 / (_fillFactorY * _image.getHeight(_canvas)); 
 	}
@@ -61,7 +57,9 @@ public class ImagePaint extends APaintStrategy {
 	@Override
 	public void paintTransform(Graphics g, AGameObject context, AffineTransform affineTransform) {
 		_localAffineTransform.setToScale(_scaleFactorX, _scaleFactorY);
-		_localAffineTransform.translate(-_image.getWidth(_canvas), -_image.getHeight(_canvas));
+		
+		// Needed to translate by half of this not by full
+		_localAffineTransform.translate(-_image.getWidth(_canvas) / 2, -_image.getHeight(_canvas) / 2);
 		_localAffineTransform.preConcatenate(affineTransform);
 		((Graphics2D) g).drawImage(_image, _localAffineTransform, _canvas);
 	}
