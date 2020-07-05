@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Graphics;
+import java.io.File;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -90,7 +91,7 @@ public class GameModel {
 	
 	public void start() {
 		_timer.start();
-//		startRMI();
+		startRMI();
 
 	}
 	
@@ -119,6 +120,13 @@ public class GameModel {
 	public void startRMI()  {
 		
 		// NOTE: In the provided he sets the security policy via the security.policy file
+		String sep = System.getProperty("file.separator");
+		String homeDirectory = System.getProperty("user.dir");
+		System.out.println(sep);
+		String policyFilePath = homeDirectory + sep + "model" + sep + "remote" + sep + "server.policy"; 
+		File policyFile = new File(policyFilePath);
+		System.out.println(policyFile.isFile());
+		System.setProperty("java.security.policy", policyFilePath);
 		
 		// Create and install the security manager
 		if (System.getSecurityManager() == null) {
