@@ -51,7 +51,6 @@ public class Player extends ManualObject {
 
 			@Override
 			public void accept(String t) {
-				Player.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
 				Player.this.setMoveableStrategy(new GroundMoveable());
 			}
 			
