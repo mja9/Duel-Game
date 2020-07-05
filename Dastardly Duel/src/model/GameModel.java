@@ -139,7 +139,7 @@ public class GameModel {
 		// Try and obtain the local IP Address and set local properties -- need to look into this more
 		try {
 			_localAddress = java.net.InetAddress.getLocalHost().getHostAddress();
-//			System.out.println(_localAddress);
+			System.out.println(_localAddress);
 			
 			// Set system properties
 			System.setProperty("java.rmi.server.hostname", _localAddress);
@@ -168,8 +168,8 @@ public class GameModel {
 		
 		// Create the stub for this player
 		try {
-			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 2001);
-			Registry localRegistry = LocateRegistry.getRegistry();
+			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 2100);
+			Registry localRegistry = LocateRegistry.getRegistry(2001);
 			localRegistry.rebind("test1", stub);
 
 		} catch (RemoteException e) {
