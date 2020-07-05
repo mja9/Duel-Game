@@ -1,7 +1,7 @@
 package model;
 
 import java.awt.Graphics;
-import java.io.File;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -11,6 +11,8 @@ import java.rmi.server.UnicastRemoteObject;
 import javax.swing.Timer;
 
 import model.remote.IRemotePlayerMessage;
+import model.remote.classServer.ClassFileServerResources;
+import model.remote.classServer.ClassServer;
 import object.gameobjects.AGameObject;
 import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
@@ -74,6 +76,9 @@ public class GameModel {
 	 */
 	private String _localAddress = "";
 	
+	@SuppressWarnings("unused")
+	private ClassServer classFileServer = null;
+	
 	/**
 	 * 
 	 * The game model controlling the mechanics driving the game. This 
@@ -91,7 +96,7 @@ public class GameModel {
 	
 	public void start() {
 		_timer.start();
-		startRMI();
+//		startRMI();
 
 	}
 	
@@ -122,10 +127,8 @@ public class GameModel {
 		// NOTE: In the provided he sets the security policy via the security.policy file
 		String sep = System.getProperty("file.separator");
 		String homeDirectory = System.getProperty("user.dir");
-		System.out.println(sep);
-		String policyFilePath = homeDirectory + sep + "model" + sep + "remote" + sep + "server.policy"; 
-		File policyFile = new File(policyFilePath);
-		System.out.println(policyFile.isFile());
+		String policyFilePath = homeDirectory + sep + "src" + sep + "model" + sep + "remote" + sep + "server.policy"; 
+//		File policyFile = new File(policyFilePath);	// For testing purposes.
 		System.setProperty("java.security.policy", policyFilePath);
 		
 		// Create and install the security manager
@@ -136,26 +139,36 @@ public class GameModel {
 		// Try and obtain the local IP Address and set local properties -- need to look into this more
 		try {
 			_localAddress = java.net.InetAddress.getLocalHost().getHostAddress();
-//			System.out.println(localAddress);
+//			System.out.println(_localAddress);
 			
-			// Set system properties -- I HAVE NONE OF THESE PERMISSIONS
-//			System.setProperty("java.rmi.server.hostname", localAddress);
+			// Set system properties
+			System.setProperty("java.rmi.server.hostname", _localAddress);
 
-//			System.setProperty("java.rmi.server.codebase",
-//					"http://" + System.getProperty("java.rmi.server.hostname")
-//					+ ":" + 2001 + "/");
+			System.setProperty("java.rmi.server.codebase",
+					"http://" + System.getProperty("java.rmi.server.hostname")
+					+ ":" + 2001 + "/");
 			
 			// Must be false to allow remote class dynamic loading (defaults to true for JDK 1.7+)
-//			System.setProperty("java.rmi.server.useCodebaseOnly", "false");
+			System.setProperty("java.rmi.server.useCodebaseOnly", "false");
+			
+			
+			// Open class server
+			classFileServer = new ClassFileServerResources(2001, System.getProperty("user.dir"), 
+					System.out::println, System.err::println);
+			
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 			System.err.println("Error: IP for the host could not be determined. " + e);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.err.println("Error: Unable to open class server.");
 		}
 		
 		// Create the stub for this player
 		try {
-			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 0);
+			IRemotePlayerMessage stub = (IRemotePlayerMessage) UnicastRemoteObject.exportObject(_remotePlayerMessenger, 2001);
 			Registry localRegistry = LocateRegistry.getRegistry();
 			localRegistry.rebind("test1", stub);
 
