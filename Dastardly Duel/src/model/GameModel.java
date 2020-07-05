@@ -90,7 +90,7 @@ public class GameModel {
 	
 	public void start() {
 		_timer.start();
-		startRMI();
+//		startRMI();
 
 	}
 	

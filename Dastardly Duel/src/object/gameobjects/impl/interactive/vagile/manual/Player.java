@@ -1,6 +1,7 @@
 package object.gameobjects.impl.interactive.vagile.manual;
 
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
@@ -18,6 +19,7 @@ import object.gameobjects.movement.impl.BasicMovement;
 import object.gameobjects.movement.impl.InAirMoveable;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
+import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
 import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
@@ -38,7 +40,7 @@ public class Player extends ManualObject {
 	}
 	
 	public Player(Point pos, IGameObject2ControlAdapter gameObject2Control) {
-		this(pos, 36, 120, new BasicPaint(), gameObject2Control,
+		this(pos, 36, 120, new ImagePaint(new AffineTransform(), "images/rockmancropped.png"), gameObject2Control,
 				new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), 
 				new Bounce(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 
 				new BoulderAttack(), new Block());

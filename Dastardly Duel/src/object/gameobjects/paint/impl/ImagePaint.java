@@ -14,8 +14,8 @@ public class ImagePaint extends APaintStrategy {
 	
 	private ImageObserver _canvas;
 	private Image _image;
-	private double _fillFactorX = 0.5;
-	private double _fillFactorY = 0.5;
+	private double _fillFactorX = 0.57;
+	private double _fillFactorY = 0.98;
 	private double _scaleFactorX;
 	private double _scaleFactorY;
 	protected AffineTransform _localAffineTransform = new AffineTransform();
