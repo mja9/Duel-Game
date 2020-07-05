@@ -25,13 +25,13 @@ public class GroundMoveable implements IMoveableStrategy {
 	@Override
 	public void moveLeft() {	
 		_context.setSpeed(new Point(-5, _context.getSpeed().y));
-		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/run.gif", 0.65, 0.75));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rightrun.gif", 0.65, 0.75));
 	}
 
 	@Override
 	public void moveRight() {	
 		_context.setSpeed(new Point(5, _context.getSpeed().y));
-		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/run.gif", 0.65, 0.75));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rightrun.gif", 0.65, 0.75));
 	}
 
 	@Override
