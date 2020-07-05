@@ -30,12 +30,12 @@ public abstract class AGameObject implements IObserver<ICommand> {
 	public AGameObject(Point pos, int width, int height, IPaintStrategy paintStrategy, 
 			IGameObject2ControlAdapter gameObject2Control) {
 		
+		_gameObject2Control = gameObject2Control;
 		_paintStrategy = paintStrategy;
 		_paintStrategy.init(this);
 		_position = pos;
 		_width = width;
 		_height = height;
-		_gameObject2Control = gameObject2Control;
 	}
 	
 	public void update(IDispatcher<ICommand> dispatcher, Graphics g) {

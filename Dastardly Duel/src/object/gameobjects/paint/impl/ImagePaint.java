@@ -30,7 +30,7 @@ public class ImagePaint extends APaintStrategy {
 	}
 	
 	@Override
-	public void init(AGameObject context) {		
+	public void init(AGameObject context) {	
 		_canvas = context.getCanvas();
 		MediaTracker mediaTracker = new MediaTracker(context.getCanvas());	// Image must load before use.
 		mediaTracker.addImage(_image, 1);
