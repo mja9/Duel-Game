@@ -78,8 +78,21 @@ public class ObjectControl {
 	}
 	
 	private void loadEnvironment() {
-		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 350), 
-				300, 1, _gameObject2Control));
+		
+		// Left side platforms
+		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 400), 
+				275, 1, _gameObject2Control));
+		_object2Model.addObserver(new Platform(new Point(80, _object2View.getScreenSize().height - 575), 
+				100, 1, _gameObject2Control));
+		_object2Model.addObserver(new Platform(new Point(370, _object2View.getScreenSize().height - 700), 
+				75, 1, _gameObject2Control));
+		_object2Model.addObserver(new Platform(new Point(115, _object2View.getScreenSize().height - 750), 
+				135, 1, _gameObject2Control));
+		
+		// Middle platforms
+		
+		// Right side platforms
+		
 	}
 	
 	public void updateRemotePlayer(String id) {
@@ -138,6 +151,7 @@ public class ObjectControl {
 				@Override
 				public void accept(String t) {
 					context.getMoveableStrategy().moveDown();
+					System.out.println(ObjectControl.this._object2View.getScreenSize());
 				}
 				
 			});
