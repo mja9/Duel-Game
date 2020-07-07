@@ -90,6 +90,10 @@ public class ObjectControl {
 				135, 1, _gameObject2Control));
 		
 		// Middle platforms
+		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width / 2, 
+				_object2View.getScreenSize().height - 600), 225, 1, _gameObject2Control));
+		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width / 2,
+				_object2View.getScreenSize().height / 2), 450, 1, _gameObject2Control));
 		
 		// Right side platforms
 		
