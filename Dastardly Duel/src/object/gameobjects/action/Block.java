@@ -32,7 +32,7 @@ public class Block implements IActionStrategy {
 			@Override
 			public SessileObject make(Object... parameters) {
 //				IPaintStrategy paintStrategy = new BottomPaint();
-				IPaintStrategy paintStrategy = new ImagePaint(new AffineTransform(), "images/rockwall.png", 1.0, 1.0);
+				IPaintStrategy paintStrategy = new ImagePaint(new AffineTransform(), "images/rockwall.png", 0.82, 0.96);
 
 
 				int initialWidth = 16;
