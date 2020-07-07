@@ -42,6 +42,12 @@ public class DemoLevel extends JPanel {
 		
 		setBackground(Color.GRAY);	// Set the background.
 		
+		// Make this image the background. Postpone loading until this has loaded.
+//		g.drawImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/test.png")), 0, 0, 
+//				Toolkit.getDefaultToolkit().getScreenSize().width, 
+//				Toolkit.getDefaultToolkit().getScreenSize().height - 1/4 * Toolkit.getDefaultToolkit().getScreenSize().height, 
+//				this);
+		
 		g.setColor(Color.CYAN);
 		g.fillRect(0, screenSize.height - (screenSize.height / 4), screenSize.width, screenSize.height / 4);	// Add a floor
 		
