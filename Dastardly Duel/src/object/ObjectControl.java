@@ -155,7 +155,6 @@ public class ObjectControl {
 				@Override
 				public void accept(String t) {
 					context.getMoveableStrategy().moveDown();
-					System.out.println(ObjectControl.this._object2View.getScreenSize());
 				}
 				
 			});
