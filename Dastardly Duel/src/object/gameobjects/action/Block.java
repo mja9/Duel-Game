@@ -1,6 +1,7 @@
 package object.gameobjects.action;
 
 import java.awt.Point;
+import java.awt.geom.AffineTransform;
 
 import object.gameobjects.AGameObject;
 import object.gameobjects.impl.interactive.sessile.SessileObject;
@@ -8,6 +9,7 @@ import object.gameobjects.interaction.IInteractionStrategy;
 import object.gameobjects.interaction.impl.Kill;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BottomPaint;
+import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
 import object.gameobjects.update.impl.Rise;
 import util.factory.IFactory;
@@ -29,8 +31,10 @@ public class Block implements IActionStrategy {
 
 			@Override
 			public SessileObject make(Object... parameters) {
-				IPaintStrategy paintStrategy = new BottomPaint();
-				
+//				IPaintStrategy paintStrategy = new BottomPaint();
+				IPaintStrategy paintStrategy = new ImagePaint(new AffineTransform(), "images/rockwall.png", 1.0, 1.0);
+
+
 				int initialWidth = 16;
 				
 				int initialHeight = 0;
