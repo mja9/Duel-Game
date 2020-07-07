@@ -47,7 +47,7 @@ public class GroundMoveable implements IMoveableStrategy {
 	@Override
 	public void stop() {
 		_context.setSpeed(new Point(0, _context.getSpeed().y));
-		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
+		_context.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmanpx.png", 0.57, 0.98));
 	}
 
 	@Override
