@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import view.levels.DemoLevel;
+import view.menu.TitleScreen;
 
 public class GameGUI extends JFrame {
 
@@ -42,7 +43,8 @@ public class GameGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		contentPane.add(level);		
+//		contentPane.add(level);	
+		contentPane.add(new TitleScreen());
 	}
 	
 	public void start() {

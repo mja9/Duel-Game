@@ -27,6 +27,8 @@ public class DemoLevel extends JPanel {
 	 */
 	public DemoLevel(IView2ModelAdapter view2Model) {
 		_view2Model = view2Model;
+		
+		setBackground(Color.GRAY);	// Set the background.
 	}
 	
 	@Override 
@@ -39,9 +41,7 @@ public class DemoLevel extends JPanel {
 		
 		// Screen size on the device running the game
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();		
-		
-		setBackground(Color.GRAY);	// Set the background.
-		
+				
 		// Make this image the background. Postpone loading until this has loaded.
 //		g.drawImage(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("images/test.png")), 0, 0, 
 //				Toolkit.getDefaultToolkit().getScreenSize().width, 
