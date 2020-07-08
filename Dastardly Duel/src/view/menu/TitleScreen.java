@@ -3,14 +3,19 @@ package view.menu;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Insets;
 
 public class TitleScreen extends JPanel {
 
@@ -27,7 +32,7 @@ public class TitleScreen extends JPanel {
 	
 	private final JButton _btnSinglePlayer = new JButton();
 	
-	private final JButton _btnMultiPlayer = new JButton();
+	private final JButton _btnMultiplayer = new JButton();
 	
 	private final JButton _btnSettings = new JButton();
 	
@@ -56,27 +61,57 @@ public class TitleScreen extends JPanel {
 		_lblTitle.setIcon(new ImageIcon(resizedTitle));
 		add(_lblTitle);
 				
-		// Single Player button
+		// Single Player button -- NOTE: Can also set icons for roll over and selection
 		_btnSinglePlayer.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 16,  _screenSize.height / 2, 
 				_screenSize.width * 3 / 8, _screenSize.height * 3 / 32);
 		_btnSinglePlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		Image resizedPlay = _imgPlay.getScaledInstance(_btnSinglePlayer.getWidth(), _btnSinglePlayer.getHeight(), Image.SCALE_SMOOTH);
 		_btnSinglePlayer.setIcon(new ImageIcon(resizedPlay));
+		_btnSinglePlayer.setBorderPainted(false);
+		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(_btnSinglePlayer);
+		_btnSinglePlayer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Single Player selected!\n");
+			}
+			
+		});
 		
 		// Multiplayer button
-		_btnMultiPlayer.setAlignmentX(0.5f);
-		_btnMultiPlayer.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 16,  _screenSize.height / 2 + (2 * _screenSize.height * 3 / 32), 
+		_btnMultiplayer.setAlignmentX(0.5f);
+		_btnMultiplayer.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 16,  _screenSize.height / 2 + (2 * _screenSize.height * 3 / 32), 
 				_screenSize.width * 3 / 8, _screenSize.height * 3 / 32);
-		_btnMultiPlayer.setIcon(new ImageIcon(resizedPlay));
-		add(_btnMultiPlayer);
+		_btnMultiplayer.setIcon(new ImageIcon(resizedPlay));
+		_btnMultiplayer.setBorderPainted(false);
+		_btnMultiplayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		add(_btnMultiplayer);
+		_btnMultiplayer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Multiplayer selected!\n");
+			}
+			
+		});
 		
 		// Settings button
 		_btnSettings.setAlignmentX(0.5f);
 		_btnSettings.setBounds(_screenSize.width - _screenSize.width * 3 / 18, _screenSize.width / 25, _screenSize.width / 11, _screenSize.height / 10);
 		Image resizedSettings = _imgSettings.getScaledInstance(_btnSettings.getWidth(), _btnSettings.getHeight(), Image.SCALE_SMOOTH);
 		_btnSettings.setIcon(new ImageIcon(resizedSettings));
+		_btnSettings.setBorderPainted(false);
+		_btnSettings.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(_btnSettings);
+		_btnSettings.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Settings selected!\n");
+			}
+			
+		});
 		
 	}
 	
