@@ -48,6 +48,8 @@ public class TitleScreen extends JPanel {
 	private final Image _imgPlay = _toolKit.getImage(this.getClass().getResource("images/play.png"));
 	
 	private final Image _imgSettings = _toolKit.getImage(this.getClass().getResource("images/settings.png"));
+	
+	private final ImageIcon test = new ImageIcon(this.getClass().getResource("images/testbutton.gif"));
 
 	/**
 	 * Create the panel. This is where direct one-time manipulation of the panel itself can occur.
@@ -80,6 +82,7 @@ public class TitleScreen extends JPanel {
 		_btnSinglePlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		Image resizedPlay = _imgPlay.getScaledInstance(_btnSinglePlayer.getWidth(), _btnSinglePlayer.getHeight(), Image.SCALE_SMOOTH);
 		_btnSinglePlayer.setIcon(new ImageIcon(resizedPlay));
+//		_btnSinglePlayer.setIcon(test);
 		_btnSinglePlayer.setBorderPainted(false);
 		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(_btnSinglePlayer);
