@@ -25,6 +25,27 @@ public class GameGUI extends JFrame {
 	private JPanel contentPane;
 	
 	private DemoLevel level;
+	
+	private final TitleScreen _titleScreen = new TitleScreen(new ITitleScreenAdapter() {
+
+		@Override
+		public void singlePlayer() {	
+			moveToLevel();
+		}
+
+		@Override
+		public void multiPlayer() {			
+		}
+
+		@Override
+		public void settings() {			
+		}
+
+		@Override
+		public void exit() {			
+		}
+		
+	});
 
 	/**
 	 * Create the frame.
@@ -42,13 +63,25 @@ public class GameGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-//		contentPane.add(level);	
-		contentPane.add(new TitleScreen());
+	}
+	
+	private void moveToTitle() {
+		contentPane.add(_titleScreen);
+		showFrame();
+	}
+	
+	private void moveToLevel() {
+		contentPane.add(level);
+		_view2Model.start();
+		showFrame();
+	}
+	
+	private void showFrame() {
+		setVisible(true);
 	}
 	
 	public void start() {
-		setVisible(true);
+		moveToTitle();
 	}
 	
 	public void update() {

@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+
+import view.ITitleScreenAdapter;
+
 import javax.swing.JLabel;
 
 import java.awt.Color;
@@ -23,6 +26,8 @@ public class TitleScreen extends JPanel {
 	 * Unique ID for this GUI component.
 	 */
 	private static final long serialVersionUID = -2584501605658797360L;
+	
+	private ITitleScreenAdapter _adapter;
 	
 	private final Toolkit _toolKit = Toolkit.getDefaultToolkit();
 	
@@ -47,7 +52,14 @@ public class TitleScreen extends JPanel {
 	/**
 	 * Create the panel. This is where direct one-time manipulation of the panel itself can occur.
 	 */
-	public TitleScreen() {
+	public TitleScreen(ITitleScreenAdapter adapter) {
+		_adapter = adapter;
+		initTitleScreen();
+	}
+	
+	private void initTitleScreen() {
+		
+		// This was set to allow easier manipulation within the design window.
 		setPreferredSize(new Dimension(1400, 900));
 		
 		// Setting layout to absolute layout for drag and drop abilities.
@@ -75,6 +87,7 @@ public class TitleScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Single Player selected!\n");
+				_adapter.singlePlayer();
 			}
 			
 		});
@@ -92,6 +105,7 @@ public class TitleScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Multiplayer selected!\n");
+				_adapter.multiPlayer();
 			}
 			
 		});
@@ -109,10 +123,10 @@ public class TitleScreen extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Settings selected!\n");
+				_adapter.settings();
 			}
 			
 		});
-		
 	}
 	
 	@Override

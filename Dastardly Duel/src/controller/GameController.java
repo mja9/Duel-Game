@@ -34,6 +34,12 @@ public class GameController {
 			public void update(Graphics g) {
 				_model.update(g);
 			}
+
+			@Override
+			public void start() {
+				_objectControl.start();
+				_model.start();
+			}
 			
 		});
 		
@@ -84,9 +90,7 @@ public class GameController {
 		
 	}
 	
-	public void start() {
-		_objectControl.start();
-		_model.start();
+	private void start() {
 		_GUI.start();
 	}
 	
