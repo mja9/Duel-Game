@@ -1,4 +1,4 @@
-package object.gameobjects.impl.interactive.vagile.manual;
+package object.gameobjects.impl.interactive.vagile.auto;
 
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
@@ -21,24 +21,20 @@ import object.gameobjects.update.impl.DetectBoundary;
 import object.gameobjects.update.impl.MultiUpdate;
 import object.gameobjects.update.impl.PseudoGravity;
 
-public class BasicEnemy extends ManualObject {
+public class DemoBoss extends AutoObject {
 
-	private BasicEnemy(Point pos, int width, int height, IPaintStrategy paintStrategy,
+	private DemoBoss(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
-			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy,
-			IMoveableStrategy moveableStrategy, IMoveableKeys moveableKeys, IActionStrategy primaryAction,
-			IActionStrategy secondaryAction) {
-		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy, movementStrategy,
-				moveableStrategy, moveableKeys, primaryAction, secondaryAction);
+			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy) {
+		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy, movementStrategy);
 	}
 	
 	// need to add tailored interaction and moveable strategy to the enemy
 	
-	public BasicEnemy(Point pos, IGameObjectAdapter gameObjectAdapter) {
+	public DemoBoss(Point pos, IGameObjectAdapter gameObjectAdapter) {
 		this(pos, 36, 103, new ImagePaint(new AffineTransform(), "images/rockmancentered.png", 0.57, 0.98), gameObjectAdapter,
 				new MultiUpdate(new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), new AOEDetection()), 
-				IInteractionStrategy.NULL_INTERACTION, new BasicMovement(), IMoveableStrategy.NULL_MOVEABLE, 
-				IMoveableKeys.STANDARD_KEYS, new BoulderAttack(), new Block());
+				IInteractionStrategy.NULL_INTERACTION, new BasicMovement());
 	}
 	
 	public void startAI() {
