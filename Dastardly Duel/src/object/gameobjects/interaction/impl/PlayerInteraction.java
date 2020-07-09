@@ -89,7 +89,7 @@ public class PlayerInteraction implements IInteractionStrategy {
 			
 		});
 		
-		_visitorInteraction.put("rock wall", new IVisitorAlgo() {
+		_visitorInteraction.put("barrier", new IVisitorAlgo() {
 
 			@Override
 			public void execute(Object ... args) {
@@ -114,7 +114,7 @@ public class PlayerInteraction implements IInteractionStrategy {
 			
 		});
 		
-		_visitorInteraction.put("boulder", new IVisitorAlgo() {
+		_visitorInteraction.put("projectile", new IVisitorAlgo() {
 
 			@Override
 			public void execute(Object ... args) {

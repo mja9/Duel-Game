@@ -17,7 +17,7 @@ import object.gameobjects.update.impl.MultiUpdate;
 
 public class Boulder extends AutoObject {
 	
-	private final String id = "boulder";
+	private final String id = "projectile";
 
 	private Boulder(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,

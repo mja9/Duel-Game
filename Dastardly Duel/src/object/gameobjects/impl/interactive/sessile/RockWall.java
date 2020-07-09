@@ -13,7 +13,7 @@ import object.gameobjects.update.impl.Rise;
 
 public class RockWall extends SessileObject {
 	
-	private final String id = "rock wall";
+	private final String id = "barrier";
 
 	private RockWall(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
