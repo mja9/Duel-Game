@@ -8,6 +8,7 @@ import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.interaction.IInteractionStrategy;
+import object.gameobjects.interaction.impl.DemoBossInteraction;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
@@ -34,7 +35,7 @@ public class DemoBoss extends AutoObject {
 	public DemoBoss(Point pos, IGameObjectAdapter gameObjectAdapter) {
 		this(pos, 36, 103, new ImagePaint(new AffineTransform(), "images/rockmancentered.png", 0.57, 0.98), gameObjectAdapter,
 				new MultiUpdate(new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), new AOEDetection()), 
-				IInteractionStrategy.NULL_INTERACTION, new BasicMovement());
+				new DemoBossInteraction(), new BasicMovement());
 	}
 	
 	public void startAI() {

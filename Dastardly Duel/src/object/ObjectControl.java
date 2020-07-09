@@ -35,7 +35,7 @@ public class ObjectControl {
 	IObject2ViewAdapter _object2View = IObject2ViewAdapter.NULL_ADAPTER;
 	
 	IObject2ModelAdapter _object2Model = IObject2ModelAdapter.NULL_ADAPTER;
-		
+			
 	private final IGameObjectAdapter _gameObjectAdapter = new IGameObjectAdapter() {
 
 		@Override
@@ -68,12 +68,13 @@ public class ObjectControl {
 	public void start() {
 		loadPlayer();
 		loadEnvironment();
+		loadEnemy();
 	}
 	
 	private void loadPlayer() {
-		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObjectAdapter);
-		registerMovementKeys(player.getMoveableKeys(), player);
-		_object2Model.addObserver(player);
+		Player _player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObjectAdapter);
+		registerMovementKeys(_player.getMoveableKeys(), _player);
+		_object2Model.addObserver(_player);
 	}
 	
 	private void loadEnvironment() {
@@ -103,6 +104,10 @@ public class ObjectControl {
 				_object2View.getScreenSize().height - 630), 100, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width - 250, 
 				_object2View.getScreenSize().height - 750), 275, 1, _gameObjectAdapter));
+		
+	}
+	
+	private void loadEnemy() {
 		
 	}
 	

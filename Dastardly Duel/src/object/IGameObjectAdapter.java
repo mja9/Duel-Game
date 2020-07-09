@@ -3,6 +3,7 @@ package object;
 import java.awt.Component;
 import java.awt.Dimension;
 
+import object.gameobjects.impl.interactive.vagile.manual.Player;
 import util.dispatcher.ICommand;
 import util.dispatcher.IObserver;
 
@@ -15,7 +16,7 @@ public interface IGameObjectAdapter {
 	public Dimension getScreenSize();
 	
 	public Component getCanvas();
-	
+		
 	public final IGameObjectAdapter NULL_ADAPTER = new IGameObjectAdapter() {
 
 		@Override
@@ -35,7 +36,7 @@ public interface IGameObjectAdapter {
 		@Override
 		public void removeObserver(IObserver<ICommand> observer) {			
 		}
-		
+
 	};
 
 }
