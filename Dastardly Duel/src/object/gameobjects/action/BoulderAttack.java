@@ -24,8 +24,8 @@ public class BoulderAttack implements IActionStrategy {
 			@Override
 			public Boulder make(Object... parameters) {
 				
-				Point pos = new Point(_context.getPosition().x + _context.getWidth() / 2 + 5, 
-						_context.getPosition().y - _context.getHeight() / 4);
+				Point pos = new Point(_context.getSpeed().x < 0 ? _context.getPosition().x - _context.getWidth() / 2 - 15 :
+					_context.getPosition().x + _context.getWidth() / 2 + 15, _context.getPosition().y - _context.getHeight() / 4);
 				
 				Boulder product = new Boulder(pos, _context.getAdapter());
 				
