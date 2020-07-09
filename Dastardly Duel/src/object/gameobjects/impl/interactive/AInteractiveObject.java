@@ -35,8 +35,8 @@ public abstract class AInteractiveObject extends AGameObject {
 		_updateStrategy.updateState(this, dispatcher);
 	}
 	
-	public void interact() {
-		_interactStrategy.interact();
+	public void interact(String id, Object ... args) {
+		_interactStrategy.interact(id, args);
 	}
 
 //	@Override

@@ -6,7 +6,7 @@ public interface IInteractionStrategy {
 	
 	public void init(AInteractiveObject context);
 	
-	public void interact();
+	public void interact(String id, Object ... args);
 	
 	public final IInteractionStrategy NULL_INTERACTION = new IInteractionStrategy() {
 
@@ -15,7 +15,7 @@ public interface IInteractionStrategy {
 		}
 
 		@Override
-		public void interact() {
+		public void interact(String id, Object ... args) {
 		}
 		
 	};

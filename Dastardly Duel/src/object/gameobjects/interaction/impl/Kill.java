@@ -19,7 +19,7 @@ public class Kill implements IInteractionStrategy {
 	}
 
 	@Override
-	public void interact() {
+	public void interact(String id, Object ... args) {
 		_context.getAdapter().removeObserver(_context);
 	}
 

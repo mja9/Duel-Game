@@ -25,7 +25,7 @@ public class Rise implements IUpdateStrategy {
 			context.setPosition(new Point(context.getPosition().x, context.getPosition().y - direction / 2));
 			
 		} else if (direction == -2 && context.getHeight() <= 0) {
-			context.interact();
+			context.interact(context.getID());
 			
 		} else {
 			context.setHeight(context.getHeight() + direction);

@@ -10,7 +10,7 @@ import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.interaction.IInteractionStrategy;
-import object.gameobjects.interaction.impl.Bounce;
+import object.gameobjects.interaction.impl.PlayerInteraction;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
@@ -27,6 +27,8 @@ import object.gameobjects.update.impl.PseudoGravity;
 
 public class Player extends ManualObject {
 	
+	private final String id = "player";
+	
 	HashMap<String, Consumer<String>> _stateVisitor = new HashMap<String, Consumer<String>>();
 	
 	private Player(Point pos, int width, int height, IPaintStrategy paintStrategy,
@@ -41,7 +43,7 @@ public class Player extends ManualObject {
 	public Player(Point pos, IGameObjectAdapter gameObject2Control) {
 		this(pos, 36, 103, new ImagePaint(new AffineTransform(), "images/rockmanpx.png", 0.57, 0.98), gameObject2Control,
 				new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), 
-				new Bounce(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 
+				new PlayerInteraction(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 
 				new BoulderAttack(), new Block());
 		createStateVisitor();
 	}
@@ -70,8 +72,10 @@ public class Player extends ManualObject {
 		_stateVisitor.get(state).accept(state);
 	}
 	
-	
-	
+	@Override
+	public String getID() {
+		return id;
+	}
 	
 	
 	

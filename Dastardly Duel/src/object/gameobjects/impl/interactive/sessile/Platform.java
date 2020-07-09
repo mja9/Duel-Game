@@ -9,6 +9,8 @@ import object.gameobjects.paint.impl.BasicPaint;
 import object.gameobjects.update.IUpdateStrategy;
 
 public class Platform extends SessileObject {
+	
+	private final String id = "platform";
 
 	private Platform(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
@@ -19,5 +21,10 @@ public class Platform extends SessileObject {
 	public Platform(Point pos, int width, int height, IGameObjectAdapter gameObject2Control) {
 		this(pos, width, height, new BasicPaint(), gameObject2Control, IUpdateStrategy.NULL_UPDATE, 
 				IInteractionStrategy.NULL_INTERACTION);
+	}
+	
+	@Override
+	public String getID() {
+		return id;
 	}
 }

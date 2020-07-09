@@ -20,27 +20,21 @@ public class DetectBoundary implements IUpdateStrategy {
 		
 		// Check if hitting walls
 		if (context.getPosition().x - (context.getWidth() / 2) <= 0) {	// Left wall
-//			context.setPosition(new Point(context.getWidth() / 2, context.getPosition().y));
-			context.interact();
+			context.interact("left boundary");
 		}
 		
 		if (context.getPosition().x + (context.getWidth() / 2) >= screenWidth) {	// Right wall
-//			context.setPosition(new Point(screenWidth - context.getWidth() / 2, context.getPosition().y));
-			context.interact();
+			context.interact("right boundary");
 		}
 		
 		// Check if hitting ceiling
 		if (context.getPosition().y - (context.getHeight() / 2) <= 0) {
-//			context.setPosition(new Point(context.getPosition().x, context.getHeight() / 2));
-//			context.setSpeed(new Point(context.getSpeed().x, 0));
-			context.interact();
+			context.interact("top boundary");
 		}
 		
 		// Check if hitting floor
 		if (context.getPosition().y + (context.getHeight() / 2) >= screenHeight - (screenHeight / 4)) {
-//			context.setPosition(new Point(context.getPosition().x, 
-//					screenHeight - (screenHeight / 4) - (context.getHeight() / 2)));
-			context.interact();
+			context.interact("bottom boundary");
 		}
 
 	}

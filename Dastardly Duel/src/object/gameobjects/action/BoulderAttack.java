@@ -12,6 +12,7 @@ import object.gameobjects.movement.impl.ConstantMovement;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
+import object.gameobjects.update.impl.DetectBoundary;
 import util.factory.IFactory;
 
 public class BoulderAttack implements IActionStrategy {
@@ -45,8 +46,10 @@ public class BoulderAttack implements IActionStrategy {
 				
 				IMovementStrategy movementStrategy = new ConstantMovement();
 				
+				IUpdateStrategy updateStrategy = new DetectBoundary();
+				
 				AutoObject product = new AutoObject(pos, width, height, paintStrategy, _context.getAdapter(), 
-						IUpdateStrategy.NULL_UPDATE, interactStrategy, movementStrategy);
+						updateStrategy, interactStrategy, movementStrategy);
 				
 				product.setSpeed(new Point(_context.getSpeed().x < 0 ? projectileSpeed * -1 : projectileSpeed * 1, 0));
 				

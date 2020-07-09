@@ -13,7 +13,7 @@ import object.gameobjects.impl.interactive.sessile.SessileObject;
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
-import object.gameobjects.interaction.impl.Bounce;
+import object.gameobjects.interaction.impl.PlayerInteraction;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
