@@ -151,7 +151,9 @@ public class DemoBossInteraction implements IInteractionStrategy {
 				} else {
 					
 					if (otherCenter.x < thisCenter.x) {
-						_demoBoss.setSpeed(new Point(-Math.abs(otherContext.getSpeed().x) * 3 / 4, 0));
+						_demoBoss.setSpeed(new Point(-3, 0));
+					} else {
+						_demoBoss.setSpeed(new Point(3, 0));
 					}
 					
 				}

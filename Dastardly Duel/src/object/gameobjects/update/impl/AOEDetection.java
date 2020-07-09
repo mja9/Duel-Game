@@ -8,7 +8,7 @@ import util.dispatcher.IDispatcher;
 
 public class AOEDetection implements IUpdateStrategy {
 
-	private int _area = 50;
+	private int _area = 500;
 	
 	@Override
 	public void init() {		

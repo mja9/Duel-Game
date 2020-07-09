@@ -33,7 +33,7 @@ public class DemoBoss extends AutoObject {
 	// need to add tailored interaction and moveable strategy to the enemy
 	
 	public DemoBoss(Point pos, IGameObjectAdapter gameObjectAdapter) {
-		this(pos, 86, 153, new ImagePaint(new AffineTransform(), "images/rockmancentered.png", 0.57, 0.98), gameObjectAdapter,
+		this(pos, 86, 153, new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98), gameObjectAdapter,
 				new MultiUpdate(new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), new AOEDetection()), 
 				new DemoBossInteraction(), new BasicMovement());
 	}
