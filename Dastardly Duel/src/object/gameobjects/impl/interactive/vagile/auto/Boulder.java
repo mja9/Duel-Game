@@ -11,7 +11,9 @@ import object.gameobjects.movement.impl.ConstantMovement;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
+import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
+import object.gameobjects.update.impl.MultiUpdate;
 
 public class Boulder extends AutoObject {
 	
@@ -25,7 +27,7 @@ public class Boulder extends AutoObject {
 	
 	public Boulder(Point pos, IGameObjectAdapter _gameObject2Control) {
 		this(pos, 10, 10, new ImagePaint(new AffineTransform(), "images/projectile.png", 0.67, 0.67),
-				_gameObject2Control, new DetectBoundary(), new Kill(), 
+				_gameObject2Control, new MultiUpdate(new Collision(), new DetectBoundary()), new Kill(), 
 				new ConstantMovement());
 	}
 	
