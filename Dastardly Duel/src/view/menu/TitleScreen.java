@@ -49,7 +49,7 @@ public class TitleScreen extends JPanel {
 	
 	private final Image _imgSettings = _toolKit.getImage(this.getClass().getResource("images/settings.png"));
 	
-	private final ImageIcon test = new ImageIcon(this.getClass().getResource("images/testbutton.gif"));
+	private final ImageIcon test = new ImageIcon(this.getClass().getResource("images/testbutton2.gif"));
 
 	/**
 	 * Create the panel. This is where direct one-time manipulation of the panel itself can occur.
@@ -57,6 +57,7 @@ public class TitleScreen extends JPanel {
 	public TitleScreen(ITitleScreenAdapter adapter) {
 		_adapter = adapter;
 		initTitleScreen();
+		System.out.println(_screenSize);
 	}
 	
 	private void initTitleScreen() {
@@ -74,14 +75,14 @@ public class TitleScreen extends JPanel {
 		Image resizedTitle = _imgTitle.getScaledInstance(_lblTitle.getWidth(), _lblTitle.getHeight(), Image.SCALE_SMOOTH);
 		_lblTitle.setIcon(new ImageIcon(resizedTitle));
 		add(_lblTitle);
-		System.out.println("Header " + _lblTitle.getSize() + "\n");
+//		System.out.println("Header " + _lblTitle.getSize() + "\n");
 				
 		// Single Player button -- NOTE: Can also set icons for roll over and selection
 		_btnSinglePlayer.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 16,  _screenSize.height / 2, 
 				_screenSize.width * 3 / 8, _screenSize.height * 3 / 32);
 		_btnSinglePlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		Image resizedPlay = _imgPlay.getScaledInstance(_btnSinglePlayer.getWidth(), _btnSinglePlayer.getHeight(), Image.SCALE_SMOOTH);
-//		_btnSinglePlayer.setIcon(new ImageIcon(resizedPlay));
+		_btnSinglePlayer.setIcon(new ImageIcon(resizedPlay));
 //		_btnSinglePlayer.setIcon(test);
 		_btnSinglePlayer.setBorderPainted(false);
 		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -95,7 +96,7 @@ public class TitleScreen extends JPanel {
 			}
 			
 		});
-		System.out.println("Single Player button " + _btnSinglePlayer.getSize() + "\n");
+//		System.out.println("Single Player button " + _btnSinglePlayer.getSize() + "\n");
 		
 		// Multiplayer button
 		_btnMultiplayer.setAlignmentX(0.5f);
@@ -133,7 +134,7 @@ public class TitleScreen extends JPanel {
 			
 		});
 		
-		System.out.println("Settings button: " + _btnSettings.getSize() + "\n");
+//		System.out.println("Settings button: " + _btnSettings.getSize() + "\n");
 	}
 	
 	@Override
