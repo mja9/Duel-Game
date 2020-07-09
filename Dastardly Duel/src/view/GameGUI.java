@@ -66,11 +66,13 @@ public class GameGUI extends JFrame {
 	}
 	
 	private void moveToTitle() {
+		contentPane.removeAll();
 		contentPane.add(_titleScreen);
 		showFrame();
 	}
 	
 	private void moveToLevel() {
+		contentPane.removeAll();
 		contentPane.add(level);
 		_view2Model.start();
 		showFrame();

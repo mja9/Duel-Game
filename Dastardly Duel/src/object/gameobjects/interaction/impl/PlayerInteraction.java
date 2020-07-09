@@ -103,21 +103,19 @@ public class PlayerInteraction implements IInteractionStrategy {
 				// Left Side
 				if (_context.getPosition().x + _context.getWidth() / 2 >=
 						otherContext.getPosition().x - otherContext.getWidth() / 2) {
-					System.out.println("Hit the left side\n");
+//					System.out.println("Hit the left side\n");
 					_context.setPosition(new Point(otherContext.getPosition().x -
 							otherContext.getWidth() / 2 - _context.getWidth() / 2, _context.getPosition().y));
-				}
 				
-				// Right Side
-				if(_context.getPosition().x - _context.getWidth() / 2 <= 
+				// Right side
+				} else if(_context.getPosition().x - _context.getWidth() / 2 <= 
 						otherContext.getPosition().x + otherContext.getWidth() / 2) {
-					System.out.println("Hit the right side\n");
+//					System.out.println("Hit the right side\n");
 					_context.setPosition(new Point(otherContext.getPosition().x + 
 							otherContext.getWidth() / 2 + _context.getWidth() / 2, _context.getPosition().y));
-				}
-				
-				// Top
-				if ((oldPos.y + _context.getHeight() / 2 < otherContext.getPosition().y - otherContext.getHeight() / 2) &&
+					
+				// Top	
+				} else if ((oldPos.y + _context.getHeight() / 2 < otherContext.getPosition().y - otherContext.getHeight() / 2) &&
 						_context.getSpeed().y > 0 &&
 						(oldPos.x >= otherContext.getPosition().x - otherContext.getWidth() / 2 & 
 						oldPos.x <= otherContext.getPosition().x + otherContext.getWidth() / 2)) {
