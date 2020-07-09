@@ -31,10 +31,11 @@ public class Collision implements IUpdateStrategy {
 					// Check x-positions
 					if ((Math.abs(otherCenter.x - thisCenter.x) <=
 							thisContext.getWidth() / 2 + otherContext.getWidth() / 2)
+							
 							// Check y-positions
 							&& (Math.abs(otherCenter.y - thisCenter.y) <=
 							thisContext.getHeight() / 2 + otherContext.getHeight() / 2)) {
-//						performAction(thisContext, otherContext);
+						
 						thisContext.interact(otherContext.getID(), otherContext);
 					}
 					
@@ -42,25 +43,6 @@ public class Collision implements IUpdateStrategy {
 			}
 			
 		});
-	}
-	
-	private void performAction(AGameObject thisContext, AGameObject otherContext) {
-		
-//		// Find where otherContext was positioned before
-//		Point oldPos = new Point(thisContext.getPosition().x - thisContext.getSpeed().x,
-//				thisContext.getPosition().y - thisContext.getSpeed().y);
-//			
-//			// Hit the top
-//			if ((oldPos.y + thisContext.getHeight() / 2 < otherContext.getPosition().y - otherContext.getHeight() / 2) &&
-//					thisContext.getSpeed().y > 0 &&
-//					(oldPos.x >= otherContext.getPosition().x - otherContext.getWidth() / 2 & 
-//					oldPos.x <= otherContext.getPosition().x + otherContext.getWidth() / 2)) {
-//				thisContext.setPosition(new Point(thisContext.getPosition().x,
-//						otherContext.getPosition().y - (otherContext.getHeight() / 2) - (thisContext.getHeight() / 2)));
-//				thisContext.setSpeed(new Point(thisContext.getSpeed().x, 0));
-//				((Player) thisContext).changeState("ground");
-//			}
-		
 	}
 	
 }
