@@ -10,6 +10,7 @@ import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.impl.interactive.sessile.Platform;
 import object.gameobjects.impl.interactive.sessile.SessileObject;
+import object.gameobjects.impl.interactive.vagile.auto.DemoBoss;
 import object.gameobjects.impl.interactive.vagile.manual.ManualObject;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
@@ -109,6 +110,9 @@ public class ObjectControl {
 	
 	private void loadEnemy() {
 		
+		DemoBoss _demoBoss = new DemoBoss(new Point(_object2View.getScreenSize().width - 100, 
+				_object2View.getScreenSize().height - 168), _gameObjectAdapter);
+		_object2Model.addObserver(_demoBoss);
 	}
 	
 	public void updateRemotePlayer(String id) {
