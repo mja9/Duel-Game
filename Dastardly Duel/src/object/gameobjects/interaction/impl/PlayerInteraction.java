@@ -96,10 +96,6 @@ public class PlayerInteraction implements IInteractionStrategy {
 			
 				RockWall otherContext = (RockWall) args[0];
 				
-				// Find the player's old position
-				Point oldPos = new Point(_context.getPosition().x - _context.getSpeed().x,
-						_context.getPosition().y - _context.getSpeed().y);
-				
 				// Left Side
 				if (_context.getPosition().x + _context.getWidth() / 2 >=
 						otherContext.getPosition().x - otherContext.getWidth() / 2) {
@@ -113,17 +109,6 @@ public class PlayerInteraction implements IInteractionStrategy {
 //					System.out.println("Hit the right side\n");
 					_context.setPosition(new Point(otherContext.getPosition().x + 
 							otherContext.getWidth() / 2 + _context.getWidth() / 2, _context.getPosition().y));
-					
-				// Top	
-				} else if ((oldPos.y + _context.getHeight() / 2 < otherContext.getPosition().y - otherContext.getHeight() / 2) &&
-						_context.getSpeed().y > 0 &&
-						(oldPos.x >= otherContext.getPosition().x - otherContext.getWidth() / 2 & 
-						oldPos.x <= otherContext.getPosition().x + otherContext.getWidth() / 2)) {
-					System.out.println("Hit the top\n");
-					_context.setPosition(new Point(_context.getPosition().x,
-							otherContext.getPosition().y - (otherContext.getHeight() / 2) - (_context.getHeight() / 2)));
-					_context.setSpeed(new Point(_context.getSpeed().x, 0));
-					 _context.changeState("ground");
 				}
 			}
 			
