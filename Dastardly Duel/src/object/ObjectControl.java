@@ -73,7 +73,8 @@ public class ObjectControl {
 	}
 	
 	private void loadPlayer() {
-		Player _player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObjectAdapter);
+		Player _player = new Player(new Point(100, _object2View.getScreenSize().height - _object2View.getScreenSize().height / 4), 
+				_gameObjectAdapter);
 		registerMovementKeys(_player.getMoveableKeys(), _player);
 		_object2Model.addObserver(_player);
 	}
@@ -111,7 +112,7 @@ public class ObjectControl {
 	private void loadEnemy() {
 		
 		DemoBoss _demoBoss = new DemoBoss(new Point(_object2View.getScreenSize().width - 100, 
-				_object2View.getScreenSize().height - 168), _gameObjectAdapter);
+				_object2View.getScreenSize().height - _object2View.getScreenSize().height / 4 - 8), _gameObjectAdapter);
 		_object2Model.addObserver(_demoBoss);
 	}
 	

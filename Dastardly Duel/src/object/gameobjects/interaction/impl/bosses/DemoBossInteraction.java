@@ -1,4 +1,4 @@
-package object.gameobjects.interaction.impl;
+package object.gameobjects.interaction.impl.bosses;
 
 import java.awt.Point;
 import java.util.HashMap;
