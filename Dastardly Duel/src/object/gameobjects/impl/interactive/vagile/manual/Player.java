@@ -24,12 +24,13 @@ import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
 import object.gameobjects.update.impl.MultiUpdate;
 import object.gameobjects.update.impl.PseudoGravity;
+import util.visitor.IVisitorAlgo;
 
 public class Player extends ManualObject {
 	
 	private final String id = "player";
 	
-	HashMap<String, Consumer<String>> _stateVisitor = new HashMap<String, Consumer<String>>();
+	HashMap<String, IVisitorAlgo> _stateVisitor = new HashMap<String, IVisitorAlgo>();
 	
 	private Player(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
@@ -49,19 +50,19 @@ public class Player extends ManualObject {
 	}
 	
 	private void createStateVisitor() {
-		_stateVisitor.put("ground", new Consumer<String>() {
+		_stateVisitor.put("ground", new IVisitorAlgo() {
 
 			@Override
-			public void accept(String t) {
+			public void execute(Object ... args) {
 				Player.this.setMoveableStrategy(new GroundMoveable());
 			}
 			
 		});
 		
-		_stateVisitor.put("air", new Consumer<String>() {
+		_stateVisitor.put("air", new IVisitorAlgo() {
 
 			@Override
-			public void accept(String t) {
+			public void execute(Object ... args) {
 				Player.this.setMoveableStrategy(new InAirMoveable());
 			}
 			
@@ -69,7 +70,7 @@ public class Player extends ManualObject {
 	}
 	
 	public void changeState(String state) {
-		_stateVisitor.get(state).accept(state);
+		_stateVisitor.get(state).execute();
 	}
 	
 	@Override
