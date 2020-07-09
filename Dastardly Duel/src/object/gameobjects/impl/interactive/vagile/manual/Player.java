@@ -5,7 +5,7 @@ import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-import object.gameobjects.IGameObject2ControlAdapter;
+import object.IGameObjectAdapter;
 import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
@@ -30,7 +30,7 @@ public class Player extends ManualObject {
 	HashMap<String, Consumer<String>> _stateVisitor = new HashMap<String, Consumer<String>>();
 	
 	private Player(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy,
+			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
 			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy,
 			IMoveableStrategy moveableStrategy, IMoveableKeys moveableKeys, IActionStrategy primaryAction,
 			IActionStrategy secondaryAction) {
@@ -38,7 +38,7 @@ public class Player extends ManualObject {
 				moveableStrategy, moveableKeys, primaryAction, secondaryAction);
 	}
 	
-	public Player(Point pos, IGameObject2ControlAdapter gameObject2Control) {
+	public Player(Point pos, IGameObjectAdapter gameObject2Control) {
 		this(pos, 36, 103, new ImagePaint(new AffineTransform(), "images/rockmanpx.png", 0.57, 0.98), gameObject2Control,
 				new MultiUpdate(new DetectBoundary(), new MultiUpdate(new PseudoGravity(), new Collision())), 
 				new Bounce(), new BasicMovement(), new GroundMoveable(), IMoveableKeys.STANDARD_KEYS, 

@@ -2,8 +2,8 @@ package object.gameobjects.impl.interactive.sessile;
 
 import java.awt.Point;
 
+import object.IGameObjectAdapter;
 import object.IObject2ViewAdapter;
-import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.interaction.IInteractionStrategy;
 import object.gameobjects.paint.IPaintStrategy;
@@ -14,7 +14,7 @@ public class SessileObject extends AInteractiveObject {
 	private final String ID = "sessile";
 
 	public SessileObject(Point pos, int width, int height, IPaintStrategy paintStrategy,
-			IGameObject2ControlAdapter gameObject2Control, IUpdateStrategy updateStrategy, 
+			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy, 
 			IInteractionStrategy interactStrategy) {
 		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy);
 	}

@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.function.Consumer;
 
-import object.gameobjects.IGameObject2ControlAdapter;
 import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
@@ -37,7 +36,7 @@ public class ObjectControl {
 	
 	IObject2ModelAdapter _object2Model = IObject2ModelAdapter.NULL_ADAPTER;
 		
-	private final IGameObject2ControlAdapter _gameObject2Control = new IGameObject2ControlAdapter() {
+	private final IGameObjectAdapter _gameObjectAdapter = new IGameObjectAdapter() {
 
 		@Override
 		public void addObserver(IObserver<ICommand> observer) {
@@ -72,7 +71,7 @@ public class ObjectControl {
 	}
 	
 	private void loadPlayer() {
-		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObject2Control);
+		Player player = new Player(new Point(100, _object2View.getScreenSize().height - 168), _gameObjectAdapter);
 		registerMovementKeys(player.getMoveableKeys(), player);
 		_object2Model.addObserver(player);
 	}
@@ -81,29 +80,29 @@ public class ObjectControl {
 		
 		// Left side platforms
 		_object2Model.addObserver(new Platform(new Point(250, _object2View.getScreenSize().height - 400), 
-				275, 1, _gameObject2Control));
+				275, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(80, _object2View.getScreenSize().height - 575), 
-				100, 1, _gameObject2Control));
+				100, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(370, _object2View.getScreenSize().height - 700), 
-				75, 1, _gameObject2Control));
+				75, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(115, _object2View.getScreenSize().height - 750), 
-				135, 1, _gameObject2Control));
+				135, 1, _gameObjectAdapter));
 		
 		// Middle platforms
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width / 2, 
-				_object2View.getScreenSize().height - 600), 225, 1, _gameObject2Control));
+				_object2View.getScreenSize().height - 600), 225, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width / 2,
-				_object2View.getScreenSize().height / 2), 450, 1, _gameObject2Control));
+				_object2View.getScreenSize().height / 2), 450, 1, _gameObjectAdapter));
 		
 		// Right side platforms
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width - 115, 
-				_object2View.getScreenSize().height - 400), 135, 1, _gameObject2Control));
+				_object2View.getScreenSize().height - 400), 135, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width - 390,
-				_object2View.getScreenSize().height - 550), 75, 1, _gameObject2Control));
+				_object2View.getScreenSize().height - 550), 75, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width - 80, 
-				_object2View.getScreenSize().height - 630), 100, 1, _gameObject2Control));
+				_object2View.getScreenSize().height - 630), 100, 1, _gameObjectAdapter));
 		_object2Model.addObserver(new Platform(new Point(_object2View.getScreenSize().width - 250, 
-				_object2View.getScreenSize().height - 750), 275, 1, _gameObject2Control));
+				_object2View.getScreenSize().height - 750), 275, 1, _gameObjectAdapter));
 		
 	}
 	

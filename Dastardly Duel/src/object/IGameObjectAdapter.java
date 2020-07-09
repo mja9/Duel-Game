@@ -1,4 +1,4 @@
-package object.gameobjects;
+package object;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import util.dispatcher.ICommand;
 import util.dispatcher.IObserver;
 
-public interface IGameObject2ControlAdapter {
+public interface IGameObjectAdapter {
 	
 	public void addObserver(IObserver<ICommand> observer);
 	
@@ -16,7 +16,7 @@ public interface IGameObject2ControlAdapter {
 	
 	public Component getCanvas();
 	
-	public final IGameObject2ControlAdapter NULL_ADAPTER = new IGameObject2ControlAdapter() {
+	public final IGameObjectAdapter NULL_ADAPTER = new IGameObjectAdapter() {
 
 		@Override
 		public void addObserver(IObserver<ICommand> observer) {			

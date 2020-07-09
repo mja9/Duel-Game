@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import object.IGameObjectAdapter;
 import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.movement.IMovementStrategy;
 import object.gameobjects.paint.IPaintStrategy;
@@ -25,10 +26,10 @@ public abstract class AGameObject implements IObserver<ICommand> {
 	
 	IPaintStrategy _paintStrategy = IPaintStrategy.NULL_PAINT;
 	
-	IGameObject2ControlAdapter _gameObject2Control = IGameObject2ControlAdapter.NULL_ADAPTER;
+	IGameObjectAdapter _gameObject2Control = IGameObjectAdapter.NULL_ADAPTER;
 	
 	public AGameObject(Point pos, int width, int height, IPaintStrategy paintStrategy, 
-			IGameObject2ControlAdapter gameObject2Control) {
+			IGameObjectAdapter gameObject2Control) {
 		
 		_gameObject2Control = gameObject2Control;
 		_paintStrategy = paintStrategy;
@@ -93,7 +94,7 @@ public abstract class AGameObject implements IObserver<ICommand> {
 		return _gameObject2Control.getCanvas();
 	}
 	
-	public IGameObject2ControlAdapter getAdapter() {
+	public IGameObjectAdapter getAdapter() {
 		return _gameObject2Control;
 	}
 	
