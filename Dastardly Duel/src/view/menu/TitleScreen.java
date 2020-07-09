@@ -72,6 +72,7 @@ public class TitleScreen extends JPanel {
 		Image resizedTitle = _imgTitle.getScaledInstance(_lblTitle.getWidth(), _lblTitle.getHeight(), Image.SCALE_SMOOTH);
 		_lblTitle.setIcon(new ImageIcon(resizedTitle));
 		add(_lblTitle);
+		System.out.println("Header " + _lblTitle.getSize() + "\n");
 				
 		// Single Player button -- NOTE: Can also set icons for roll over and selection
 		_btnSinglePlayer.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 16,  _screenSize.height / 2, 
@@ -91,6 +92,7 @@ public class TitleScreen extends JPanel {
 			}
 			
 		});
+		System.out.println("Single Player button " + _btnSinglePlayer.getSize() + "\n");
 		
 		// Multiplayer button
 		_btnMultiplayer.setAlignmentX(0.5f);
@@ -127,6 +129,8 @@ public class TitleScreen extends JPanel {
 			}
 			
 		});
+		
+		System.out.println("Settings button: " + _btnSettings.getSize() + "\n");
 	}
 	
 	@Override
