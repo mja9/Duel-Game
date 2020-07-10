@@ -23,6 +23,7 @@ import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
 import object.gameobjects.update.impl.MultiUpdate;
 import object.gameobjects.update.impl.PseudoGravity;
+import object.gameobjects.update.impl.Rise;
 import util.visitor.IVisitorAlgo;
 
 public class DemoBoss extends AutoObject {
@@ -39,17 +40,28 @@ public class DemoBoss extends AutoObject {
 	// need to add tailored interaction and moveable strategy to the enemy
 	
 	public DemoBoss(Point pos, IGameObjectAdapter gameObjectAdapter) {
-		this(pos, 16, 16, new BasicPaint(), gameObjectAdapter, IUpdateStrategy.NULL_UPDATE, 
-				IInteractionStrategy.NULL_INTERACTION, IMovementStrategy.NULL_MOVEMENT);
+		this(pos, 16, 16, new BasicPaint(), gameObjectAdapter, new Collision(), 
+				new ChangeState(), IMovementStrategy.NULL_MOVEMENT);
 	}
 	
 	private void createPhases() {
+		
+		_phaseVisitor.put("spawn", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
+				DemoBoss.this.setUpdateStrategy(new Rise());
+				DemoBoss.this.setInteractionStrategy(new SpawnToPhase1());
+			}
+			
+		});
 		
 		_phaseVisitor.put("phase 1", new IVisitorAlgo() {
 
 			@Override
 			public void execute(Object... args) {
-				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
+//				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
 			}
 			
 		});

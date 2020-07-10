@@ -12,9 +12,7 @@ import util.dispatcher.ICommand;
 import util.dispatcher.IDispatcher;
 
 public abstract class AInteractiveObject extends AGameObject {
-	
-//	private final String ID = "interactive";
-	
+		
 	IUpdateStrategy _updateStrategy = IUpdateStrategy.NULL_UPDATE;
 	
 	IInteractionStrategy _interactStrategy = IInteractionStrategy.NULL_INTERACTION;
@@ -35,14 +33,19 @@ public abstract class AInteractiveObject extends AGameObject {
 		_updateStrategy.updateState(this, dispatcher);
 	}
 	
+	public void setUpdateStrategy(IUpdateStrategy newStrat) {
+		_updateStrategy = newStrat;
+		_updateStrategy.init();
+	}
+		
 	public void interact(String id, Object ... args) {
 		_interactStrategy.interact(id, args);
 	}
-
-//	@Override
-//	public String getID() {
-//		return ID;
-//	}
+	
+	public void setInteractionStrategy(IInteractionStrategy newStrat) {
+		_interactStrategy = newStrat;
+		_interactStrategy.init(this);
+	}
 	
 	public abstract void move();
 

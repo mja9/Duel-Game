@@ -10,7 +10,7 @@ import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
 import util.visitor.IVisitorAlgo;
 
-public class DemoBossInteraction implements IInteractionStrategy {
+public class Phase1Interaction implements IInteractionStrategy {
 	
 	private DemoBoss _demoBoss;
 	
