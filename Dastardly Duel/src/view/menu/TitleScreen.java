@@ -33,7 +33,7 @@ public class TitleScreen extends JPanel {
 	
 	private final Dimension _screenSize = _toolKit.getScreenSize();
 	
-	private final JLabel _lblTitle = new JLabel();
+//	private final JLabel _lblTitle = new JLabel();
 	
 	private final JButton _btnSinglePlayer = new JButton();
 	
@@ -43,7 +43,7 @@ public class TitleScreen extends JPanel {
 	
 	private final Image _imgBG = _toolKit.getImage(this.getClass().getResource("images/cover.png"));
 	
-	private final Image _imgTitle = _toolKit.getImage(this.getClass().getResource("images/header.png"));
+//	private final Image _imgTitle = _toolKit.getImage(this.getClass().getResource("images/header.png"));
 	
 	private final Image _imgPlay = _toolKit.getImage(this.getClass().getResource("images/play.png"));
 	
@@ -69,11 +69,11 @@ public class TitleScreen extends JPanel {
 		setLayout(null);
 		
 		// Setting the game title
-		_lblTitle.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 8, _screenSize.height / 12, 
-				_screenSize.width * 3 / 4, _screenSize.height * 3 / 8);
-		_lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-		Image resizedTitle = _imgTitle.getScaledInstance(_lblTitle.getWidth(), _lblTitle.getHeight(), Image.SCALE_SMOOTH);
-		_lblTitle.setIcon(new ImageIcon(resizedTitle));
+//		_lblTitle.setBounds(_screenSize.width / 2 - _screenSize.width * 3 / 8, _screenSize.height / 12, 
+//				_screenSize.width * 3 / 4, _screenSize.height * 3 / 8);
+//		_lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+//		Image resizedTitle = _imgTitle.getScaledInstance(_lblTitle.getWidth(), _lblTitle.getHeight(), Image.SCALE_SMOOTH);
+//		_lblTitle.setIcon(new ImageIcon(resizedTitle));
 //		add(_lblTitle);
 //		System.out.println("Header " + _lblTitle.getSize() + "\n");
 				
