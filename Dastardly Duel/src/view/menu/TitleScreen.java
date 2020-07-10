@@ -83,8 +83,9 @@ public class TitleScreen extends JPanel {
 		_btnSinglePlayer.setAlignmentX(Component.CENTER_ALIGNMENT);
 		Image resizedPlay = _imgPlay.getScaledInstance(_btnSinglePlayer.getWidth(), _btnSinglePlayer.getHeight(), Image.SCALE_SMOOTH);
 //		_btnSinglePlayer.setIcon(new ImageIcon(resizedPlay));
+		test.setImage(test.getImage().getScaledInstance(_btnSinglePlayer.getWidth(), _btnSinglePlayer.getHeight(), Image.SCALE_DEFAULT));
 		_btnSinglePlayer.setIcon(test);
-		_btnSinglePlayer.setBorderPainted(false);
+//		_btnSinglePlayer.setBorderPainted(false);
 		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(_btnSinglePlayer);
 		_btnSinglePlayer.addActionListener(new ActionListener() {
