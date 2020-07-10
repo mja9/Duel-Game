@@ -41,8 +41,8 @@ public class TitleScreen extends JPanel {
 	
 	private final JButton _btnSettings = new JButton();
 	
-	private final Image _imgBG = _toolKit.getImage(this.getClass().getResource("images/cover.png"));
-	
+	private final Image _imgBG = _toolKit.getImage(this.getClass().getResource("images/backlight.gif"));
+		
 //	private final Image _imgTitle = _toolKit.getImage(this.getClass().getResource("images/header.png"));
 	
 	private final Image _imgPlay = _toolKit.getImage(this.getClass().getResource("images/play.png"));
