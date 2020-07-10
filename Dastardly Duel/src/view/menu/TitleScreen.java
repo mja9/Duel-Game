@@ -41,7 +41,7 @@ public class TitleScreen extends JPanel {
 	
 	private final JButton _btnSettings = new JButton();
 	
-	private final Image _imgBG = _toolKit.getImage(this.getClass().getResource("images/bg.png"));
+	private final Image _imgBG = _toolKit.getImage(this.getClass().getResource("images/cover.png"));
 	
 	private final Image _imgTitle = _toolKit.getImage(this.getClass().getResource("images/header.png"));
 	
@@ -74,7 +74,7 @@ public class TitleScreen extends JPanel {
 		_lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 		Image resizedTitle = _imgTitle.getScaledInstance(_lblTitle.getWidth(), _lblTitle.getHeight(), Image.SCALE_SMOOTH);
 		_lblTitle.setIcon(new ImageIcon(resizedTitle));
-		add(_lblTitle);
+//		add(_lblTitle);
 //		System.out.println("Header " + _lblTitle.getSize() + "\n");
 				
 		// Single Player button -- NOTE: Can also set icons for roll over and selection
@@ -86,7 +86,7 @@ public class TitleScreen extends JPanel {
 //		_btnSinglePlayer.setIcon(test);
 		_btnSinglePlayer.setBorderPainted(false);
 		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		add(_btnSinglePlayer);
+//		add(_btnSinglePlayer);
 		_btnSinglePlayer.addActionListener(new ActionListener() {
 
 			@Override
@@ -105,7 +105,7 @@ public class TitleScreen extends JPanel {
 		_btnMultiplayer.setIcon(new ImageIcon(resizedPlay));
 		_btnMultiplayer.setBorderPainted(false);
 		_btnMultiplayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		add(_btnMultiplayer);
+//		add(_btnMultiplayer);
 		_btnMultiplayer.addActionListener(new ActionListener() {
 
 			@Override
@@ -123,7 +123,7 @@ public class TitleScreen extends JPanel {
 		_btnSettings.setIcon(new ImageIcon(resizedSettings));
 		_btnSettings.setBorderPainted(false);
 		_btnSettings.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		add(_btnSettings);
+//		add(_btnSettings);
 		_btnSettings.addActionListener(new ActionListener() {
 
 			@Override
