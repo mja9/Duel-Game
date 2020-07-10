@@ -86,7 +86,7 @@ public class TitleScreen extends JPanel {
 //		_btnSinglePlayer.setIcon(test);
 		_btnSinglePlayer.setBorderPainted(false);
 		_btnSinglePlayer.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		add(_btnSinglePlayer);
+		add(_btnSinglePlayer);
 		_btnSinglePlayer.addActionListener(new ActionListener() {
 
 			@Override

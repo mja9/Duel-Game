@@ -1,4 +1,4 @@
-package object.gameobjects.impl.interactive.vagile.auto;
+package object.gameobjects.boss;
 
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
@@ -8,8 +8,8 @@ import object.IGameObjectAdapter;
 import object.gameobjects.action.Block;
 import object.gameobjects.action.BoulderAttack;
 import object.gameobjects.action.IActionStrategy;
+import object.gameobjects.impl.interactive.vagile.auto.AutoObject;
 import object.gameobjects.interaction.IInteractionStrategy;
-import object.gameobjects.interaction.impl.bosses.DemoBossInteraction;
 import object.gameobjects.movement.IMoveableKeys;
 import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;

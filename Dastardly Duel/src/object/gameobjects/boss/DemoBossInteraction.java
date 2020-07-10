@@ -1,4 +1,4 @@
-package object.gameobjects.interaction.impl.bosses;
+package object.gameobjects.boss;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -6,7 +6,6 @@ import java.util.HashMap;
 import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.impl.interactive.sessile.RockWall;
 import object.gameobjects.impl.interactive.vagile.auto.Boulder;
-import object.gameobjects.impl.interactive.vagile.auto.DemoBoss;
 import object.gameobjects.impl.interactive.vagile.manual.Player;
 import object.gameobjects.interaction.IInteractionStrategy;
 import util.visitor.IVisitorAlgo;
