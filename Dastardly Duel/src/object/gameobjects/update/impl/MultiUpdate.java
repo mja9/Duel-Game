@@ -17,7 +17,9 @@ public class MultiUpdate implements IUpdateStrategy {
 	}
 	
 	@Override
-	public void init() {		
+	public void init() {	
+		_strategy1.init();
+		_strategy2.init();
 	}
 
 	@Override

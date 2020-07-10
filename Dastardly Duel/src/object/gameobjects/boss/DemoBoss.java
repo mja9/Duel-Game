@@ -5,25 +5,17 @@ import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 
 import object.IGameObjectAdapter;
-import object.gameobjects.action.Block;
-import object.gameobjects.action.BoulderAttack;
-import object.gameobjects.action.IActionStrategy;
 import object.gameobjects.impl.interactive.vagile.auto.AutoObject;
 import object.gameobjects.interaction.IInteractionStrategy;
-import object.gameobjects.movement.IMoveableKeys;
-import object.gameobjects.movement.IMoveableStrategy;
 import object.gameobjects.movement.IMovementStrategy;
 import object.gameobjects.movement.impl.BasicMovement;
 import object.gameobjects.paint.IPaintStrategy;
 import object.gameobjects.paint.impl.BasicPaint;
 import object.gameobjects.paint.impl.ImagePaint;
 import object.gameobjects.update.IUpdateStrategy;
-import object.gameobjects.update.impl.AOEDetection;
 import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
 import object.gameobjects.update.impl.MultiUpdate;
-import object.gameobjects.update.impl.PseudoGravity;
-import object.gameobjects.update.impl.Rise;
 import util.visitor.IVisitorAlgo;
 
 public class DemoBoss extends AutoObject {
@@ -61,7 +53,9 @@ public class DemoBoss extends AutoObject {
 
 			@Override
 			public void execute(Object... args) {
-//				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
+				DemoBoss.this.setUpdateStrategy(new MultiUpdate(new DetectBoundary(), new Phase1Detection()));
+				DemoBoss.this.setInteractionStrategy(new Phase1Interaction());
+				DemoBoss.this.setMovementStrategy(new BasicMovement());
 			}
 			
 		});

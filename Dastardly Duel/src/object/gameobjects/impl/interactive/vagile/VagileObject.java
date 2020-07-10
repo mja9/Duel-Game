@@ -28,6 +28,11 @@ public class VagileObject extends AInteractiveObject {
 	public void move() {
 		_movementStrategy.move();
 	}
+	
+	public void setMovementStrategy(IMovementStrategy newStrat) {
+		_movementStrategy = newStrat;
+		_movementStrategy.init(this);
+	}
 
 	@Override
 	public String getID() {
