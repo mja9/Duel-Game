@@ -109,21 +109,8 @@ public class Phase1Interaction implements IInteractionStrategy {
 
 			@Override
 			public void execute(Object... args) {	
-				Boulder otherContext = (Boulder) args[0];
-				Point otherCenter = otherContext.getPosition();
-				Point thisCenter = _demoBoss.getPosition();
-				
-				if ((Math.abs(otherCenter.x - thisCenter.x) <=
-						_demoBoss.getWidth() / 2 + otherContext.getWidth() / 2)
-						
-						// Check y-positions
-						&& (Math.abs(otherCenter.y - thisCenter.y) <=
-						_demoBoss.getHeight() / 2 + otherContext.getHeight() / 2)) {
-					
+
 					System.out.println("Boss has been damaged!\n");
-					
-				}
-				
 				
 			}
 			
@@ -137,6 +124,8 @@ public class Phase1Interaction implements IInteractionStrategy {
 				Player otherContext = (Player) args[0];
 				Point otherCenter = otherContext.getPosition();
 				Point thisCenter = _demoBoss.getPosition();
+				int thresholdDist = 15;
+
 				
 				if ((Math.abs(otherCenter.x - thisCenter.x) <=
 						_demoBoss.getWidth() / 2 + otherContext.getWidth() / 2)
@@ -147,7 +136,8 @@ public class Phase1Interaction implements IInteractionStrategy {
 					
 					System.out.println("Boss attacks the player!\n");
 					
-				} else {
+				} else if (Math.abs(_demoBoss.getPosition().x - otherContext.getPosition().x) > 
+				_demoBoss.getWidth() / 2 + otherContext.getWidth() / 2 + thresholdDist) {
 					
 					if (otherCenter.x < thisCenter.x) {
 						_demoBoss.setSpeed(new Point(-3, 0));

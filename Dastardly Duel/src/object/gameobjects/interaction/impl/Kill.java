@@ -1,8 +1,8 @@
 package object.gameobjects.interaction.impl;
 
-import object.gameobjects.AGameObject;
 import object.gameobjects.impl.interactive.AInteractiveObject;
 import object.gameobjects.interaction.IInteractionStrategy;
+import object.gameobjects.update.impl.Killed;
 
 /**
  * Removes the context holding this strategy from the list of observers held by the associated dispatcher.
@@ -11,7 +11,7 @@ import object.gameobjects.interaction.IInteractionStrategy;
  */
 public class Kill implements IInteractionStrategy {
 	
-	private AGameObject _context;
+	private AInteractiveObject _context;
 
 	@Override
 	public void init(AInteractiveObject context) {
@@ -20,7 +20,7 @@ public class Kill implements IInteractionStrategy {
 
 	@Override
 	public void interact(String id, Object ... args) {
-		_context.getAdapter().removeObserver(_context);
+		_context.setUpdateStrategy(new Killed());
 	}
 
 }

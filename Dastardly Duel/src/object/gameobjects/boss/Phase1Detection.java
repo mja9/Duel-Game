@@ -18,19 +18,13 @@ public class Phase1Detection implements IUpdateStrategy{
 
 	@Override
 	public void init() {	
-		System.out.println("Got here");
 		_visitorDetection.put("player", new IVisitorAlgo() {
 
 			@Override
 			public void execute(Object... args) {
 				DemoBoss _demoBoss = (DemoBoss) args[0];
 				Player _player = (Player) args[1];
-				int thresholdDist = 5;
-				
-				if (Math.abs(_demoBoss.getPosition().x - _player.getPosition().x) > 
-						_demoBoss.getWidth() / 2 + _player.getWidth() / 2 + thresholdDist) {
-					_demoBoss.interact(_player.getID(), _player);
-				}
+				_demoBoss.interact(_player.getID(), _player);
 			}
 			
 		});
@@ -87,7 +81,6 @@ public class Phase1Detection implements IUpdateStrategy{
 			}
 			
 		});
-		System.out.println("No issues here");
 
 	}
 
