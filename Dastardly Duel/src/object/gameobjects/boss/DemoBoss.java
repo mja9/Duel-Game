@@ -51,7 +51,7 @@ public class DemoBoss extends AutoObject {
 			@Override
 			public void execute(Object... args) {
 				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
-				DemoBoss.this.setUpdateStrategy(new Rise());
+				DemoBoss.this.setUpdateStrategy(new SpawnBehaviour());
 				DemoBoss.this.setInteractionStrategy(new SpawnToPhase1());
 			}
 			
@@ -69,11 +69,7 @@ public class DemoBoss extends AutoObject {
 	}
 	
 	public void changePhases(String id) {
-		
-	}
-	
-	public void startDemoBossEncounter() {
-		
+		_phaseVisitor.get(id).execute();
 	}
 
 }
