@@ -20,6 +20,8 @@ import util.visitor.IVisitorAlgo;
 
 public class DemoBoss extends AutoObject {
 	
+	private String _nextPhase = "transition 1";
+	
 	private HashMap<String, IVisitorAlgo> _phaseVisitor = new HashMap<String, IVisitorAlgo>();
 
 	private DemoBoss(Point pos, int width, int height, IPaintStrategy paintStrategy,
@@ -28,9 +30,7 @@ public class DemoBoss extends AutoObject {
 		super(pos, width, height, paintStrategy, gameObject2Control, updateStrategy, interactStrategy, movementStrategy);
 		createPhases();
 	}
-	
-	// need to add tailored interaction and moveable strategy to the enemy
-	
+		
 	public DemoBoss(Point pos, IGameObjectAdapter gameObjectAdapter) {
 		this(pos, 16, 16, new BasicPaint(), gameObjectAdapter, new Collision(), 
 				new ChangeState(), IMovementStrategy.NULL_MOVEMENT);
@@ -38,13 +38,13 @@ public class DemoBoss extends AutoObject {
 	
 	private void createPhases() {
 		
-		_phaseVisitor.put("spawn", new IVisitorAlgo() {
+		_phaseVisitor.put("transition 1", new IVisitorAlgo() {
 
 			@Override
 			public void execute(Object... args) {
 				DemoBoss.this.setPaintStrategy(new ImagePaint(new AffineTransform(), "images/rockmancropped.png", 0.57, 0.98));
 				DemoBoss.this.setUpdateStrategy(new SpawnBehaviour());
-				DemoBoss.this.setInteractionStrategy(new SpawnToPhase1());
+				_nextPhase = "phase 1";
 			}
 			
 		});
@@ -56,14 +56,26 @@ public class DemoBoss extends AutoObject {
 				DemoBoss.this.setUpdateStrategy(new MultiUpdate(new DetectBoundary(), new Phase1Detection()));
 				DemoBoss.this.setInteractionStrategy(new Phase1Interaction());
 				DemoBoss.this.setMovementStrategy(new BasicMovement());
+				_nextPhase = "transition 2";
+			}
+			
+		});
+		
+		_phaseVisitor.put("transition 2", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				
+				DemoBoss.this.setInteractionStrategy(new ChangeState());
+				_nextPhase = "phase 2";
 			}
 			
 		});
 		
 	}
 	
-	public void changePhases(String id) {
-		_phaseVisitor.get(id).execute();
+	public void changePhases() {
+		_phaseVisitor.get(_nextPhase).execute();
 	}
 
 }

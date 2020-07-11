@@ -14,7 +14,7 @@ public class ChangeState implements IInteractionStrategy {
 
 	@Override
 	public void interact(String id, Object... args) {	
-		_demoBoss.changePhases("spawn");
+		_demoBoss.changePhases();
 	}
 
 }
