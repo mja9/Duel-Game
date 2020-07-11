@@ -4,6 +4,8 @@ import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.HashMap;
 
+import javax.swing.Timer;
+
 import object.IGameObjectAdapter;
 import object.gameobjects.impl.interactive.vagile.auto.AutoObject;
 import object.gameobjects.interaction.IInteractionStrategy;
@@ -20,10 +22,25 @@ import util.visitor.IVisitorAlgo;
 
 public class DemoBoss extends AutoObject {
 	
+	// States controlling immune stages for boss
+	private int _health = 100;
+	
+	public enum States {
+		DAMAGEABLE, 
+		IMMUNE;
+	}
+	
+	private States _currentState = States.IMMUNE;
+	
+	private int _damageGracePeriod = 3000;
+	
+	private Timer _gracePeriodTimer = new Timer(_damageGracePeriod, (e) -> revertToDamageable());
+	
+	// Phases controlling boss behaviour during encounters
 	private String _nextPhase = "transition 1";
 	
 	private HashMap<String, IVisitorAlgo> _phaseVisitor = new HashMap<String, IVisitorAlgo>();
-
+	
 	private DemoBoss(Point pos, int width, int height, IPaintStrategy paintStrategy,
 			IGameObjectAdapter gameObject2Control, IUpdateStrategy updateStrategy,
 			IInteractionStrategy interactStrategy, IMovementStrategy movementStrategy) {
@@ -53,6 +70,7 @@ public class DemoBoss extends AutoObject {
 
 			@Override
 			public void execute(Object... args) {
+				DemoBoss.this._currentState = States.DAMAGEABLE;
 				DemoBoss.this.setUpdateStrategy(new MultiUpdate(new DetectBoundary(), new Phase1Detection()));
 				DemoBoss.this.setInteractionStrategy(new Phase1Interaction());
 				DemoBoss.this.setMovementStrategy(new BasicMovement());
@@ -65,13 +83,47 @@ public class DemoBoss extends AutoObject {
 
 			@Override
 			public void execute(Object... args) {
-				
+				DemoBoss.this._currentState = States.IMMUNE;
+				DemoBoss.this.setSpeed(new Point(4, 0));
+				DemoBoss.this.setUpdateStrategy(new Transition2Behaviour());
 				DemoBoss.this.setInteractionStrategy(new ChangeState());
 				_nextPhase = "phase 2";
 			}
 			
 		});
 		
+		_phaseVisitor.put("phase 2", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				DemoBoss.this._currentState = States.DAMAGEABLE;
+				_nextPhase = "transition 3";
+			}
+			
+		});
+		
+	}
+	
+	private void revertToDamageable() {
+		_currentState = States.DAMAGEABLE;
+		_gracePeriodTimer.stop();
+	}
+	
+	public void damageBoss() {
+		switch (_currentState) {
+			
+			case DAMAGEABLE:
+				_health -= 15;
+				if (_health == 70) {
+					changePhases();
+				}
+				_currentState = States.IMMUNE;
+				_gracePeriodTimer.start();
+				break;
+			
+			case IMMUNE:
+				break;
+		}
 	}
 	
 	public void changePhases() {
