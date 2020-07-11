@@ -97,7 +97,38 @@ public class DemoBoss extends AutoObject {
 			@Override
 			public void execute(Object... args) {
 				DemoBoss.this._currentState = States.DAMAGEABLE;
+				DemoBoss.this.setUpdateStrategy(new Phase1Detection());
+				DemoBoss.this.setInteractionStrategy(new Phase2Interaction());
 				_nextPhase = "transition 3";
+			}
+			
+		});
+		
+		_phaseVisitor.put("transition 3", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				DemoBoss.this._currentState = States.IMMUNE;
+				_nextPhase = "phase 3";
+			}
+			
+		});
+		
+		_phaseVisitor.put("phase 3", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				DemoBoss.this._currentState = States.DAMAGEABLE;
+				_nextPhase = "death";
+			}
+			
+		});
+		
+		_phaseVisitor.put("death", new IVisitorAlgo() {
+
+			@Override
+			public void execute(Object... args) {
+				DemoBoss.this._currentState = States.IMMUNE;
 			}
 			
 		});
