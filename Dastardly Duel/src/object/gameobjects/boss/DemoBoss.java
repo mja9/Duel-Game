@@ -88,6 +88,7 @@ public class DemoBoss extends AutoObject {
 				DemoBoss.this.setUpdateStrategy(new Transition2Behaviour());
 				DemoBoss.this.setInteractionStrategy(new ChangeState());
 				_nextPhase = "phase 2";
+				System.out.println(DemoBoss.this);
 			}
 			
 		});
@@ -97,7 +98,7 @@ public class DemoBoss extends AutoObject {
 			@Override
 			public void execute(Object... args) {
 				DemoBoss.this._currentState = States.DAMAGEABLE;
-				DemoBoss.this.setUpdateStrategy(new Phase1Detection());
+				DemoBoss.this.setUpdateStrategy(new MultiUpdate(new DetectBoundary(), new Phase1Detection()));
 				DemoBoss.this.setInteractionStrategy(new Phase2Interaction());
 				_nextPhase = "transition 3";
 			}
@@ -134,6 +135,9 @@ public class DemoBoss extends AutoObject {
 		});
 		
 	}
+	
+	
+	// He must be damageable and changing states earlier than he should be 
 	
 	private void revertToDamageable() {
 		_currentState = States.DAMAGEABLE;
