@@ -137,7 +137,7 @@ public class DemoBoss extends AutoObject {
 	}
 	
 	
-	// He must be damageable and changing states earlier than he should be 
+	// He could be damageable and changing states earlier than he should be 
 	
 	private void revertToDamageable() {
 		_currentState = States.DAMAGEABLE;
