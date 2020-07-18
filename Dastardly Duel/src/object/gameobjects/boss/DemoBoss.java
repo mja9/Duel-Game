@@ -135,10 +135,7 @@ public class DemoBoss extends AutoObject {
 		});
 		
 	}
-	
-	
-	// He could be damageable and changing states earlier than he should be 
-	
+		
 	private void revertToDamageable() {
 		_currentState = States.DAMAGEABLE;
 		_gracePeriodTimer.stop();

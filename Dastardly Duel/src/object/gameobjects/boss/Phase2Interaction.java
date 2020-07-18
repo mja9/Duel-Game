@@ -118,6 +118,8 @@ public class Phase2Interaction implements IInteractionStrategy {
 						_demoBoss.setSpeed(new Point(0, 3));
 					}
 					
+				} else {
+					_demoBoss.setSpeed(new Point(_demoBoss.getSpeed().x, 0));
 				}
 			}
 			
