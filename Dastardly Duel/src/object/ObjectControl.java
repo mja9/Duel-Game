@@ -186,20 +186,34 @@ public class ObjectControl {
 			
 		});
 		
-		_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
+		_object2View.addKeyCommand(keys.getPrimaryActionKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
-				context.getMoveableStrategy().act1();
+				keyDebouncer.debouncedCall(t, new Runnable() {
+
+					@Override
+					public void run() {
+						context.getMoveableStrategy().act1();
+					}
+					
+				}, 200);
 			}
 			
 		});
 		
-		_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
+		_object2View.addKeyCommand(keys.getSecondaryActionKey(), new Consumer<String>() {
 
 			@Override
 			public void accept(String t) {
-				context.getMoveableStrategy().act2();
+				keyDebouncer.debouncedCall(t, new Runnable() {
+
+					@Override
+					public void run() {
+						context.getMoveableStrategy().act2();
+					}
+					
+				}, 500);
 			}
 			
 		});
