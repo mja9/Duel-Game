@@ -7,6 +7,16 @@ import java.util.concurrent.TimeUnit;
 
 import util.debouncer.IDebouncer;
 
+/**
+ * An IDebouncer written openly to handle debouncing for any 
+ * key triggered on the keyboard concurrently. The timeout for the
+ * debounced call is defined by the key triggered to tailot to 
+ * variable game cooldowns.
+ * 
+ * @author miguelarana
+ *
+ * @param <T> Type of the keys being debounced.
+ */
 public class Debouncer<T> implements IDebouncer<T> {
 	
 	private ConcurrentHashMap<T, Runnable> _delayedRemovalMap = new ConcurrentHashMap<T, Runnable>();
