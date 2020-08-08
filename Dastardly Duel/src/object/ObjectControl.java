@@ -27,6 +27,7 @@ import object.gameobjects.update.impl.Collision;
 import object.gameobjects.update.impl.DetectBoundary;
 import object.gameobjects.update.impl.MultiUpdate;
 import object.gameobjects.update.impl.PseudoGravity;
+import util.debouncer.impl.Debouncer;
 import util.dispatcher.ICommand;
 import util.dispatcher.IObserver;
 import util.factory.IFactory;
@@ -121,78 +122,87 @@ public class ObjectControl {
 	}
 		
 	private void registerMovementKeys(IMoveableKeys keys, final ManualObject context) {
+		
+		Debouncer<String> keyDebouncer = new Debouncer<String>();
 			
-			_object2View.addKeyCommand(keys.getLeftKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().moveLeft();
-				}
-				
-			});
+		_object2View.addKeyCommand(keys.getLeftKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().moveLeft();
+			}
 			
-			_object2View.addKeyCommand("released " + keys.getLeftKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().stop();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand("released " + keys.getLeftKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().stop();
+			}
 			
-			_object2View.addKeyCommand(keys.getRightKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().moveRight();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand(keys.getRightKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().moveRight();
+			}
 			
-			_object2View.addKeyCommand("released " + keys.getRightKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().stop();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand("released " + keys.getRightKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().stop();
+			}
 			
-			_object2View.addKeyCommand("released " + keys.getUpKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().moveUp();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand(keys.getUpKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				keyDebouncer.debouncedCall(t, new Runnable() {
+
+					@Override
+					public void run() {
+						context.getMoveableStrategy().moveUp();
+					}
+					
+				}, 250);
+			}
 			
-			_object2View.addKeyCommand(keys.getDownKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().moveDown();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand(keys.getDownKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().moveDown();
+			}
 			
-			_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().act1();
-				}
-				
-			});
+		});
+		
+		_object2View.addKeyCommand("released " + keys.getPrimaryActionKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().act1();
+			}
 			
-			_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
-	
-				@Override
-				public void accept(String t) {
-					context.getMoveableStrategy().act2();
-				}
-				
-			});
-		}
+		});
+		
+		_object2View.addKeyCommand("released " + keys.getSecondaryActionKey(), new Consumer<String>() {
+
+			@Override
+			public void accept(String t) {
+				context.getMoveableStrategy().act2();
+			}
+			
+		});
+	}
 
 }
