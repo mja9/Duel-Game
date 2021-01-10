@@ -50,6 +50,8 @@ public class DemoLevel extends JPanel {
 		
 		g.setColor(Color.CYAN);
 		g.fillRect(0, screenSize.height - (screenSize.height / 4), screenSize.width, screenSize.height / 4);	// Add a floor
+		// TODO: Add instructions for the demo here.
+		// Move with the arrowkeys, M - Attack, N - Block, 
 		
 		_view2Model.update(g);
 	
